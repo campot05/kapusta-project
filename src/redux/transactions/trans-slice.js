@@ -10,7 +10,7 @@ import {
 } from './trans-operations';
 const initialState = {
   transactions: [],
-  summery: [],
+  summary: [],
   message: null,
   isLoading: false,
   error: null,
