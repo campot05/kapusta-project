@@ -1,16 +1,19 @@
+import Header from './Header/Header';
+
 export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+  return <Header />;
 };
+
+// import { lazy } from 'react';
+// import { Route, Routes } from 'react-router-dom';
+// import { PrivateRoute } from 'routes/PrivateRoutes';
+// import { RestrictedRoute } from 'routes/RestrictedRoute';
+// import { Suspense } from 'react';
+
+// const Home = lazy(() => import('../pages/Home'));
+// import Home from 'pages/Home';
+//  <Suspense fallback={<div>Loading...</div>}>
+//    <Routes>
+//      <Route path="/" element={<Home />}></Route>
+//    </Routes>
+//  </Suspense>
