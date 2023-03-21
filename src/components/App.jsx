@@ -1,7 +1,13 @@
 import Header from './Header/Header';
+import Table from './Table/Table';
 
 export const App = () => {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <Table />
+    </>
+  );
 };
 
 // import { lazy } from 'react';
