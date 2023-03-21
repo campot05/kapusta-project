@@ -1,11 +1,11 @@
 import Header from './Header/Header';
 import Table from './Table/Table';
+import TableSorted from './TableSorted/TableSorted';
 
 export const App = () => {
   return (
     <>
       <Header />
-      <Table />
     </>
   );
 };

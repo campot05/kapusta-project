@@ -38,6 +38,18 @@ function createData(date, description, category, sum, del) {
   return { date, description, category, sum, del };
 }
 
+// function stableSort(array, comparator) {
+//   const stabilizedThis = array.map((el, index) => [el, index]);
+//   stabilizedThis.sort((a, b) => {
+//     const order = comparator(a[0], b[0]);
+//     if (order !== 0) {
+//       return order;
+//     }
+//     return a[1] - b[1];
+//   });
+//   return stabilizedThis.map((el) => el[0]);
+// }
+
 const rows = [
   createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
   createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
@@ -55,8 +67,20 @@ const rows = [
 
 export default function StickyHeadTable() {
   return (
-    <Paper sx={{ maxWidth: 746, margin: 'auto', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 400 }}>
+    <Paper
+      sx={{
+        maxWidth: 746,
+        margin: 'auto',
+        overflow: 'hidden',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+      }}
+    >
+      <TableContainer
+        sx={{
+          maxHeight: 400,
+        }}
+      >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
