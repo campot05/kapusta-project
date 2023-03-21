@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/295.12689ec3.chunk.js","mappings":"kMAAe,SAASA,IACtB,OAAO,2FACR,C","sources":["pages/Report/Report.jsx"],"sourcesContent":["export default function Reports() {\n  return <div>Страничка Reports</div>;\n}\n"],"names":["Reports"],"sourceRoot":""}

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/817.121ad47f.chunk.js","mappings":"kMAAe,SAASA,IACtB,OAAO,8HACR,C","sources":["pages/Operations/Operations.jsx"],"sourcesContent":["export default function Home() {\n  return <div>Главная страничка</div>;\n}\n"],"names":["Home"],"sourceRoot":""}
