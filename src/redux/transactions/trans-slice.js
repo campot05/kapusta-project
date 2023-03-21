@@ -21,7 +21,7 @@ const transactionSlice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-    setOperationType(state, payload) {
+    setOperationType(state, { payload }) {
       state.operationType = payload;
     },
   },
