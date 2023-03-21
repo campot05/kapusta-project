@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  text-align: start;
   label {
     display: flex;
     flex-direction: column;
@@ -38,13 +37,22 @@ export const Form = styled.form`
         color: #a6abb9;
       }
     }
+    @media screen and (max-width: 767.98px) {
+      margin-bottom: 20px;
+    }
   }
 `;
 
-export const FormContainer = styled.div`
+export const Container = styled.div`
   width: 426px;
   padding: 56px 83px;
-  text-align: center;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 30px;
+  margin: 0 auto;
+  @media screen and (max-width: 767.98px) {
+    width: 280px;
+    padding: 40px 20px;
+  }
 `;
 
 export const Text = styled.p`
@@ -55,6 +63,10 @@ export const Text = styled.p`
   line-height: calc(14 / 12);
   color: #52555f;
   margin-bottom: 20px;
+  text-align: ${props => (props.google ? 'center' : null)};
+  @media screen and (max-width: 767.98px) {
+    margin-bottom: 16px;
+  }
 `;
 
 export const Link = styled.a`
@@ -92,6 +104,11 @@ export const Button = styled.button`
   transition: transform 250ms ease;
   &:hover {
     transform: scale(1.05);
+  }
+  @media screen and (max-width: 767.98px) {
+    width: 116px;
+    padding: 12px 14px;
+    margin-right: ${props => (props.login ? '8px' : 0)};
   }
 `;
 
