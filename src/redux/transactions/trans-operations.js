@@ -45,9 +45,9 @@ export const deleteTransaction = createAsyncThunk(
 
 export const getIncomeSummary = createAsyncThunk(
   'transactions/income',
-  async (transaction, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const result = await axios.get('/transaction/income', transaction);
+      const result = await axios.get('/transaction/income');
       return result.data;
     } catch (error) {
       if (error.message === 'Network Error') {
@@ -60,9 +60,9 @@ export const getIncomeSummary = createAsyncThunk(
 
 export const getExpenseSummary = createAsyncThunk(
   'transactions/expense',
-  async (transaction, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const result = await axios.get('/transaction/expense', transaction);
+      const result = await axios.get('/transaction/expense');
       return result.data;
     } catch (error) {
       if (error.message === 'Network Error') {
@@ -74,12 +74,9 @@ export const getExpenseSummary = createAsyncThunk(
 );
 export const getIncomeCategories = createAsyncThunk(
   '/transaction/income-categories',
-  async (transaction, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const result = await axios.get(
-        '/transaction/income-categories',
-        transaction
-      );
+      const result = await axios.get('/transaction/income-categories');
       return result.data;
     } catch (error) {
       Notiflix.Notify.failure('Something went wrong, please try again later');
@@ -90,12 +87,22 @@ export const getIncomeCategories = createAsyncThunk(
 
 export const getExpenseCategories = createAsyncThunk(
   '/transaction/expense-categories',
-  async (transaction, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const result = await axios.get(
-        '/transaction/expense-categories',
-        transaction
-      );
+      const result = await axios.get('/transaction/expense-categories');
+      return result.data;
+    } catch (error) {
+      Notiflix.Notify.failure('Something went wrong, please try again later');
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getPeriodData = createAsyncThunk(
+  '/transaction/period-data',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await axios.get('/transaction/period-data', data);
       return result.data;
     } catch (error) {
       Notiflix.Notify.failure('Something went wrong, please try again later');

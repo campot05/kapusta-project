@@ -7,6 +7,7 @@ import {
   getExpenseSummary,
   getIncomeCategories,
   getExpenseCategories,
+  getPeriodData,
 } from './trans-operations';
 const initialState = {
   transactions: [],
@@ -104,6 +105,18 @@ const transactionSlice = createSlice({
       state.isLoading = false;
     },
     [getExpenseCategories.pending](state) {
+      state.isLoading = true;
+    },
+    [getPeriodData.fulfilled](state, { payload }) {
+      state.message = payload.message;
+      state.transactions.push(payload.transaction);
+      state.isLoading = false;
+    },
+    [getPeriodData.rejected](state, { payload }) {
+      state.error = payload.message;
+      state.isLoading = false;
+    },
+    [getPeriodData.pending](state) {
       state.isLoading = true;
     },
   },
