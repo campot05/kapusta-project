@@ -100,9 +100,13 @@ export const getExpenseCategories = createAsyncThunk(
 
 export const getPeriodData = createAsyncThunk(
   '/transaction/period-data',
-  async (data, { rejectWithValue }) => {
+  async (date, { rejectWithValue }) => {
     try {
-      const result = await axios.get('/transaction/period-data', data);
+      const result = await axios.get('/transaction/period-data', {
+        params: {
+          query: date,
+        },
+      });
       return result.data;
     } catch (error) {
       Notiflix.Notify.failure('Something went wrong, please try again later');
