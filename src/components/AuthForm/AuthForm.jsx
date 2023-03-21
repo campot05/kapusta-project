@@ -22,6 +22,8 @@ export const AuthForm = () => {
 
   return (
     <FormContainer>
+      <p>You can log in with your Google Account:</p>
+
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           Email:
