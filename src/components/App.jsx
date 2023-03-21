@@ -1,7 +1,12 @@
 import Header from './Header/Header';
-
+import { AuthForm } from './AuthForm/AuthForm';
 export const App = () => {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <AuthForm />
+    </>
+  );
 };
 
 // import { lazy } from 'react';
