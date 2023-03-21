@@ -12,6 +12,11 @@ import technique from './technique.svg';
 import transport from './transport.svg';
 import ufo from './ufo.svg';
 import utilities from './utilities.svg';
+import calculator from './calculator.svg';
+import calendar from './calendar.svg';
+import bin from './bin.svg';
+import divider from './divider.svg';
+import reports from './utilities.svg';
 
 export {
   alcohol,
@@ -28,4 +33,9 @@ export {
   transport,
   ufo,
   utilities,
+  calculator,
+  calendar,
+  bin,
+  divider,
+  reports,
 };
