@@ -1,24 +1,21 @@
-import Header from './Header/Header';
-import { AuthForm } from './AuthForm/AuthForm';
-export const App = () => {
-  return (
-    <>
-      <Header />
-      <AuthForm />
-    </>
-  );
-};
-
-// import { lazy } from 'react';
-// import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 // import { PrivateRoute } from 'routes/PrivateRoutes';
 // import { RestrictedRoute } from 'routes/RestrictedRoute';
-// import { Suspense } from 'react';
+import Layout from 'pages/Layout/Layout';
 
-// const Home = lazy(() => import('../pages/Home'));
-// import Home from 'pages/Home';
-//  <Suspense fallback={<div>Loading...</div>}>
-//    <Routes>
-//      <Route path="/" element={<Home />}></Route>
-//    </Routes>
-//  </Suspense>
+const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
+const Operations = lazy(() => import('../pages/Operations/Operations'));
+const Report = lazy(() => import('../pages/Report/Report'));
+export const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<AuthPage />} />
+        <Route path="/operations" element={<Operations />} />
+        <Route path="/report" element={<Report />} />
+        <Route path="*" element={<div>page not found</div>} />
+      </Route>
+    </Routes>
+  );
+};
