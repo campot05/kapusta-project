@@ -1,9 +1,9 @@
-import StickyHeadTable from 'components/StickyHeadTable/StickyHeadTable';
+import OperationsTable from 'components/OperationsTable/OperationsTable';
 
 export default function Home() {
   return (
     <div>
-      <StickyHeadTable />
+      <OperationsTable />
     </div>
   );
 }

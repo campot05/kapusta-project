@@ -53,7 +53,7 @@ const rows = [
   createData(),
 ];
 
-export default function StickyHeadTable() {
+export default function OperationsTable() {
   return (
     <Paper
       sx={{
