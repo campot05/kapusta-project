@@ -3,7 +3,6 @@ import css from './AppBar.module.css';
 
 export const AppBar = () => {
   const { isLoggedIn } = useAuth();
-  console.log(isLoggedIn);
   return (
     <header className={css.header}>
       <p className={css.logo}>LOGO</p>
