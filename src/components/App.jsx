@@ -8,9 +8,9 @@ import { PrivateRoute } from 'routes/PrivateRoutes';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import Layout from 'pages/Layout/Layout';
 
-// const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
-// const Operations = lazy(() => import('../pages/Operations/Operations'));
-// const Report = lazy(() => import('../pages/Report/Report'));
+const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
+const Operations = lazy(() => import('../pages/Operations/Operations'));
+const Report = lazy(() => import('../pages/Report/Report'));
 export const App = () => {
   const dispatch = useDispatch();
   //   const { isRefreshing } = useAuth();

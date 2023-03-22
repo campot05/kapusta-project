@@ -6,6 +6,7 @@ import { Avatar } from '@mui/material';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import { divider } from '../../images/images';
 import { Link } from 'react-router-dom';
+
 export const AppBar = () => {
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
