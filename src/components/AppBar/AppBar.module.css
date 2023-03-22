@@ -1,0 +1,20 @@
+.header {
+  background-color: gray;
+  color: white;
+  display: flex;
+  height: 60px;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 20px;
+}
+
+.user {
+  margin-left: auto;
+  display: flex;
+}
+
+.user p {
+  margin-right: 15px;
+}
