@@ -30,7 +30,6 @@ const columns = [
     label: 'SUM',
     minWidth: 100,
     align: 'center',
-    format: value => value.toFixed(2),
   },
   {
     id: 'del',
@@ -84,6 +83,7 @@ export default function OperationsTable() {
                 <TableRow key={row._id}>
                   {columns.map(column => {
                     const value = row[column.id];
+
                     return (
                       <TableCell
                         key={column.id}
