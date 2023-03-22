@@ -1,5 +1,7 @@
 import { Paper } from '@mui/material';
-import OperationsTable from 'components/OperationsTable/OperationsTable';
+import OperationsTable, {
+  TableExample,
+} from 'components/OperationsTable/OperationsTable';
 
 export default function Home() {
   return (
@@ -16,6 +18,7 @@ export default function Home() {
       >
         <OperationsTable />
       </Paper>
+      <TableExample />
     </div>
   );
 }

@@ -6,25 +6,33 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+
+import operationsData from 'mocks/operationsData.json';
+import { useState } from 'react';
 import { ReactComponent as RecycleBin } from '../../images/recycleBin.svg';
 
 const columns = [
-  { id: 'date', label: 'DATE', maxWidth: 120 },
+  {
+    id: 'date',
+    label: 'DATE',
+    paddingLeft: 10,
+    maxWidth: 120,
+    format: value => value.split('-'),
+  },
   { id: 'description', label: 'DESCRIPTION', minWidth: 220 },
   {
     id: 'category',
     label: 'CATEGORY',
     minWidth: 100,
     align: 'center',
-    paddingTop: 100,
     format: value => value.toLocaleString('en-US'),
   },
   {
-    id: 'sum',
+    id: 'amount',
     label: 'SUM',
     minWidth: 100,
     align: 'center',
-    format: value => value.toLocaleString('en-US'),
+    format: value => value.toFixed(2),
   },
   {
     id: 'del',
@@ -34,9 +42,11 @@ const columns = [
   },
 ];
 
-const rows = [];
-
 export default function OperationsTable() {
+  const [incomes, setIncomes] = useState(
+    operationsData.flatMap(el => el.incomes)
+  );
+
   return (
     <Paper
       sx={{
@@ -72,9 +82,9 @@ export default function OperationsTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => {
+            {incomes.map(row => {
               return (
-                <TableRow key={row.code}>
+                <TableRow key={row._id}>
                   {columns.map(column => {
                     const value = row[column.id];
                     return (
@@ -103,3 +113,20 @@ export default function OperationsTable() {
     </Paper>
   );
 }
+
+const rowsCount = 15;
+
+export const TableExample = () => {
+  const rows = Array.from(Array(rowsCount)).map((_, i) => (
+    <TableRow key={i}>
+      <TableCell>{i < 3 ? `Row ${i + 1}` : ''}</TableCell>
+      <TableCell>{i < 3 ? `Data ${i + 1}` : ''}</TableCell>
+    </TableRow>
+  ));
+
+  return (
+    <Table>
+      <TableBody>{rows}</TableBody>
+    </Table>
+  );
+};
