@@ -104,7 +104,7 @@ export const getPeriodData = createAsyncThunk(
     try {
       const result = await axios.get('/transaction/period-data', {
         params: {
-          query: date,
+          date: date,
         },
       });
       return result.data;
