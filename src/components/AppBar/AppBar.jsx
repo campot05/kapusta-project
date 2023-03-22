@@ -4,12 +4,18 @@ import { logOut } from 'redux/auth/auth-operations';
 import css from './AppBar.module.css';
 import { Avatar } from '@mui/material';
 import { ReactComponent as Logo } from '../../images/logo.svg';
-import { divider } from '../../images/images';
-import { Link } from 'react-router-dom';
+import { ReactComponent as Logout } from '../../images/logout.svg';
+import { ReactComponent as Divider } from '../../images/divider.svg';
 
+import { Link } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery';
 export const AppBar = () => {
   const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
+
+  const isMobile = useMediaQuery('(max-width:767.98px)');
+  const isTablet = useMediaQuery('(min-width:768px)');
+
   return (
     <>
       {!isLoggedIn && (
@@ -26,11 +32,24 @@ export const AppBar = () => {
           </Link>
           <div className={css.user}>
             <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar>
-            <div className={css.username}>{user.email}</div>
-            <img src={divider} alt="logo" className={css.divider} />
-            <Link to="/login" onClick={() => dispatch(logOut())}>
-              Exit
-            </Link>
+            {isTablet && <div className={css.username}>{user.email}</div>}
+            {isMobile && (
+              <Link to="/login" onClick={() => dispatch(logOut())}>
+                <Logout className={css.logout} />
+              </Link>
+            )}
+            {isTablet && (
+              <>
+                <Divider className={css.divider} />
+                <Link
+                  to="/login"
+                  className={css.exit}
+                  onClick={() => dispatch(logOut())}
+                >
+                  Exit
+                </Link>
+              </>
+            )}
           </div>
         </header>
       )}
