@@ -15,9 +15,8 @@ const columns = [
   {
     id: 'date',
     label: 'DATE',
-    paddingLeft: 10,
+    paddingLeft: '20px',
     maxWidth: 120,
-    format: value => value.split('-'),
   },
   { id: 'description', label: 'DESCRIPTION', minWidth: 220 },
   {
@@ -25,7 +24,6 @@ const columns = [
     label: 'CATEGORY',
     minWidth: 100,
     align: 'center',
-    format: value => value.toLocaleString('en-US'),
   },
   {
     id: 'amount',
@@ -71,8 +69,7 @@ export default function OperationsTable() {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
-                    paddingTop: 8,
-                    paddingBottom: 8,
+                    padding: '8px 25px',
                     backgroundColor: '#F5F6FB',
                   }}
                 >
@@ -87,6 +84,10 @@ export default function OperationsTable() {
                 <TableRow key={row._id}>
                   {columns.map(column => {
                     const value = row[column.id];
+                    console.log(
+                      `🚀 ~ OperationsTable ~ row[column.id]:`,
+                      value
+                    );
                     return (
                       <TableCell
                         key={column.id}
@@ -97,10 +98,14 @@ export default function OperationsTable() {
                           paddingBottom: 10,
                         }}
                       >
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
+                        {column.id === 'date' && value.split('-').join('.')}
+                        {column.id === 'description' && value}
+                        {column.id === 'category' && value}
+                        {column.id === 'amount' && value.toFixed(2)}
                         {column.id === 'del' && <RecycleBin key={column.id} />}
+                        {/* {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value} */}
                       </TableCell>
                     );
                   })}
