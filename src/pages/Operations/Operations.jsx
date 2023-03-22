@@ -1,3 +1,7 @@
+import InputArea from 'components/InputArea'
 export default function Home() {
-  return <div>Главная страничка</div>;
+  return <div>
+    <InputArea/>
+  </div>;
 }
+
