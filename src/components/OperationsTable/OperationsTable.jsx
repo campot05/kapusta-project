@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 
 import operationsData from 'mocks/operationsData.json';
 import { useState } from 'react';
-import { ReactComponent as RecycleBin } from '../../images/recycleBin.svg';
+import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 
 const columns = [
   {
@@ -84,10 +84,6 @@ export default function OperationsTable() {
                 <TableRow key={row._id}>
                   {columns.map(column => {
                     const value = row[column.id];
-                    console.log(
-                      `🚀 ~ OperationsTable ~ row[column.id]:`,
-                      value
-                    );
                     return (
                       <TableCell
                         key={column.id}
@@ -102,7 +98,9 @@ export default function OperationsTable() {
                         {column.id === 'description' && value}
                         {column.id === 'category' && value}
                         {column.id === 'amount' && value.toFixed(2)}
-                        {column.id === 'del' && <RecycleBin key={column.id} />}
+                        {column.id === 'del' && (
+                          <DeleteBtn key={column.id} id={row._id} />
+                        )}
                         {/* {column.format && typeof value === 'number'
                           ? column.format(value)
                           : value} */}
