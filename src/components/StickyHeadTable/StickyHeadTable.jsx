@@ -38,18 +38,6 @@ function createData(date, description, category, sum, del) {
   return { date, description, category, sum, del };
 }
 
-// function stableSort(array, comparator) {
-//   const stabilizedThis = array.map((el, index) => [el, index]);
-//   stabilizedThis.sort((a, b) => {
-//     const order = comparator(a[0], b[0]);
-//     if (order !== 0) {
-//       return order;
-//     }
-//     return a[1] - b[1];
-//   });
-//   return stabilizedThis.map((el) => el[0]);
-// }
-
 const rows = [
   createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
   createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
@@ -57,12 +45,12 @@ const rows = [
   createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
   createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
   createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
+  createData(),
+  createData(),
+  createData(),
+  createData(),
+  createData(),
+  createData(),
 ];
 
 export default function StickyHeadTable() {
@@ -111,6 +99,7 @@ export default function StickyHeadTable() {
                         key={column.id}
                         align={column.align}
                         style={{
+                          height: 40,
                           paddingTop: 10,
                           paddingBottom: 10,
                         }}
