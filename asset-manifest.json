@@ -1,22 +1,40 @@
 {
   "files": {
-    "main.css": "/kapusta-project/static/css/main.11254d01.css",
-    "main.js": "/kapusta-project/static/js/main.278834ce.js",
-    "static/js/549.5d759c25.chunk.js": "/kapusta-project/static/js/549.5d759c25.chunk.js",
-    "static/js/817.121ad47f.chunk.js": "/kapusta-project/static/js/817.121ad47f.chunk.js",
+    "main.css": "/kapusta-project/static/css/main.47310e7a.css",
+    "main.js": "/kapusta-project/static/js/main.7ddddc05.js",
+    "static/js/549.a817ef41.chunk.js": "/kapusta-project/static/js/549.a817ef41.chunk.js",
+    "static/js/817.55cc1900.chunk.js": "/kapusta-project/static/js/817.55cc1900.chunk.js",
     "static/js/295.12689ec3.chunk.js": "/kapusta-project/static/js/295.12689ec3.chunk.js",
-    "static/js/504.ab1b764e.chunk.js": "/kapusta-project/static/js/504.ab1b764e.chunk.js",
+    "static/js/564.3c4b7229.chunk.js": "/kapusta-project/static/js/564.3c4b7229.chunk.js",
+    "static/media/products.svg": "/kapusta-project/static/media/products.a84e13e2e597e4c55eb62a9e1e17a5f1.svg",
+    "static/media/cabbage.svg": "/kapusta-project/static/media/cabbage.61c8014b229fe554186f6b2e7ab0700d.svg",
+    "static/media/hobbies.svg": "/kapusta-project/static/media/hobbies.e0b93396ed48421845cc3d6ea88580f2.svg",
+    "static/media/logo.svg": "/kapusta-project/static/media/logo.9a1219fa7b0c5ccef923ebbd77f9ee7b.svg",
+    "static/media/alcohol.svg": "/kapusta-project/static/media/alcohol.af77eff8c33f3c8c4c09f40c098622a8.svg",
+    "static/media/health.svg": "/kapusta-project/static/media/health.9f3bb09b9dab91156cbc0d4e64a444cd.svg",
+    "static/media/utilities.svg": "/kapusta-project/static/media/utilities.a98b7d68298b3e75e807f3d4c31c7468.svg",
+    "static/media/technique.svg": "/kapusta-project/static/media/technique.f404d270c0c4d5dc2fae2fb0edd09fbb.svg",
     "static/media/google.svg": "/kapusta-project/static/media/google.931688faaaee5da6e34a50e4346fcc15.svg",
+    "static/media/ufo.svg": "/kapusta-project/static/media/ufo.8dc3183b2d2f4abd5cbf2b8c53b0f0d7.svg",
+    "static/media/housing.svg": "/kapusta-project/static/media/housing.095d0de4c24d7fcb066e1047b74e5a08.svg",
+    "static/media/calculator.svg": "/kapusta-project/static/media/calculator.8eda3f2a2b16aa2851c99eb017ba66d2.svg",
+    "static/media/bin.svg": "/kapusta-project/static/media/bin.5f63eb63c22c837915f46e832c3b5877.svg",
+    "static/media/entertainment.svg": "/kapusta-project/static/media/entertainment.7fb9c1d8bcd69bb96fdf58af8851b00b.svg",
+    "static/media/education.svg": "/kapusta-project/static/media/education.6b550eb89643d55a372d3f6f22bdba90.svg",
+    "static/media/calendar.svg": "/kapusta-project/static/media/calendar.0d48257561fe05f279e61e4cdf3df6b1.svg",
+    "static/media/transport.svg": "/kapusta-project/static/media/transport.0ad7e9de5401e6d7e3e0edee0e575c5a.svg",
     "index.html": "/kapusta-project/index.html",
-    "main.11254d01.css.map": "/kapusta-project/static/css/main.11254d01.css.map",
-    "main.278834ce.js.map": "/kapusta-project/static/js/main.278834ce.js.map",
-    "549.5d759c25.chunk.js.map": "/kapusta-project/static/js/549.5d759c25.chunk.js.map",
-    "817.121ad47f.chunk.js.map": "/kapusta-project/static/js/817.121ad47f.chunk.js.map",
+    "static/media/logout.svg": "/kapusta-project/static/media/logout.09551bbb99dbeef2684ad1c1e838f067.svg",
+    "static/media/divider.svg": "/kapusta-project/static/media/divider.5c473292d428032de81e54d6d2bc28e5.svg",
+    "main.47310e7a.css.map": "/kapusta-project/static/css/main.47310e7a.css.map",
+    "main.7ddddc05.js.map": "/kapusta-project/static/js/main.7ddddc05.js.map",
+    "549.a817ef41.chunk.js.map": "/kapusta-project/static/js/549.a817ef41.chunk.js.map",
+    "817.55cc1900.chunk.js.map": "/kapusta-project/static/js/817.55cc1900.chunk.js.map",
     "295.12689ec3.chunk.js.map": "/kapusta-project/static/js/295.12689ec3.chunk.js.map",
-    "504.ab1b764e.chunk.js.map": "/kapusta-project/static/js/504.ab1b764e.chunk.js.map"
+    "564.3c4b7229.chunk.js.map": "/kapusta-project/static/js/564.3c4b7229.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.11254d01.css",
-    "static/js/main.278834ce.js"
+    "static/css/main.47310e7a.css",
+    "static/js/main.7ddddc05.js"
   ]
 }
