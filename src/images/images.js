@@ -17,6 +17,7 @@ import calendar from './calendar.svg';
 import bin from './bin.svg';
 import divider from './divider.svg';
 import reports from './utilities.svg';
+import recycleBin from './recycleBin.svg';
 
 export {
   alcohol,
@@ -38,4 +39,5 @@ export {
   bin,
   divider,
   reports,
+  recycleBin,
 };

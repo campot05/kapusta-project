@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { ReactComponent as RecycleBin } from '../../images/recycleBin.svg';
 
 const columns = [
   { id: 'date', label: 'DATE', maxWidth: 120 },
@@ -30,28 +31,10 @@ const columns = [
     label: '',
     minWidth: 70,
     align: 'center',
-    format: value => value.toFixed(2),
   },
 ];
 
-function createData(date, description, category, sum, del) {
-  return { date, description, category, sum, del };
-}
-
-const rows = [
-  createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Bananas', 'Products', '- 50.00 UAH.', 'del_icon'),
-  createData('21.11.2019', 'Potato', 'Products', '- 20.00 UAH.', 'del_icon'),
-  createData(),
-  createData(),
-  createData(),
-  createData(),
-  createData(),
-  createData(),
-];
+const rows = [];
 
 export default function OperationsTable() {
   return (
@@ -91,7 +74,7 @@ export default function OperationsTable() {
           <TableBody>
             {rows.map(row => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow key={row.code}>
                   {columns.map(column => {
                     const value = row[column.id];
                     return (
@@ -107,6 +90,7 @@ export default function OperationsTable() {
                         {column.format && typeof value === 'number'
                           ? column.format(value)
                           : value}
+                        {column.id === 'del' && <RecycleBin key={column.id} />}
                       </TableCell>
                     );
                   })}
