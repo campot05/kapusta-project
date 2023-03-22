@@ -11,10 +11,14 @@ import {
 } from './trans-operations';
 const initialState = {
   transactions: [],
-  summary: [],
   message: null,
   isLoading: false,
   error: null,
+  transImcome: null,
+  transExpense: null,
+  incomeCategory: [],
+  expenseCategory: [],
+  transByDate: null,
 };
 
 const transactionSlice = createSlice({
@@ -64,7 +68,6 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getIncomeSummary.fulfilled](state, { payload }) {
-      state.summary = payload;
       state.isLoading = false;
     },
     [getIncomeSummary.rejected](state, { payload }) {
@@ -75,7 +78,6 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getExpenseSummary.fulfilled](state, { payload }) {
-      state.summary = payload;
       state.isLoading = false;
     },
     [getExpenseSummary.rejected](state, { payload }) {
