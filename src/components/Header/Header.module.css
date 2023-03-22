@@ -1,0 +1,57 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid red;
+}
+
+.logo {
+    width: 90px;
+    height: 31px;
+}
+
+.user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.username {
+    margin-left: 16px;
+    font-size: 12px;
+}
+
+.divider {
+    margin: 0 20px;
+    height: 36px;
+    color: #E0E5EB;
+}
+
+.logout {
+    width: 16px;
+    height: 16px;
+}
+
+.exit {
+    box-sizing: border-box;
+    font-size: 12px;
+    margin-left: 16px;
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        padding: 10px 32px;
+    }
+
+    .username {
+        margin-left: 16px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .username {
+        margin-left: 12px;
+    }
+}
