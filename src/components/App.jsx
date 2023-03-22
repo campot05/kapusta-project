@@ -9,6 +9,7 @@ import { RestrictedRoute } from 'routes/RestrictedRoute';
 import Layout from 'pages/Layout/Layout';
 
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
+const Test = lazy(() => import('../components/AuthPages/AuthPages.jsx'));
 const Operations = lazy(() => import('../pages/Operations/Operations'));
 const Report = lazy(() => import('../pages/Report/Report'));
 export const App = () => {
@@ -33,7 +34,7 @@ export const App = () => {
         />
         <Route
           path="/login"
-          element={<RestrictedRoute redirectTo="/" component={<AuthPage />} />}
+          element={<RestrictedRoute redirectTo="/" component={<Test />} />}
         />
         <Route
           path="/report"
