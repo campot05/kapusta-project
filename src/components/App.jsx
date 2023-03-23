@@ -26,16 +26,6 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<AuthPage />} />
-        <Route path="/operations" element={<Operations />} />
-        <Route
-          path="/report"
-          element={
-            <SwitchProvider>
-              <Report />
-            </SwitchProvider>
-          }
-        />
         <Route
           index
           element={
@@ -48,10 +38,16 @@ export const App = () => {
         />
         <Route
           path="/report"
-          element={<PrivateRoute redirectTo="/login" component={
-          <SwitchProvider>
-            <Report />
-          </SwitchProvider>} />}
+          element={
+            <PrivateRoute
+              redirectTo="/login"
+              component={
+                <SwitchProvider>
+                  <Report />
+                </SwitchProvider>
+              }
+            />
+          }
         />
         <Route path="*" element={<div>page not found</div>} />
       </Route>

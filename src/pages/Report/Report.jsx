@@ -1,6 +1,6 @@
 import { ExpIncBar } from 'components/ExpIncBar/ExpIncBar';
 import { CurrPeriodSwitch } from 'components/CurrentPeriodSwitch/CurrPeriodSwitch';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
   AddIncome,
@@ -62,11 +62,11 @@ const mockByDate = {
       salary: {
         total: 12000,
         'Cash advance': 80000,
-        'Allowance': 4000,
+        Allowance: 4000,
       },
       addIncome: {
         total: 15000,
-        'Bonus': 5000,
+        Bonus: 5000,
         'Add Allowance': 7000,
       },
     },
@@ -77,63 +77,63 @@ const mockByDate = {
       transport: {
         total: 4000,
         'Car reparing': 3500,
-        'Washing': 500,
+        Washing: 500,
       },
       housing: {
         total: 1200,
-        'Vase': 150,
-        'Furniture': 1200,
+        Vase: 150,
+        Furniture: 1200,
       },
       education: {
         total: 3200,
-        "School": 150,
-        'Books': 105,
+        School: 150,
+        Books: 105,
       },
       technique: {
         total: 1200,
-        'ScrewDrivers': 150,
-        'Hammer': 1050,
+        ScrewDrivers: 150,
+        Hammer: 1050,
       },
       utilities: {
         total: 1200,
-        'HomeMedia': 15000,
-        'Electricity': 1050,
+        HomeMedia: 15000,
+        Electricity: 1050,
       },
       entertainment: {
         total: 1200,
-        'Cinema': 10000,
-        'Theatre': 800,
+        Cinema: 10000,
+        Theatre: 800,
       },
       health: {
         total: 1200,
-        'Medicane': 2500,
-        'Antibaiotics': 10500,
+        Medicane: 2500,
+        Antibaiotics: 10500,
       },
       other: {
         total: 4200,
-        'Travel': 15000,
-        'Flight': 5050,
+        Travel: 15000,
+        Flight: 5050,
       },
       hobbies: {
         total: 3200,
-        'Box': 3550,
-        'Gym': 45650,
-        'Travel': 15000,
-        'Flight': 5050,
-        'Tomato': 34650,
-        'Potato': 10290,
+        Box: 3550,
+        Gym: 45650,
+        Travel: 15000,
+        Flight: 5050,
+        Tomato: 34650,
+        Potato: 10290,
         'J&D': 5200,
-        'Chivas': 23050,
+        Chivas: 23050,
       },
       products: {
         total: 1200,
-        'Tomato': 34650,
-        'Potato': 10290,
+        Tomato: 34650,
+        Potato: 10290,
       },
       alcohol: {
         total: 1200,
         'J&D': 5200,
-        'Chivas': 23050,
+        Chivas: 23050,
       },
     },
   },
@@ -150,7 +150,6 @@ const dummyChart = [
 ];
 //  END DUMMY DATA
 
-
 export default function Reports() {
   //PRODUCTION
   // const transByDate = useSelector(getTransByDate);
@@ -165,7 +164,7 @@ export default function Reports() {
   let categoriesToShow = [];
   const { incomes } = mockByDate; // change from above with useSelector()
   const { expenses } = mockByDate; // change from above with useSelector()
-  
+
   const { total: incomeTotal, incomesData } = incomes;
   const { total: expenseTotal, expensesData } = expenses;
 
@@ -198,39 +197,48 @@ export default function Reports() {
   //======
   // CHART
   //======
-  const [chartData,setChartData] = useState({
-    labels:dummyChart.map(row => row.year),
-    datasets:[{
-      label:transSwitch,
-      data: dummyChart.map(row => row.count),
-      backgroundColor: dummyChart.map((_,idx) => (idx%1 === 0 && idx%4 === 0) ? '#FF751D':'#FED9BF'),
-      borderRadius:10,
-    }],
-  })
+  const [chartData, setChartData] = useState({
+    labels: dummyChart.map(row => row.year),
+    datasets: [
+      {
+        label: transSwitch,
+        data: dummyChart.map(row => row.count),
+        backgroundColor: dummyChart.map((_, idx) =>
+          idx % 1 === 0 && idx % 4 === 0 ? '#FF751D' : '#FED9BF'
+        ),
+        borderRadius: 10,
+      },
+    ],
+  });
 
-  const getChartData = (category) =>{
+  const getChartData = category => {
     let data;
-    if(transSwitch === 'income'){
-      console.log('predata',incomesData[category])
+    if (transSwitch === 'income') {
+      console.log('predata', incomesData[category]);
       data = incomesData[category];
-      console.log('data',data)
-      }
-      else{
-        console.log('predata',expensesData[category])
-        data = expensesData[category];
-        console.log('data',data)
-      }
-      const result = Object.keys(data).map(key => ({subCategory:key, amount: data[key]})).slice(1)
-      setChartData({
-        labels:result.map(row => row.subCategory),
-        datasets:[{
-          label:transSwitch,
-          data: result.map(row => row.amount),
-          backgroundColor: result.map((_,idx) => (idx%1 === 0 && idx%4 === 0) ? '#FF751D':'#FED9BF'),
-          borderRadius:10,
-        }],
-      })
+      console.log('data', data);
+    } else {
+      console.log('predata', expensesData[category]);
+      data = expensesData[category];
+      console.log('data', data);
     }
+    const result = Object.keys(data)
+      .map(key => ({ subCategory: key, amount: data[key] }))
+      .slice(1);
+    setChartData({
+      labels: result.map(row => row.subCategory),
+      datasets: [
+        {
+          label: transSwitch,
+          data: result.map(row => row.amount),
+          backgroundColor: result.map((_, idx) =>
+            idx % 1 === 0 && idx % 4 === 0 ? '#FF751D' : '#FED9BF'
+          ),
+          borderRadius: 10,
+        },
+      ],
+    });
+  };
   //======
   // END CHART
   //======
@@ -249,7 +257,7 @@ export default function Reports() {
       <ExpIncMenu categories={categoriesToShow} onCategoryClick={getChartData}>
         <ExpIncSwitch />
       </ExpIncMenu>
-      <BarChart chartData={chartData}/>
+      <BarChart chartData={chartData} />
     </div>
   );
 }
