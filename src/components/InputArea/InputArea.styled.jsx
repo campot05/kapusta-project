@@ -10,12 +10,11 @@ const DEVICE = {
   laptop: `screen and (min-width: ${SIZE.laptop})`,
 };
 
-export const Container = styled.form`
+export const Container = styled.div`
 padding: 0 32px;
 `
 export const FormWrapper = styled.form`
   display: flex;
-  align-items: center;
   flex-direction: column;
   height: 160px;
   @media ${DEVICE.tablet} {
@@ -23,11 +22,11 @@ export const FormWrapper = styled.form`
 
   }
   @media ${DEVICE.laptop} {
-    padding-top: 30px;
+    padding-top: 34px;
     flex-direction: row;
     justify-self: flex-start;
     flex-wrap: nowrap;
-    padding: 0;
+    
   }
 `;
 
@@ -37,14 +36,14 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   border-bottom-left-radius: 30%;
   background-color: transparent;
+ 
   @media ${DEVICE.tablet} {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: auto;
+     height: 44px;
   }
   @media ${DEVICE.laptop} {
-    height: 44px;
+    height: 40px;
     text-align: center;
   }
   
@@ -56,7 +55,7 @@ export const DateWrapper = styled.div`
     gap: 10px;
  position: relative;
      margin-right: 44px;
-width:90px;
+
   margin-bottom: 32px;
   @media ${DEVICE.tablet} {
     margin-bottom: 0px;
@@ -69,9 +68,8 @@ export const DateSelection = styled.input`
 font-style: normal;
     border: none;
     font-weight: 900;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.16;
-    width: 70px;
     display: flex;
 align-items: center;
 letter-spacing: 0.04em;
@@ -79,19 +77,12 @@ text-transform: uppercase;
 
 color: #52555F;
  
-  
-  
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-  border-radius: 16px;
   @media ${DEVICE.tablet} {
   
   }
   @media ${DEVICE.laptop} {
-    width: 104px;
-    padding-left: 20px;
-    text-align: center;
+    
+
   }
   &::-webkit-calendar-picker-indicator {
 
@@ -112,7 +103,7 @@ color: #52555F;
 export const DescriptionInput = styled.input`
  display: none;
   font-family: inherit;
-  width: 100%;
+  width: 184px;
   height: 44px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -134,6 +125,7 @@ export const DescriptionInput = styled.input`
     border: 2px solid ${p => p.theme.borderColor};
     display: flex;
     padding-left: 12px;
+    height: 44pxl
   }
   @media ${DEVICE.laptop} {
     padding-left: 12px;

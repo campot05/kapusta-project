@@ -128,7 +128,8 @@ Container
             value={date}
           />
           
-        </DateWrapper>
+                               </DateWrapper>
+                               
         <DescriptionInput
           placeholder={('Product description')}
           name="description"
