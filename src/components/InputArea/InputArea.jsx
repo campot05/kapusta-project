@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import {addExpense,getExpenseSummary} from '../../redux/transactions/trans-operations';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {calendar, calculator} from '../../images/images';
-import { selectOperationType, getTransactions } from '../../redux/transactions/trans-selectors';
+import { getTransactions } from '../../redux/transactions/trans-selectors';
  import { Button } from './Button';
 import moment from 'moment';
 import Notiflix from 'notiflix';
@@ -39,7 +39,7 @@ InputWrapper,
   const [amount, setAmount] = useState('');
 
   const dispatch = useDispatch();
-  const type = useSelector(selectOperationType);
+      
       //  const transactions = useSelector(getTransactions);
       //  console.log(transactions)
        const transactions = [
@@ -67,7 +67,6 @@ InputWrapper,
       return Notiflix.Notify.warning('Missing required fields');
     }
     const userEnteredData = {
-      operation: type,
       description: description,
       date: date,
       category: category.value,
@@ -197,3 +196,4 @@ InputWrapper,
 // };
 
 export default InputArea;
+
