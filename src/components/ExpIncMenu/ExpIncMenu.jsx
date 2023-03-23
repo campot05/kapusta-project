@@ -3,7 +3,7 @@ import { ExpIncMenuItem } from 'components/ExpIncMenuItem/ExpIncMenuItem';
 import { useWindowSize } from 'react-use';
 import { StyledGrid } from './ExpIncMenu.styled';
 
-export const ExpIncMenu = ({ categories = [], children }) => {
+export const ExpIncMenu = ({ categories = [], children, onCategoryClick= ()=>null }) => {
   const { width } = useWindowSize();
   return (
     <StyledGrid
@@ -18,7 +18,7 @@ export const ExpIncMenu = ({ categories = [], children }) => {
           return (
             <>
               <Grid item xs={4} sm={3} md={2} key={idx}>
-                <ExpIncMenuItem item={item} />
+                <ExpIncMenuItem item={item} onCategoryClick={onCategoryClick}/>
               </Grid>
               {width <= 480 && (idx + 1) % 3 === 0 && (
                 <Grid item xs={12}>

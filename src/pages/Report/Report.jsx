@@ -61,13 +61,13 @@ const mockByDate = {
     incomesData: {
       salary: {
         total: 12000,
-        Аванс: 5000,
-        Основная: 7000,
+        'Cash advance': 80000,
+        'Allowance': 4000,
       },
       addIncome: {
         total: 15000,
-        Аванс: 5000,
-        Основная: 7000,
+        'Bonus': 5000,
+        'Add Allowance': 7000,
       },
     },
   },
@@ -96,38 +96,44 @@ const mockByDate = {
       },
       utilities: {
         total: 1200,
-        'HomeMedia': 150,
+        'HomeMedia': 15000,
         'Electricity': 1050,
       },
       entertainment: {
         total: 1200,
-        'Cinema': 150,
-        'Theatre': 1050,
+        'Cinema': 10000,
+        'Theatre': 800,
       },
       health: {
         total: 1200,
-        'Medicane': 150,
-        'Antibaiotics': 1050,
+        'Medicane': 2500,
+        'Antibaiotics': 10500,
       },
       other: {
         total: 4200,
-        'Travel': 150,
-        'Flight': 1050,
+        'Travel': 15000,
+        'Flight': 5050,
       },
       hobbies: {
         total: 3200,
-        'Box': 150,
-        'Gym': 1050,
+        'Box': 3550,
+        'Gym': 45650,
+        'Travel': 15000,
+        'Flight': 5050,
+        'Tomato': 34650,
+        'Potato': 10290,
+        'J&D': 5200,
+        'Chivas': 23050,
       },
       products: {
         total: 1200,
-        'Tomato': 150,
-        'Potato': 102,
+        'Tomato': 34650,
+        'Potato': 10290,
       },
       alcohol: {
         total: 1200,
-        'J&D': 150,
-        'Chivas': 1050,
+        'J&D': 5200,
+        'Chivas': 23050,
       },
     },
   },
@@ -190,18 +196,41 @@ export default function Reports() {
   changeExpIncMarkup();
 
   //======
-  //CHART
+  // CHART
   //======
   const [chartData,setChartData] = useState({
     labels:dummyChart.map(row => row.year),
     datasets:[{
-      label:'expense/income',
+      label:transSwitch,
       data: dummyChart.map(row => row.count),
-      // backgroundColor:['#FF751D','#FED9BF']
       backgroundColor: dummyChart.map((_,idx) => (idx%1 === 0 && idx%4 === 0) ? '#FF751D':'#FED9BF'),
       borderRadius:10,
     }],
   })
+
+  const getChartData = (category) =>{
+    let data;
+    if(transSwitch === 'income'){
+      console.log('predata',incomesData[category])
+      data = incomesData[category];
+      console.log('data',data)
+      }
+      else{
+        console.log('predata',expensesData[category])
+        data = expensesData[category];
+        console.log('data',data)
+      }
+      const result = Object.keys(data).map(key => ({subCategory:key, amount: data[key]})).slice(1)
+      setChartData({
+        labels:result.map(row => row.subCategory),
+        datasets:[{
+          label:transSwitch,
+          data: result.map(row => row.amount),
+          backgroundColor: result.map((_,idx) => (idx%1 === 0 && idx%4 === 0) ? '#FF751D':'#FED9BF'),
+          borderRadius:10,
+        }],
+      })
+    }
   //======
   // END CHART
   //======
@@ -217,7 +246,7 @@ export default function Reports() {
     >
       <CurrPeriodSwitch />
       <ExpIncBar />
-      <ExpIncMenu categories={categoriesToShow} >
+      <ExpIncMenu categories={categoriesToShow} onCategoryClick={getChartData}>
         <ExpIncSwitch />
       </ExpIncMenu>
       <BarChart chartData={chartData}/>
