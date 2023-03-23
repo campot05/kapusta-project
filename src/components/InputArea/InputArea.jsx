@@ -39,7 +39,6 @@ InputWrapper,
   const [amount, setAmount] = useState('');
 
   const dispatch = useDispatch();
-      
       //  const transactions = useSelector(getTransactions);
       //  console.log(transactions)
        const transactions = [
