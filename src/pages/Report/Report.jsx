@@ -1,7 +1,7 @@
 import { ExpIncBar } from 'components/ExpIncBar/ExpIncBar';
 import { CurrPeriodSwitch } from 'components/CurrentPeriodSwitch/CurrPeriodSwitch';
 // import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   AddIncome,
   Alcohol,
@@ -17,7 +17,7 @@ import {
   Ufo,
   Utilities,
 } from 'images/images';
-import { getTransByDate } from 'redux/transactions/trans-selectors';
+// import { getTransByDate } from 'redux/transactions/trans-selectors';
 import { ExpIncMenu } from 'components/ExpIncMenu/ExpIncMenu';
 import { ExpIncSwitch } from 'components/ExpIncSwitch/ExpIncSwitch';
 import { useSwitchContext } from 'contexts/SwitchProvider';
