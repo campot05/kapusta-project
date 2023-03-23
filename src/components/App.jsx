@@ -7,6 +7,7 @@ import { refreshToken, refreshUser } from 'redux/auth/auth-operations.js';
 import { PrivateRoute } from 'routes/PrivateRoutes';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import Layout from 'pages/Layout/Layout';
+import SwitchProvider from 'contexts/SwitchProvider.js';
 
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
 const Operations = lazy(() => import('../pages/Operations/Operations'));
@@ -37,7 +38,16 @@ export const App = () => {
         />
         <Route
           path="/report"
-          element={<PrivateRoute redirectTo="/login" component={<Report />} />}
+          element={
+            <PrivateRoute
+              redirectTo="/login"
+              component={
+                <SwitchProvider>
+                  <Report />
+                </SwitchProvider>
+              }
+            />
+          }
         />
         <Route path="*" element={<div>page not found</div>} />
       </Route>
