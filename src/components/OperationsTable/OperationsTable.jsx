@@ -43,8 +43,9 @@ const columns = [
 ];
 
 export default function OperationsTable() {
-  const date = useSelector(transactionsFilteredByDate);
-  // console.log(`🚀 ~ OperationsTable ~ date:`, date);
+  const transactionsByDate = useSelector(transactionsFilteredByDate);
+  console.log(`🚀 ~ OperationsTable ~ transactionsByDate:`, transactionsByDate);
+
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
 
@@ -57,11 +58,17 @@ export default function OperationsTable() {
   }, [isRefreshing]);
 
   // Вариант сделать пустые строки
-  // const [emptyRowCount, setEmptyRowCount] = useState(15 - transactions.length);
+  const [emptyRowCount, setEmptyRowCount] = React.useState(0);
 
-  // useEffect(() => {
-  //   setEmptyRowCount(15 - transactions.length);
-  // }, [transactions]);
+  useEffect(() => {
+    if (!transactionsByDate) {
+      return;
+    }
+    if (transactionsByDate.length >= 15) {
+      return;
+    }
+    setEmptyRowCount(15 - transactionsByDate.length);
+  }, [transactionsByDate]);
 
   return (
     <Paper
@@ -97,34 +104,57 @@ export default function OperationsTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {date !== undefined ? (
-              date.map(row => {
-                return (
-                  <TableRow key={row._id}>
-                    {columns.map(column => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell
-                          key={column.id}
-                          align={column.align}
-                          style={{
-                            height: 40,
-                            paddingTop: 10,
-                            paddingBottom: 10,
-                          }}
-                        >
-                          {column.id === 'date' && value.split('-').join('.')}
-                          {column.id === 'description' && value}
-                          {column.id === 'category' && value}
-                          {column.id === 'amount' &&
-                            `- ${value.toFixed(2)} UAH.`}
-                          {column.id === 'del' && <DeleteBtn id={row._id} />}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })
+            {transactionsByDate !== undefined ? (
+              [...transactionsByDate, ...Array(emptyRowCount).fill(null)].map(
+                row => {
+                  if (!row) {
+                    return (
+                      <TableRow key={Math.random()}>
+                        {columns.map(column => (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{
+                              height: 40,
+                              paddingTop: 10,
+                              paddingBottom: 10,
+                            }}
+                          />
+                        ))}
+                      </TableRow>
+                    );
+                  }
+
+                  return (
+                    <TableRow key={row._id}>
+                      {columns.map(column => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{
+                              height: 40,
+                              paddingTop: 10,
+                              paddingBottom: 10,
+                            }}
+                          >
+                            {column.id === 'date' && value.split('-').join('.')}
+                            {column.id === 'description' && value}
+                            {column.id === 'category' && value}
+                            {column.id === 'amount' &&
+                              `- ${value.toFixed(2)} UAH.`}
+                            {column.id === 'del' && <DeleteBtn id={row._id} />}
+                            {/* {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value} */}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                }
+              )
             ) : (
               <TableRow>
                 <TableCell />
@@ -136,94 +166,3 @@ export default function OperationsTable() {
     </Paper>
   );
 }
-
-// Вариант от чатаГПТ для пустых строк
-
-// return (
-//     <Paper
-//       sx={{
-//         maxWidth: 746,
-//         margin: 'auto',
-//         overflow: 'hidden',
-//         borderTopLeftRadius: 20,
-//         borderTopRightRadius: 20,
-//       }}
-//     >
-//       <TableContainer
-//         sx={{
-//           maxHeight: 400,
-//         }}
-//       >
-//         <Table stickyHeader aria-label="sticky table">
-//           <TableHead>
-//             <TableRow>
-//               {columns.map(column => (
-//                 <TableCell
-//                   key={column.id}
-//                   align={column.align}
-//                   style={{
-//                     minWidth: column.minWidth,
-//                     padding: '8px 25px',
-//                     backgroundColor: '#F5F6FB',
-//                   }}
-//                 >
-//                   {column.label}
-//                 </TableCell>
-//               ))}
-//             </TableRow>
-//           </TableHead>
-//           <TableBody>
-//             {[...transactions, ...Array(emptyRowCount).fill(null)].map(row => {
-//               if (!row) {
-//                 return (
-//                   <TableRow key={Math.random()}>
-//                     {columns.map(column => (
-//                       <TableCell
-//                         key={column.id}
-//                         align={column.align}
-//                         style={{
-//                           height: 40,
-//                           paddingTop: 10,
-//                           paddingBottom: 10,
-//                         }}
-//                       />
-//                     ))}
-//                   </TableRow>
-//                 );
-//               }
-
-//               return (
-//                 <TableRow key={row._id}>
-//                   {columns.map(column => {
-//                     const value = row[column.id];
-
-//                     return (
-//                       <TableCell
-//                         key={column.id}
-//                         align={column.align}
-//                         style={{
-//                           height: 40,
-//                           paddingTop: 10,
-//                           paddingBottom: 10,
-//                         }}
-//                       >
-//                         {column.id === 'date' && value.split('-').join('.')}
-//                         {column.id === 'description' && value}
-//                         {column.id === 'category' && value}
-//                         {column.id === 'amount' && `- ${value.toFixed(2)} UAH.`}
-//                         {column.id === 'del' && <DeleteBtn id={row._id} />}
-//                         {/* {column.format && typeof value === 'number'
-//                           ? column.format(value)
-//                           : value} */}
-//                       </TableCell>
-//                     );
-//                   })}
-//                 </TableRow>
-//               );
-//             })}
-//           </TableBody>
-//         </Table>
-//       </TableContainer>
-//     </Paper>
-//   );
-// }
