@@ -77,6 +77,7 @@ export const getIncomeCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await axios.get('/transaction/income-categories');
+      // console.log(result);
       return result.data;
     } catch (error) {
       Notiflix.Notify.failure('Something went wrong, please try again later');
