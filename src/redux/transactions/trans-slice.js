@@ -14,7 +14,7 @@ const initialState = {
   message: null,
   isLoading: false,
   error: null,
-  transImcome: null,
+  transIncome: null,
   transExpense: null,
   incomeCategory: [],
   expenseCategory: [],
