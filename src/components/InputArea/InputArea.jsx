@@ -11,7 +11,7 @@ import {ReactComponent as Calendar} from '../../images/calendar.svg'
 import {addExpense,getExpenseCategories,getExpenseSummary} from '../../redux/transactions/trans-operations';
 import useMediaQuery from '@mui/material/useMediaQuery';
 //import {calendar, calculator} from '../../images/images';
-import { getTransactions } from '../../redux/transactions/trans-selectors';
+import { getTransactions, selectExpenseCategories } from '../../redux/transactions/trans-selectors';
  import { Button } from './Button';
 import moment from 'moment';
 import Notiflix from 'notiflix';
@@ -29,7 +29,7 @@ InputWrapper,
 Container
 } from './InputArea.styled';
 //import { Container } from '@mui/system';
-
+import css from './InputArea.module.css'
 
 
  const InputArea = ({ value }) => {
@@ -47,8 +47,9 @@ Container
                    return;
              }
              dispatch(getExpenseCategories());
+       // eslint-disable-next-line react-hooks/exhaustive-deps
        }, [isRefreshing])
-       const transactions = useSelector(getTransactions);
+       const transactions = useSelector(selectExpenseCategories);
 
       
 
@@ -139,7 +140,7 @@ Container
           value={description}
         />
        
-      <FormControl sx={{ m: 1, minWidth: 200 }}>
+      <FormControl  sx={{ m: 1, minWidth: 200 }} className={css.formControl}>
         <InputLabel id="demo-simple-select-autowidth-label">Product category</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"

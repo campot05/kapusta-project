@@ -110,7 +110,6 @@ export const DescriptionInput = styled.input`
   line-height: 1.14;
   background-color: transparent;
   padding-left: 30px;
-  outline-color: #FF751D;
   border: 2px solid #FFFFFF;
   border-bottom: none;
   color: #52555F;
