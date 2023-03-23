@@ -11,6 +11,7 @@ import Layout from 'pages/Layout/Layout';
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
 const Operations = lazy(() => import('../pages/Operations/Operations'));
 const Report = lazy(() => import('../pages/Report/Report'));
+const Expenses = lazy(() => import('../pages/Expenses/Expenses'));
 export const App = () => {
   const dispatch = useDispatch();
   //   const { isRefreshing } = useAuth();
@@ -39,6 +40,7 @@ export const App = () => {
           path="/report"
           element={<PrivateRoute redirectTo="/login" component={<Report />} />}
         />
+        <Route path="/expenses" element={<Expenses />} />
         <Route path="*" element={<div>page not found</div>} />
       </Route>
     </Routes>
