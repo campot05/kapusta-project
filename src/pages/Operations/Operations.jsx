@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Paper } from '@mui/material';
 import OperationsTable, {
   TableExample,
@@ -6,6 +7,10 @@ import OperationsTable, {
 export default function Home() {
   return (
     <div>
+      Главная страничка
+      <Link to="/report" style={{ display: 'block' }}>
+        REPORT
+      </Link>
       <Paper
         sx={{
           margin: '30px',
