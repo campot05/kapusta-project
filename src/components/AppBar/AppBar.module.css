@@ -1,20 +1,64 @@
 .header {
-  background-color: gray;
-  color: white;
   display: flex;
-  height: 60px;
+  justify-content: space-between;
   align-items: center;
+  padding: 12px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid red;
 }
 
 .logo {
-  margin-left: 20px;
+  width: 90px;
+  height: 31px;
 }
 
 .user {
-  margin-left: auto;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.user p {
-  margin-right: 15px;
+.username {
+  margin-left: 16px;
+  font-size: 12px;
+}
+
+.divider {
+  margin: 0 20px;
+  height: 36px;
+  color: #e0e5eb;
+}
+
+.logout {
+  width: 16px;
+  height: 16px;
+  margin-left: 16px;
+}
+
+.exit {
+  box-sizing: border-box;
+  font-size: 12px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration-line: underline;
+  color: #52555f;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 10px 32px;
+  }
+
+  .username {
+    margin-left: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .username {
+    margin-left: 12px;
+  }
 }
