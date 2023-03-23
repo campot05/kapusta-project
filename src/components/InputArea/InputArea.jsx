@@ -25,7 +25,7 @@ import {
   DateWrapper,
   DescriptionInput,
   FormWrapper,
-  InputWrapper,
+InputWrapper,
 
 } from './InputArea.styled';
 
@@ -119,7 +119,10 @@ import {
   return (
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
-        <DateWrapper>
+                    <DateWrapper>
+                          <CalendarIcon width={20} height={17}>
+            <use href={`${calendar}#icon-calendar`}></use>
+          </CalendarIcon>
           <DateSelection
             aria-label="Date"
             name="date"
@@ -128,9 +131,7 @@ import {
             type="date"
             value={date}
           />
-          <CalendarIcon width={20} height={17}>
-            <use href={`${calendar}#icon-calendar`}></use>
-          </CalendarIcon>
+          
         </DateWrapper>
         <DescriptionInput
           placeholder={('Product description')}

@@ -14,11 +14,12 @@ export const FormWrapper = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  height: 160px;
   @media ${DEVICE.tablet} {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
+
   }
   @media ${DEVICE.laptop} {
     padding-top: 30px;
@@ -51,6 +52,8 @@ export const InputWrapper = styled.div`
 
 export const DateWrapper = styled.div`
  position: relative;
+     margin-right: 44px;
+width:90px;
   margin-bottom: 32px;
   @media ${DEVICE.tablet} {
     margin-bottom: 0px;
@@ -59,32 +62,28 @@ export const DateWrapper = styled.div`
 `;
 
 export const DateSelection = styled.input`
-  outline-color: ${p => p.theme.accentColor};
-  vertical-align: middle;
-  font-family: inherit;
-  display: inline-block;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 14px;
-  color: ${p => p.theme.mainTextColor};
-  background-color: transparent;
-  border: none;
-  width: 140px;
-  padding: 10px 0;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-  border: 2px solid ${p => p.theme.borderColor};
-  border-radius: 16px;
-  @media ${DEVICE.tablet} {
+    font-family: 'Roboto';
+font-style: normal;
     border: none;
     font-weight: 900;
     font-size: 12px;
-    width: 90px;
-    height: 100%;
-    margin-right: 32px;
-    text-align: end;
-    padding: 0;
+    line-height: 1.16;
+    width: 70px;
+    display: flex;
+align-items: center;
+letter-spacing: 0.04em;
+text-transform: uppercase;
+
+color: #52555F;
+ 
+  
+  
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  border-radius: 16px;
+  @media ${DEVICE.tablet} {
+  
   }
   @media ${DEVICE.laptop} {
     width: 104px;
@@ -92,8 +91,9 @@ export const DateSelection = styled.input`
     text-align: center;
   }
   &::-webkit-calendar-picker-indicator {
+
     color: rgba(0, 0, 0, 0);
-    z-index: 9;
+    z-index: 0;
     width: 90px;
     height: 100%;
     opacity: 0;
@@ -106,6 +106,7 @@ export const DateSelection = styled.input`
 `;
 
 export const CalendarIcon = styled.svg`
+fill: black;
    position: absolute;
   left: 11px;
   top: 11px;
@@ -122,7 +123,7 @@ export const CalendarIcon = styled.svg`
 `;
 
 export const DescriptionInput = styled.input`
- display: block;
+ display: none;
   font-family: inherit;
   width: 100%;
   height: 44px;
@@ -153,8 +154,9 @@ export const DescriptionInput = styled.input`
   }
 `;
 
-export const Select = styled.input`
- 
+export const FormControl = styled.input`
+  display: none;
+
   
 `;
 
@@ -179,7 +181,6 @@ position: absolute;
   top: 34px;
   right: 12px;
   padding: 8px;
-  border-left: 2px solid ${p => p.theme.borderColor};
   @media ${DEVICE.tablet} {
     border: none;
     right: 16px;
