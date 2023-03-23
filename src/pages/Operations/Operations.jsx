@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Paper } from '@mui/material';
-import OperationsTable, {
-  TableExample,
-} from 'components/OperationsTable/OperationsTable';
+import OperationsTable from 'components/OperationsTable/OperationsTable';
 
 export default function Home() {
   return (
