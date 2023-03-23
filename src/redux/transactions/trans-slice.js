@@ -9,8 +9,17 @@ import {
   getExpenseCategories,
   getPeriodData,
 } from './trans-operations';
+
+//Initial current date
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+const day = ('0' + currentDate.getDate()).slice(-2);
+const formattedDate = `${year}-${month}-${day}`;
+console.log(`🚀 ~ formattedDate:`, formattedDate);
+
 const initialState = {
-  transactions: [],
+  transactions: null,
   message: null,
   isLoading: false,
   error: null,
@@ -19,6 +28,7 @@ const initialState = {
   incomeCategory: [],
   expenseCategory: [],
   transByDate: null,
+  date: formattedDate,
 };
 
 const transactionSlice = createSlice({
@@ -55,6 +65,7 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [deleteTransaction.fulfilled](state, { payload }) {
+      console.log(`🚀 ~ payload:`, payload);
       state.transactions = state.transactions.filter(
         ({ _id }) => _id !== payload.transaction._id
       );
@@ -69,6 +80,7 @@ const transactionSlice = createSlice({
     },
     [getIncomeSummary.fulfilled](state, { payload }) {
       state.isLoading = false;
+      state.transactions = payload;
     },
     [getIncomeSummary.rejected](state, { payload }) {
       state.error = payload.message;
@@ -79,6 +91,7 @@ const transactionSlice = createSlice({
     },
     [getExpenseSummary.fulfilled](state, { payload }) {
       state.isLoading = false;
+      state.transactions = payload;
     },
     [getExpenseSummary.rejected](state, { payload }) {
       state.error = payload.message;

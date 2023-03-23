@@ -8,8 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 import operationsData from 'mocks/operationsData.json';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
+import { useDispatch, useSelector } from 'react-redux';
+import { transactionsFilteredByDate } from 'redux/transactions/trans-selectors';
+import { getExpenseSummary } from 'redux/transactions/trans-operations';
 
 const columns = [
   {
@@ -40,9 +43,20 @@ const columns = [
 ];
 
 export default function OperationsTable() {
-  const [incomes, setIncomes] = useState(
-    operationsData.flatMap(el => el.incomes)
-  );
+  const date = useSelector(transactionsFilteredByDate);
+  // console.log(`🚀 ~ OperationsTable ~ date:`, date);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getExpenseSummary());
+  }, [dispatch]);
+
+  // Вариант сделать пустые строки
+  // const [emptyRowCount, setEmptyRowCount] = useState(15 - transactions.length);
+
+  // useEffect(() => {
+  //   setEmptyRowCount(15 - transactions.length);
+  // }, [transactions]);
 
   return (
     <Paper
@@ -78,36 +92,39 @@ export default function OperationsTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {incomes.map(row => {
-              return (
-                <TableRow key={row._id}>
-                  {columns.map(column => {
-                    const value = row[column.id];
-
-                    return (
-                      <TableCell
-                        key={column.id}
-                        align={column.align}
-                        style={{
-                          height: 40,
-                          paddingTop: 10,
-                          paddingBottom: 10,
-                        }}
-                      >
-                        {column.id === 'date' && value.split('-').join('.')}
-                        {column.id === 'description' && value}
-                        {column.id === 'category' && value}
-                        {column.id === 'amount' && `- ${value.toFixed(2)} UAH.`}
-                        {column.id === 'del' && <DeleteBtn id={row._id} />}
-                        {/* {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value} */}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
+            {date !== undefined ? (
+              date.map(row => {
+                return (
+                  <TableRow key={row._id}>
+                    {columns.map(column => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          style={{
+                            height: 40,
+                            paddingTop: 10,
+                            paddingBottom: 10,
+                          }}
+                        >
+                          {column.id === 'date' && value.split('-').join('.')}
+                          {column.id === 'description' && value}
+                          {column.id === 'category' && value}
+                          {column.id === 'amount' &&
+                            `- ${value.toFixed(2)} UAH.`}
+                          {column.id === 'del' && <DeleteBtn id={row._id} />}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })
+            ) : (
+              <TableRow>
+                <TableCell />
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
@@ -115,19 +132,93 @@ export default function OperationsTable() {
   );
 }
 
-const rowsCount = 15;
+// Вариант от чатаГПТ для пустых строк
 
-export const TableExample = () => {
-  const rows = Array.from(Array(rowsCount)).map((_, i) => (
-    <TableRow key={i}>
-      <TableCell>{i < 3 ? `Row ${i + 1}` : ''}</TableCell>
-      <TableCell>{i < 3 ? `Data ${i + 1}` : ''}</TableCell>
-    </TableRow>
-  ));
+// return (
+//     <Paper
+//       sx={{
+//         maxWidth: 746,
+//         margin: 'auto',
+//         overflow: 'hidden',
+//         borderTopLeftRadius: 20,
+//         borderTopRightRadius: 20,
+//       }}
+//     >
+//       <TableContainer
+//         sx={{
+//           maxHeight: 400,
+//         }}
+//       >
+//         <Table stickyHeader aria-label="sticky table">
+//           <TableHead>
+//             <TableRow>
+//               {columns.map(column => (
+//                 <TableCell
+//                   key={column.id}
+//                   align={column.align}
+//                   style={{
+//                     minWidth: column.minWidth,
+//                     padding: '8px 25px',
+//                     backgroundColor: '#F5F6FB',
+//                   }}
+//                 >
+//                   {column.label}
+//                 </TableCell>
+//               ))}
+//             </TableRow>
+//           </TableHead>
+//           <TableBody>
+//             {[...transactions, ...Array(emptyRowCount).fill(null)].map(row => {
+//               if (!row) {
+//                 return (
+//                   <TableRow key={Math.random()}>
+//                     {columns.map(column => (
+//                       <TableCell
+//                         key={column.id}
+//                         align={column.align}
+//                         style={{
+//                           height: 40,
+//                           paddingTop: 10,
+//                           paddingBottom: 10,
+//                         }}
+//                       />
+//                     ))}
+//                   </TableRow>
+//                 );
+//               }
 
-  return (
-    <Table>
-      <TableBody>{rows}</TableBody>
-    </Table>
-  );
-};
+//               return (
+//                 <TableRow key={row._id}>
+//                   {columns.map(column => {
+//                     const value = row[column.id];
+
+//                     return (
+//                       <TableCell
+//                         key={column.id}
+//                         align={column.align}
+//                         style={{
+//                           height: 40,
+//                           paddingTop: 10,
+//                           paddingBottom: 10,
+//                         }}
+//                       >
+//                         {column.id === 'date' && value.split('-').join('.')}
+//                         {column.id === 'description' && value}
+//                         {column.id === 'category' && value}
+//                         {column.id === 'amount' && `- ${value.toFixed(2)} UAH.`}
+//                         {column.id === 'del' && <DeleteBtn id={row._id} />}
+//                         {/* {column.format && typeof value === 'number'
+//                           ? column.format(value)
+//                           : value} */}
+//                       </TableCell>
+//                     );
+//                   })}
+//                 </TableRow>
+//               );
+//             })}
+//           </TableBody>
+//         </Table>
+//       </TableContainer>
+//     </Paper>
+//   );
+// }
