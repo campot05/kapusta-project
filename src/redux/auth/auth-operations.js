@@ -96,6 +96,8 @@ export const google = async (req, res) => {
     prompt: 'consent',
   });
 
+  console.log('test');
+
   return res.redirect(
     `https://accounts.google.com/o/oauth2/v2/auth?${stringifiedParams}`
   );
@@ -107,6 +109,7 @@ export const googleRedirect = async (req, res) => {
   const urlObj = new URL(fullUrl);
   const urlParams = queryString.parse(urlObj.search);
   const code = urlParams.code;
+
   const tokenData = await axios({
     url: `https://oauth2.googleapis.com/token`,
     method: 'post',
@@ -125,7 +128,8 @@ export const googleRedirect = async (req, res) => {
       Authorization: `Bearer ${tokenData.data.access_token}`,
     },
   });
-  const log = await logIn();
+
+  ///
 
   return res.redirect(`${process.env.FRONTEND_URL}`);
 };
