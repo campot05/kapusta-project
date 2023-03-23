@@ -79,7 +79,7 @@ const transactionSlice = createSlice({
     },
     [getExpenseSummary.fulfilled](state, { payload }) {
       state.isLoading = false;
-      state.expenseCategory = payload;
+      // state.expenseCategory = payload;
     },
     [getExpenseSummary.rejected](state, { payload }) {
       state.error = payload.message;

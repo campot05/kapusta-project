@@ -55,8 +55,10 @@ import css from './InputArea.module.css'
 
   const handleChangeList = (event) => {
         setCategory(event.target.value);
-        console.log(event)
-  };
+       
+       };
+      //  month: moment(date).format('MMMM'),
+      // year: moment(date).format('YYYY'),
   const handleSubmit = evt => {
     evt.preventDefault();
     if (description.trim().length === 0 || !category || !amount) {
@@ -65,15 +67,15 @@ import css from './InputArea.module.css'
     const userEnteredData = {
       description: description,
       date: date,
-      category: category.value,
-      sum: amount,
-      month: moment(date).format('MMMM'),
-      year: moment(date).format('YYYY'),
-      currency: 'UAH',
-    };
+      category: category,
+      amount: amount,
+
+      
+        };
+        
     dispatch(addExpense(userEnteredData));
     resetForm();
-    return;
+   // return;
   };
 
   const handleChange = ({ target: { name, value } }) => {
