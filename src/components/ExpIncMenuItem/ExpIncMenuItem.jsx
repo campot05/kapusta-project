@@ -1,4 +1,3 @@
-import { Button, Typography } from '@mui/material/';
 import css from './ExpIncMenuItem.module.scss';
 
 export const ExpIncMenuItem = ({item}) => {
@@ -6,7 +5,7 @@ export const ExpIncMenuItem = ({item}) => {
     return(
         <div className={css.item}>
             <p className={css.total}>{total}</p>
-            <button className={css.btn} ></button>
+            <button className={css.btn} onClick={()=>{}}></button>
             <SvgIcon className={css.icon}/>
             <p className={css.category}>{category}</p>
         </div>

@@ -21,6 +21,7 @@ import { getTransByDate } from 'redux/transactions/trans-selectors';
 import { ExpIncMenu } from 'components/ExpIncMenu/ExpIncMenu';
 import { ExpIncSwitch } from 'components/ExpIncSwitch/ExpIncSwitch';
 import { useSwitchContext } from 'contexts/SwitchProvider';
+import BarChart from 'components/BarChart/BarChart';
 
 const categoryIcons = {
   alcohol: Alcohol,
@@ -37,6 +38,8 @@ const categoryIcons = {
   salary: Salary,
   addIncome: AddIncome,
 };
+
+// DUMMY DATA
 const categoriesExpense = [
   'products',
   'alcohol',
@@ -73,62 +76,74 @@ const mockByDate = {
     expensesData: {
       transport: {
         total: 4000,
-        СТО: 3500,
-        Мойка: 500,
+        'Car reparing': 3500,
+        'Washing': 500,
       },
       housing: {
         total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        'Vase': 150,
+        'Furniture': 1200,
       },
       education: {
-        total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        total: 3200,
+        "School": 150,
+        'Books': 105,
       },
       technique: {
         total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        'ScrewDrivers': 150,
+        'Hammer': 1050,
       },
       utilities: {
         total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        'HomeMedia': 150,
+        'Electricity': 1050,
       },
       entertainment: {
         total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        'Cinema': 150,
+        'Theatre': 1050,
       },
       health: {
         total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        'Medicane': 150,
+        'Antibaiotics': 1050,
       },
       other: {
-        total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        total: 4200,
+        'Travel': 150,
+        'Flight': 1050,
       },
       hobbies: {
-        total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        total: 3200,
+        'Box': 150,
+        'Gym': 1050,
       },
       products: {
         total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        'Tomato': 150,
+        'Potato': 102,
       },
       alcohol: {
         total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
+        'J&D': 150,
+        'Chivas': 1050,
       },
     },
   },
 };
+
+const dummyChart = [
+  { year: 2010, count: 10 },
+  { year: 2011, count: 20 },
+  { year: 2012, count: 15 },
+  { year: 2013, count: 25 },
+  { year: 2014, count: 22 },
+  { year: 2015, count: 30 },
+  { year: 2016, count: 28 },
+];
+//  END DUMMY DATA
+
 
 export default function Reports() {
   //PRODUCTION
@@ -142,9 +157,9 @@ export default function Reports() {
   // MOCK
   const { transSwitch } = useSwitchContext();
   let categoriesToShow = [];
-  const { incomes } = mockByDate; // change from above
-  const { expenses } = mockByDate; // change from above
-
+  const { incomes } = mockByDate; // change from above with useSelector()
+  const { expenses } = mockByDate; // change from above with useSelector()
+  
   const { total: incomeTotal, incomesData } = incomes;
   const { total: expenseTotal, expensesData } = expenses;
 
@@ -173,6 +188,23 @@ export default function Reports() {
     }
   }
   changeExpIncMarkup();
+
+  //======
+  //CHART
+  //======
+  const [chartData,setChartData] = useState({
+    labels:dummyChart.map(row => row.year),
+    datasets:[{
+      label:'expense/income',
+      data: dummyChart.map(row => row.count),
+      // backgroundColor:['#FF751D','#FED9BF']
+      backgroundColor: dummyChart.map((_,idx) => (idx%1 === 0 && idx%4 === 0) ? '#FF751D':'#FED9BF'),
+      borderRadius:10,
+    }],
+  })
+  //======
+  // END CHART
+  //======
   return (
     <div
       style={{
@@ -185,8 +217,10 @@ export default function Reports() {
     >
       <CurrPeriodSwitch />
       <ExpIncBar />
-      <ExpIncSwitch />
-      <ExpIncMenu categories={categoriesToShow} />
+      <ExpIncMenu categories={categoriesToShow} >
+        <ExpIncSwitch />
+      </ExpIncMenu>
+      <BarChart chartData={chartData}/>
     </div>
   );
 }

@@ -1,36 +1,39 @@
-import { Grid, Divider } from '@mui/material/';
-import { nanoid } from '@reduxjs/toolkit';
+import { Grid, Divider} from '@mui/material/';
 import { ExpIncMenuItem } from 'components/ExpIncMenuItem/ExpIncMenuItem';
 import { useWindowSize } from 'react-use';
+import { StyledGrid } from './ExpIncMenu.styled';
 
-export const ExpIncMenu = ({ categories = [] }) => {
-    const { width, height } = useWindowSize();
+export const ExpIncMenu = ({ categories = [], children }) => {
+  const { width } = useWindowSize();
   return (
-    <Grid
+    <StyledGrid
       container
-    //   spacing={{ xs: 3, md: 4 }}
-    //   columns={{ xs: 4, sm: 8, md: 12 }}
-        columnSpacing='30px'
-        rowSpacing='20px'
-      style={{ marginTop: '20px', backgroundColor: 'white' }}
+      spacing={0}
       justifyContent="center"
       alignItems="center"
     >
-      {categories.map((item, idx) => {
-        return (
+      {children}
+      <Grid container spacing={0} justifyContent="center" alignItems="center" style={{paddingTop:'20px'}}>
+        {categories.map((item, idx) => {
+          return (
             <>
-          <Grid item xs={4} sm={3} md={2} key={idx}>
-            <ExpIncMenuItem  item={item} />
-          </Grid>
-          {width <= 480 && (idx + 1)%3 === 0 && 
-          <Grid item xs={12}>
-          <Divider  orientation="horizontal" variant='fullWidth'/>
-          </Grid> 
-          }
-          </>
-          
-        );
-      })}
-    </Grid>
+              <Grid item xs={4} sm={3} md={2} key={idx}>
+                <ExpIncMenuItem item={item} />
+              </Grid>
+              {width <= 480 && (idx + 1) % 3 === 0 && (
+                <Grid item xs={12}>
+                  <Divider 
+                  orientation="horizontal"
+                  sx={{ borderBottomWidth: 2 }}
+                  variant="middle" 
+                  style={{marginTop:'10px',marginBottom:'10px'}}
+                   />
+                </Grid>
+              )}
+            </>
+          );
+        })}
+      </Grid>
+    </StyledGrid>
   );
 };

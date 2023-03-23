@@ -15,7 +15,7 @@ export const CarouselItem = ({items = [],id}) =>{
         <StyledCarouselDiv>
         <Carousel
             className={id}
-            style={{ marginTop: '20px', width: '155px',display:'flex' }}
+            style={{ width: '155px',display:'flex' }}
             slide={false}
             interval={null}
             indicators={false}
@@ -27,6 +27,8 @@ export const CarouselItem = ({items = [],id}) =>{
                 if(id === 'js-trans'){
                     toggle(value);
                     return;
+                }else if(id === 'js-period'){
+                    // dispatch(getByDate)
                 }
                
             } }
