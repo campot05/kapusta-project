@@ -61,6 +61,7 @@ export const refreshToken = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       const res = await axios.post('/auth/refresh', { sid });
+      clearAuthHeader();
       setAuthHeader(res.data.newAccessToken);
       return res.data;
     } catch (error) {

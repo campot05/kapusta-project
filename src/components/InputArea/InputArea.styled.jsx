@@ -10,15 +10,16 @@ const DEVICE = {
   laptop: `screen and (min-width: ${SIZE.laptop})`,
 };
 
+export const Container = styled.form`
+padding: 0 32px;
+`
 export const FormWrapper = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
   height: 160px;
   @media ${DEVICE.tablet} {
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 26px 40px;
 
   }
   @media ${DEVICE.laptop} {
@@ -51,6 +52,8 @@ export const InputWrapper = styled.div`
 `;
 
 export const DateWrapper = styled.div`
+    display: flex;
+    gap: 10px;
  position: relative;
      margin-right: 44px;
 width:90px;
@@ -105,22 +108,6 @@ color: #52555F;
 
 `;
 
-export const CalendarIcon = styled.svg`
-fill: black;
-   position: absolute;
-  left: 11px;
-  top: 11px;
-  cursor: pointer;
-  @media ${DEVICE.tablet} {
-    left: -12px;
-    top: -1px;
-  }
-  @media ${DEVICE.laptop} {
-    left: -1px;
-    top: 0px;
-    text-align: center;
-  }
-`;
 
 export const DescriptionInput = styled.input`
  display: none;

@@ -6,11 +6,11 @@ import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-
-
-import {addExpense,getExpenseSummary} from '../../redux/transactions/trans-operations';
+import {useAuth} from 'hooks'
+import {ReactComponent as Calendar} from '../../images/calendar.svg'
+import {addExpense,getExpenseCategories,getExpenseSummary} from '../../redux/transactions/trans-operations';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {calendar, calculator} from '../../images/images';
+//import {calendar, calculator} from '../../images/images';
 import { getTransactions } from '../../redux/transactions/trans-selectors';
  import { Button } from './Button';
 import moment from 'moment';
@@ -26,39 +26,35 @@ import {
   DescriptionInput,
   FormWrapper,
 InputWrapper,
-
+Container
 } from './InputArea.styled';
+//import { Container } from '@mui/system';
 
-//import { customStyles } from './SelectorCustomStyle';
+
 
  const InputArea = ({ value }) => {
   const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [amount, setAmount] = useState('');
+       const [description, setDescription] = useState('');
+        const [category, setCategory] = React.useState('');
+    const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
-      //  const transactions = useSelector(getTransactions);
-      //  console.log(transactions)
-       const transactions = [
-  "Продукты",
-  "Алкоголь",
-  "Развлечения",
-  "Здоровье",
-  "Транспорт",
-  "Всё для дома",
-  "Техника",
-  "Коммуналка и связь",
-  "Спорт и хобби",
-  "Образование",
-  "Прочее"
-       ]
-       //product list
-       const [product, setProduct] = React.useState('');
+       const [amount, setAmount] = useState('');
+                    const { isRefreshing } = useAuth();
 
-  const handleChangeList = (evt) => {
-    setProduct(evt.target.value);
+       useEffect(() => {
+             if (isRefreshing) {
+                   return;
+             }
+             dispatch(getExpenseCategories());
+       }, [isRefreshing])
+       const transactions = useSelector(getTransactions);
+
+      
+
+  const handleChangeList = (event) => {
+        setCategory(event.target.value);
+        console.log(event)
   };
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -114,13 +110,15 @@ InputWrapper,
 //   }, []);
   
 
-  return (
+       return (
+        <Container>
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
                     <DateWrapper>
-                          <CalendarIcon width={20} height={17}>
-            <use href={`${calendar}#icon-calendar`}></use>
-          </CalendarIcon>
+                          
+                                {/* <use href={`${calendar}#icon-calendar`}></use> */}
+                 <Calendar/>           
+          
           <DateSelection
             aria-label="Date"
             name="date"
@@ -145,13 +143,14 @@ InputWrapper,
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
-          value={product}
+                                value={category ?? ''}
+                                
           onChange={handleChangeList}
           autoWidth
           label="product"
         >
           {transactions.map((el) => (
-                                <MenuItem>{el}</MenuItem>
+                                <MenuItem key = {el} value={el}>{el}</MenuItem>
                           ))}
         </Select>
       </FormControl>
@@ -169,7 +168,7 @@ InputWrapper,
             width={isScreenMoreTablet ? 20 : 40}
             height={isScreenMoreTablet ? 20 : 40}
           >
-            <use href={`${calculator}#icon-calculator`}></use>
+            {/* <use href={`${calculator}#icon-calculator`}></use> */}
           </CalculatorIcon>
         </CountWrapper>
       </InputWrapper>
@@ -186,7 +185,8 @@ InputWrapper,
           {('button.Clear')}
         </Button>
       </ButtonWrapper>
-    </FormWrapper>
+                   </FormWrapper>
+                   </Container>
   );
 };
 
