@@ -11,7 +11,7 @@ export const transactionsFilteredByDate = createSelector(
       return;
     }
     return transactions.expenses.filter(el => {
-      return el.date === '2023-12-31';
+      return el.date === '2023-09-31';
       //   return el.date === date;
     });
   }

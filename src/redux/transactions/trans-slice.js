@@ -16,7 +16,6 @@ const year = currentDate.getFullYear();
 const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
 const day = ('0' + currentDate.getDate()).slice(-2);
 const formattedDate = `${year}-${month}-${day}`;
-console.log(`🚀 ~ formattedDate:`, formattedDate);
 
 const initialState = {
   transactions: null,
@@ -29,6 +28,7 @@ const initialState = {
   expenseCategory: [],
   transByDate: null,
   date: formattedDate,
+  balance: 0,
 };
 
 const transactionSlice = createSlice({
@@ -37,6 +37,12 @@ const transactionSlice = createSlice({
   reducers: {
     setOperationType(state, { payload }) {
       state.operationType = payload;
+    },
+
+    deleteByClick(state, { payload }) {
+      state.transactions.expenses = state.transactions.expenses.filter(
+        el => el._id !== payload.id
+      );
     },
   },
   extraReducers: {
@@ -65,10 +71,7 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [deleteTransaction.fulfilled](state, { payload }) {
-      console.log(`🚀 ~ payload:`, payload);
-      state.transactions = state.transactions.filter(
-        ({ _id }) => _id !== payload.transaction._id
-      );
+      state.balance = payload.newBalance;
       state.isLoading = false;
     },
     [deleteTransaction.rejected](state, { payload }) {
@@ -138,3 +141,5 @@ const transactionSlice = createSlice({
 });
 
 export const transactionReducer = transactionSlice.reducer;
+
+export const { deleteByClick } = transactionSlice.actions;

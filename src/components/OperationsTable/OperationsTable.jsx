@@ -7,12 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import operationsData from 'mocks/operationsData.json';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { transactionsFilteredByDate } from 'redux/transactions/trans-selectors';
 import { getExpenseSummary } from 'redux/transactions/trans-operations';
+import { useAuth } from 'hooks';
 
 const columns = [
   {
@@ -45,11 +45,16 @@ const columns = [
 export default function OperationsTable() {
   const date = useSelector(transactionsFilteredByDate);
   // console.log(`🚀 ~ OperationsTable ~ date:`, date);
+  const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (isRefreshing) {
+      return;
+    }
     dispatch(getExpenseSummary());
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRefreshing]);
 
   // Вариант сделать пустые строки
   // const [emptyRowCount, setEmptyRowCount] = useState(15 - transactions.length);
