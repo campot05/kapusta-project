@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 // import { PrivateRoute } from 'routes/PrivateRoutes';
 // import { RestrictedRoute } from 'routes/RestrictedRoute';
 import Layout from 'pages/Layout/Layout';
+import SwitchProvider from 'contexts/SwitchProvider.js';
 
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
 const Operations = lazy(() => import('../pages/Operations/Operations'));
@@ -13,7 +14,14 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<AuthPage />} />
         <Route path="/operations" element={<Operations />} />
-        <Route path="/report" element={<Report />} />
+        <Route
+          path="/report"
+          element={
+            <SwitchProvider>
+              <Report />
+            </SwitchProvider>
+          }
+        />
         <Route path="*" element={<div>page not found</div>} />
       </Route>
     </Routes>
