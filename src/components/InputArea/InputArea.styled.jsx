@@ -102,34 +102,30 @@ color: #52555F;
 
 export const DescriptionInput = styled.input`
  display: none;
-  font-family: inherit;
   width: 184px;
   height: 44px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   font-size: 12px;
   line-height: 1.14;
-  text-align: start;
   background-color: transparent;
   padding-left: 30px;
-  outline-color: ${p => p.theme.accentColor};
-  border: 2px solid ${p => p.theme.borderColorMin};
+  outline-color: #FF751D;
+  border: 2px solid #FFFFFF;
   border-bottom: none;
-  color: ${p => p.theme.mainTextColor};
+  color: #52555F;
   &::placeholder {
     font-weight: 400;
     color: #c7ccdc;
   }
   @media ${DEVICE.tablet} {
-    border-top-right-radius: 0px;
-    border: 2px solid ${p => p.theme.borderColor};
+      margin-right: -8px;
+    border: 2px solid #f6f7fc;
     display: flex;
     padding-left: 12px;
-    height: 44pxl
   }
   @media ${DEVICE.laptop} {
-    padding-left: 12px;
-    /* width: 238px; */
+     width: 240px; 
   }
 `;
 
@@ -173,7 +169,7 @@ position: absolute;
 `;
 
 export const CountInput = styled.input`
-  font-family: inherit;
+
   outline-color: ${p => p.theme.accentColor};
   width: 183px;
   height: 44px;
@@ -185,7 +181,6 @@ export const CountInput = styled.input`
   line-height: 1.14;
   text-align: center;
   margin-top: 32px;
-  color: ${p => p.theme.mainTextColor};
   border: 2px solid ${p => p.theme.borderColor};
   background-color: transparent;
   @media ${DEVICE.tablet} {
