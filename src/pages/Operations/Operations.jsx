@@ -1,5 +1,4 @@
 import { Paper } from '@mui/material';
-import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 import OperationsTable, {
   TableExample,
 } from 'components/OperationsTable/OperationsTable';

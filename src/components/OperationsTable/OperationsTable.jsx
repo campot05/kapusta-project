@@ -97,10 +97,8 @@ export default function OperationsTable() {
                         {column.id === 'date' && value.split('-').join('.')}
                         {column.id === 'description' && value}
                         {column.id === 'category' && value}
-                        {column.id === 'amount' && value.toFixed(2)}
-                        {column.id === 'del' && (
-                          <DeleteBtn key={column.id} id={row._id} />
-                        )}
+                        {column.id === 'amount' && `- ${value.toFixed(2)} UAH.`}
+                        {column.id === 'del' && <DeleteBtn id={row._id} />}
                         {/* {column.format && typeof value === 'number'
                           ? column.format(value)
                           : value} */}
