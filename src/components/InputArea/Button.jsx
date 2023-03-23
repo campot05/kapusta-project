@@ -2,10 +2,7 @@ import PropTypes from 'prop-types';
 
 import { Btn } from './Button.styled';
 
-// children - text in the button
-// color can white, accent, grey
-// type - any (button, submit, etc)
-// design can be home, operation, modal
+
 
 export const Button = ({
   children,
