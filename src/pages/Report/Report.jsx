@@ -164,10 +164,10 @@ export default function Reports() {
   let categoriesToShow = [];
   const { incomes } = mockByDate; // change from above with useSelector()
   const { expenses } = mockByDate; // change from above with useSelector()
-
+  // eslint-disable-next-line
   const { total: incomeTotal, incomesData } = incomes;
+  // eslint-disable-next-line
   const { total: expenseTotal, expensesData } = expenses;
-
   function createCategories(categories, categoriesData) {
     for (let category of categories) {
       // console.log('category', category);
