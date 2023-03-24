@@ -5,16 +5,19 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { useSelect, useEffect } from '@mui/base';
+import { useDispatch, useSelector } from 'react-redux';
+import { getExpensesMonthStats } from 'redux/transactions/trans-selectors';
+import { getExpenseSummary } from 'redux/transactions/trans-operations';
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 107 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 107 },
+  { id: 'month', minWidth: 107 },
+  { id: 'sum', minWidth: 107 },
 ];
 
-function createData(name, code) {
-  return { name, code };
+function createData(month, sum) {
+  return { month, sum };
 }
 
 const rows = [
@@ -27,8 +30,23 @@ const rows = [
 ];
 
 export default function Summery() {
+  //   const dispatch = useDispatch();
+
+  const monthsStats = useSelector(getExpensesMonthStats);
+  console.log(`🚀 ~ Summery ~ monthsStats:`, monthsStats);
+
+  const arrayOfMonthsStats = Object.keys(monthsStats).map(key => ({
+    month: key,
+    total: monthsStats[key],
+  }));
+  console.log(`🚀 ~ result ~ result:`, arrayOfMonthsStats);
+
+  //   useEffect(() => {
+  //     dispatch(getExpenseSummary());
+  //   });
+
   return (
-    <Paper sx={{ maxWidth: 214 }}>
+    <Paper sx={{ maxWidth: 230, minWidth: 214 }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table aria-label="sticky table">
           <TableHead>

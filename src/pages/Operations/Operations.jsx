@@ -22,8 +22,10 @@ export default function Home() {
         }}
       >
         <InputArea />
-        <OperationsTable />
-        <Summary />
+        <div style={{ display: 'flex', gap: 60 }}>
+          <OperationsTable />
+          <Summary />
+        </div>
       </Paper>
     </div>
   );

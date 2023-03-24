@@ -29,6 +29,8 @@ const initialState = {
   transByDate: null,
   date: formattedDate,
   balance: 0,
+  expensesMonthStats: {},
+  incomeMonthStats: {},
 };
 
 const transactionSlice = createSlice({
@@ -93,6 +95,8 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getExpenseSummary.fulfilled](state, { payload }) {
+      console.log(`🚀 ~ payload:`, payload);
+      state.expensesMonthStats = payload.monthsStats;
       state.transExpense = payload.expenses;
       state.isLoading = false;
     },

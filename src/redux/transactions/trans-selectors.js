@@ -9,11 +9,16 @@ export const getTransByDate = state => state.transactions.transByDate;
 
 export const getDateTransaction = state => state.transactions.date;
 
+// Selectors for expenses tables
+export const getExpensesMonthStats = state =>
+  state.transactions.expensesMonthStats;
+
 export const getExpensesTrans = state => state.transactions.transExpense;
 
 export const transactionsFilteredByDate = createSelector(
   [getDateTransaction, getExpensesTrans],
   (date, transactions) => {
+    console.log(`🚀 ~ transactions:`, transactions);
     if (transactions === null) {
       return;
     }
@@ -22,3 +27,6 @@ export const transactionsFilteredByDate = createSelector(
     });
   }
 );
+
+// Selectors for incomes tables
+export const getIncomeMonthStats = state => state.transactions.incomeMonthStats;

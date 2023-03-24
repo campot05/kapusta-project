@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { transactionsFilteredByDate } from 'redux/transactions/trans-selectors';
@@ -57,7 +57,7 @@ export default function OperationsTable() {
   }, [isRefreshing]);
 
   // Вариант сделать пустые строки
-  const [emptyRowCount, setEmptyRowCount] = React.useState(0);
+  const [emptyRowCount, setEmptyRowCount] = useState(0);
 
   useEffect(() => {
     if (!transactionsByDate) {
@@ -73,7 +73,6 @@ export default function OperationsTable() {
     <Paper
       sx={{
         maxWidth: 746,
-        margin: 'auto',
         overflow: 'hidden',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
