@@ -66,7 +66,7 @@ const authSlice = createSlice({
     },
     [updateUserBalance.fulfilled](state, { payload }) {
       state.isLoading = false;
-      state.user.balance = payload.balance;
+      state.user.balance = payload.newBalance;
     },
     [updateUserBalance.rejected](state, { payload }) {
       state.isLoading = false;
