@@ -50,6 +50,7 @@ export const AppBar = () => {
                 </Link>
               </>
             )}
+            {isModal && <Quit />}
           </div>
         </header>
       )}
