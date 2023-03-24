@@ -142,7 +142,7 @@ const InputArea = ({ value }) => {
           />
 
           <FormControl sx={{ m: 1, minWidth: 200 }} className={css.formControl}>
-            <InputLabel id="demo-simple-select-autowidth-label">
+            <InputLabel className={css.inputLabel} id="demo-simple-select-autowidth-label">
               Product category
             </InputLabel>
             <Select

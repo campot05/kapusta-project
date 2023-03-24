@@ -1,4 +1,4 @@
-.formControl {
+.inputLabel {
   @media screen and (min-width: 768px) {
     font-family: inherit;
     width: 100%;
@@ -12,4 +12,19 @@
     border-right: none;
     border-bottom-right-radius: 0px;
   }
+}
+
+.FormControl {
+  width: 165px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border: 2px solid #f5f6fb;
+  color: #c7ccdc;
 }
