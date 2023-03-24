@@ -12,6 +12,7 @@ import { ReactComponent as Calculator } from '../../images/calculator.svg';
 import {
   addExpense,
   getExpenseCategories,
+  getExpenseSummary,
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
 import {
@@ -70,7 +71,10 @@ const InputArea = ({ value }) => {
       amount: amount,
     };
 
-    dispatch(addExpense(userEnteredData));
+    dispatch(addExpense(userEnteredData))
+      .unwrap()
+      .then(() => dispatch(getExpenseSummary()));
+
     resetForm();
     // return;
   };
