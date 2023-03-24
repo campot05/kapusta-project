@@ -22,3 +22,5 @@ export const transactionsFilteredByDate = createSelector(
     });
   }
 );
+export const selectIncomeCategories = state =>
+  state.transactions.incomeCategory;

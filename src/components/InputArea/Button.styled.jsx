@@ -25,7 +25,7 @@ export const Btn = styled.button`
   align-items: center;
   justify-content: center;
   letter-spacing: 0.02em;
-  background-color: #F6F7FC;
+  background-color: transparent;
   color: #52555F;
   text-transform: uppercase;
   font-weight: 700;
