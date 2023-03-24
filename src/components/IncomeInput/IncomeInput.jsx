@@ -12,17 +12,17 @@ import { useAuth } from 'hooks';
 import { ReactComponent as Calendar } from '../../images/calendar.svg';
 import { ReactComponent as Calculator } from '../../images/calculator.svg';
 import {
-  addExpense,
-  getExpenseCategories,
+  addIncome,
+  getIncomeCategories,
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   // eslint-disable-next-line
-  getTransactions,
-  selectExpenseCategories,
+  
+  selectIncomeCategories,
 } from '../../redux/transactions/trans-selectors';
-import { Button } from './Button';
+import { Button } from '../InputArea/Button';
 import moment from 'moment';
 import Notiflix from 'notiflix';
 import {
@@ -36,10 +36,9 @@ import {
   FormWrapper,
   InputWrapper,
   DescriptionWrapper,
-} from './InputArea.styled';
-//import { Container } from '@mui/system';
+} from './IncomeInput.styled';
 
-const InputArea = ({ value }) => {
+const IncomeInput = ({ value }) => {
   const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
@@ -53,10 +52,10 @@ const InputArea = ({ value }) => {
     if (isRefreshing) {
       return;
     }
-    dispatch(getExpenseCategories());
+    dispatch(getIncomeCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
-  const transactions = useSelector(selectExpenseCategories);
+  const transactions = useSelector(selectIncomeCategories);
 
   const handleChangeList = event => {
     setCategory(event.target.value);
@@ -75,7 +74,7 @@ const InputArea = ({ value }) => {
       amount: amount,
     };
 
-    dispatch(addExpense(userEnteredData));
+    dispatch(addIncome(userEnteredData));
     resetForm();
     // return;
   };
@@ -180,9 +179,7 @@ const InputArea = ({ value }) => {
               value={amount}
             />
             <Calculator style={{ fill: 'black', position:'absolute', marginRight:'12px' }}/>
-               
-            {/* </Calculator> */} 
-            
+
           </CountWrapper>
           </DescriptionWrapper>
         </InputWrapper>
@@ -205,4 +202,4 @@ const InputArea = ({ value }) => {
 };
 
 
-export default InputArea;
+export default IncomeInput;

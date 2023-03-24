@@ -12,6 +12,7 @@ import SwitchProvider from 'contexts/SwitchProvider.js';
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
 const Operations = lazy(() => import('../pages/Operations/Operations'));
 const Report = lazy(() => import('../pages/Report/Report'));
+const IncomePage = lazy(() => import('../pages/IncomePage/IncomePage'))
 export const App = () => {
   const dispatch = useDispatch();
   //   const { isRefreshing } = useAuth();
@@ -36,6 +37,7 @@ export const App = () => {
           path="/login"
           element={<RestrictedRoute redirectTo="/" component={<AuthPage />} />}
         />
+        <Route path='/income' element={<PrivateRoute redirectTo='/login' component={<IncomePage/> } /> } />
         <Route
           path="/report"
           element={
