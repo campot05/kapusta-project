@@ -155,7 +155,7 @@ export const Label = styled.label`
     margin-right: 14px;
   }
 `;
-export const InputContainer = styled.div`
+export const InputContainer = styled.label`
   display: flex;
   align-items: baseline;
   justify-content: center;

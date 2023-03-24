@@ -12,15 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUserBalance } from 'redux/balance/balanceOperations';
 import BalanceModal from './BalanceModal';
 import { selectBalance } from 'redux/auth/auth-selectors';
-
+import { useAuth } from 'hooks';
 export const Balance = () => {
   const [value, setValue] = useState(0);
   const currentBalance = useSelector(selectBalance);
   const [promptClose, setPromptClose] = useState(true);
   const dispatch = useDispatch();
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-
+  const { isRefreshing } = useAuth();
   const onChange = e => {
     setValue(e.target.value);
     setIsSubmitted(false);
@@ -31,8 +30,7 @@ export const Balance = () => {
   };
 
   useEffect(() => {
-    setValue(currentBalance?.toFixed(2));
-    console.log(currentBalance);
+    setValue(currentBalance?.toFixed(2) || '');
   }, [currentBalance]);
 
   const handleSubmit = e => {
@@ -50,7 +48,6 @@ export const Balance = () => {
       setPromptClose(prev => !prev);
     }
   };
-
   return (
     <>
       <WrapperForm>
@@ -67,7 +64,7 @@ export const Balance = () => {
             />
             <Label>UAH</Label>
           </InputContainer>
-          {promptClose && currentBalance <= 0 && (
+          {!isRefreshing && promptClose && currentBalance === 0 && (
             <BalanceModal onClose={toggleWindow} />
           )}
           {

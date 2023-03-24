@@ -17,7 +17,7 @@ const columns = [
 
 export default function Summery() {
   const monthsStats = useSelector(getExpensesMonthStats);
-  console.log(monthsStats);
+
   const arrayOfMonthsStats = Object.keys(monthsStats)
     .reverse()
     .map(key => ({
