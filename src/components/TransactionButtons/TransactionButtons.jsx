@@ -1,9 +1,15 @@
-import {LinkButton} from './TransactionsButton.styled'
+
+import {  LinkButton, Buttons } from './TransactionsButton.styled'
+
+
 const TransactionButtons = () => {
+      
       return (
-                <>
-            <LinkButton to="/" >Expenses</LinkButton>
-                  <LinkButton to="/income" >Income</LinkButton>
+            <><Buttons>
+                  <LinkButton to="/" >Expenses</LinkButton>
+            
+                  <LinkButton to="/income "  >Income</LinkButton>
+                  </Buttons>
                   </>
      )
 }

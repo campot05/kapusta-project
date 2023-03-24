@@ -16,7 +16,6 @@ import {
   getIncomeCategories,
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   // eslint-disable-next-line
   
@@ -39,7 +38,6 @@ import {
 } from './IncomeInput.styled';
 
 const IncomeInput = ({ value }) => {
-  const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');

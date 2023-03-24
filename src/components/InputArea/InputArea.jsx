@@ -16,10 +16,8 @@ import {
   getExpenseCategories,
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   // eslint-disable-next-line
-  getTransactions,
   selectExpenseCategories,
 } from '../../redux/transactions/trans-selectors';
 import { Button } from './Button';
@@ -40,7 +38,6 @@ import {
 //import { Container } from '@mui/system';
 
 const InputArea = ({ value }) => {
-  const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
