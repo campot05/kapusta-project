@@ -9,6 +9,14 @@ import {
   getExpenseCategories,
   getPeriodData,
 } from './trans-operations';
+
+//Initial current date
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+const day = ('0' + currentDate.getDate()).slice(-2);
+const formattedDate = `${year}-${month}-${day}`;
+
 const initialState = {
   transactions: null,
   message: null,
@@ -19,6 +27,8 @@ const initialState = {
   incomeCategory: [],
   expenseCategory: [],
   transByDate: null,
+  date: formattedDate,
+  balance: 0,
 };
 
 const transactionSlice = createSlice({
@@ -28,11 +38,17 @@ const transactionSlice = createSlice({
     setOperationType(state, { payload }) {
       state.operationType = payload;
     },
+
+    deleteByClick(state, { payload }) {
+      state.transExpense = state.transExpense.filter(
+        el => el._id !== payload.id
+      );
+    },
   },
   extraReducers: {
     [addIncome.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transactions.push(payload.transaction);
+      state.transIncome.push(payload.transaction);
       state.isLoading = false;
     },
     [addIncome.rejected](state, { payload }) {
@@ -44,7 +60,7 @@ const transactionSlice = createSlice({
     },
     [addExpense.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transactions.push(payload.transaction);
+      state.transExpense.push(payload.transaction);
       state.isLoading = false;
     },
     [addExpense.rejected](state, { payload }) {
@@ -55,9 +71,7 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [deleteTransaction.fulfilled](state, { payload }) {
-      state.transactions = state.transactions.filter(
-        ({ _id }) => _id !== payload.transaction._id
-      );
+      state.balance = payload.newBalance;
       state.isLoading = false;
     },
     [deleteTransaction.rejected](state, { payload }) {
@@ -69,6 +83,7 @@ const transactionSlice = createSlice({
     },
     [getIncomeSummary.fulfilled](state, { payload }) {
       state.isLoading = false;
+      state.transactions = payload;
     },
     [getIncomeSummary.rejected](state, { payload }) {
       state.error = payload.message;
@@ -78,8 +93,8 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getExpenseSummary.fulfilled](state, { payload }) {
+      state.transExpense = payload.expenses;
       state.isLoading = false;
-      // state.expenseCategory = payload;
     },
     [getExpenseSummary.rejected](state, { payload }) {
       state.error = payload.message;
@@ -126,3 +141,5 @@ const transactionSlice = createSlice({
 });
 
 export const transactionReducer = transactionSlice.reducer;
+
+export const { deleteByClick } = transactionSlice.actions;
