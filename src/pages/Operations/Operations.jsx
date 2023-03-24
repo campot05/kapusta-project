@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Paper } from '@mui/material';
 import OperationsTable from 'components/OperationsTable/OperationsTable';
 import InputArea from 'components/InputArea';
+import Summary from 'components/Summary/Summary';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       >
         <InputArea />
         <OperationsTable />
+        <Summary />
       </Paper>
     </div>
   );
