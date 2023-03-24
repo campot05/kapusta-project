@@ -3,7 +3,7 @@ import axios from 'axios';
 import Notiflix from 'notiflix';
 
 export const addIncome = createAsyncThunk(
-  'transactions/income',
+  'transactions/addIncome',
   async (transaction, { rejectWithValue }) => {
     try {
       const result = await axios.post('/transaction/income', transaction);
@@ -16,7 +16,7 @@ export const addIncome = createAsyncThunk(
   }
 );
 export const addExpense = createAsyncThunk(
-  'transactions/expense',
+  'transactions/addExpense',
   async (transaction, { rejectWithValue }) => {
     try {
       const result = await axios.post('/transaction/expense', transaction);
@@ -31,9 +31,9 @@ export const addExpense = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk(
   'transactions',
-  async (transaction_Id, { rejectWithValue }) => {
+  async ({ id }, { rejectWithValue }) => {
     try {
-      const result = await axios.delete(`/transaction/${transaction_Id}`);
+      const result = await axios.delete(`/transaction/${id}`);
       Notiflix.Notify.success('Operation deleted successfully');
       return result.data;
     } catch (error) {

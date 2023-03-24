@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import { useAuth } from 'hooks/index.jsx';
+import { useAuth } from 'hooks/index.jsx';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshToken, refreshUser } from 'redux/auth/auth-operations.js';
@@ -15,13 +15,15 @@ const Report = lazy(() => import('../pages/Report/Report'));
 const IncomePage = lazy(() => import('../pages/IncomePage/IncomePage'))
 export const App = () => {
   const dispatch = useDispatch();
-  //   const { isRefreshing } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
+    if (!isLoggedIn) return;
     dispatch(refreshToken())
       .unwrap()
       .then(() => dispatch(refreshUser()))
       .catch(error => null);
+    // eslint-disable-next-line
   }, [dispatch]);
 
   return (
