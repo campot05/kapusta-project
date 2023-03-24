@@ -105,7 +105,6 @@ export const DescriptionInput = styled.input`
   width: 184px;
   height: 44px;
   border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
   font-size: 12px;
   line-height: 1.14;
   background-color: transparent;
@@ -135,14 +134,16 @@ export const FormControl = styled.input`
 `;
 
 export const CountWrapper = styled.div`
-position: relative;
-  width: 183px;
+display: none;
   @media ${DEVICE.tablet} {
+    position: relative;
+  width: 183px;
     display: flex;
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
     width: 110px;
-    border: 2px solid ${p => p.theme.borderColor};
+    border: 2px solid #f6f7fc;
+        margin-left: -8px
   }
   @media ${DEVICE.laptop} {
     width: 121px;
@@ -169,7 +170,7 @@ position: absolute;
 
 export const CountInput = styled.input`
 
-  outline-color: ${p => p.theme.accentColor};
+
   width: 183px;
   height: 44px;
   padding-right: 55px;
