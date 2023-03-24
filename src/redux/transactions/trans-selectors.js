@@ -26,6 +26,8 @@ export const updateMonthsStats = createSelector(
     return;
   }
 );
+export const selectIncomeCategories = state =>
+  state.transactions.incomeCategory;
 
 // Selectors for incomes tables
 export const getIncomeMonthStats = state => state.transactions.incomeMonthStats;

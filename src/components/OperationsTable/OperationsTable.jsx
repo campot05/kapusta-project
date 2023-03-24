@@ -76,6 +76,7 @@ export default function OperationsTable() {
         overflow: 'hidden',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+        marginTop: '62px',
       }}
     >
       <TableContainer

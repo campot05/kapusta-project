@@ -20,6 +20,7 @@ export const addExpense = createAsyncThunk(
   async (transaction, { rejectWithValue }) => {
     try {
       const result = await axios.post('/transaction/expense', transaction);
+
       Notiflix.Notify.success('Operation added successfully');
       return result.data;
     } catch (error) {
