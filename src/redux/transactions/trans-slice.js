@@ -30,7 +30,6 @@ const initialState = {
   expensesMonthStats: {},
   incomeMonthStats: {},
   date: formattedDate,
-  balance: 0,
 };
 
 const transactionSlice = createSlice({
@@ -50,7 +49,7 @@ const transactionSlice = createSlice({
   extraReducers: {
     [addIncome.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transIncome.push(payload.transaction);
+      // state.transIncome.push(payload.transaction);
       state.isLoading = false;
     },
     [addIncome.rejected](state, { payload }) {
@@ -62,7 +61,7 @@ const transactionSlice = createSlice({
     },
     [addExpense.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transExpense.push(payload.transaction);
+      // state.transExpense.push(payload.transaction);
       state.isLoading = false;
     },
     [addExpense.rejected](state, { payload }) {
@@ -73,7 +72,6 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [deleteTransaction.fulfilled](state, { payload }) {
-      state.balance = payload.newBalance;
       state.isLoading = false;
     },
     [deleteTransaction.rejected](state, { payload }) {

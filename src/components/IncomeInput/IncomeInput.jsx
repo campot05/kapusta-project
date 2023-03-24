@@ -67,7 +67,7 @@ const IncomeInput = ({ value }) => {
       description: description,
       date: date,
       category: category,
-      amount: amount,
+      amount: Number(amount),
     };
 
     dispatch(addIncome(userEnteredData));

@@ -20,6 +20,7 @@ export const WrapperForm = styled.div`
   @media ${DEVICE.tablet} {
     display: flex;
     align-items: center;
+    margin-top: 40px;
     justify-content: center;
   }
 `;
@@ -88,8 +89,8 @@ export const Input = styled.input`
   }
   &::placeholder {
     font-weight: 700;
-    font-size: 13px;
-    line-height: 1.17;
+    font-size: 12px;
+    line-height: 14;
     letter-spacing: 0.02em;
     color: #000000;
   }
@@ -154,7 +155,7 @@ export const Label = styled.label`
     margin-right: 14px;
   }
 `;
-export const InputContainer = styled.div`
+export const InputContainer = styled.label`
   display: flex;
   align-items: baseline;
   justify-content: center;
