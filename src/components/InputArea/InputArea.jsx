@@ -5,16 +5,18 @@ import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import styled from 'styled-components';
+
+
 import { useAuth } from 'hooks';
 import { ReactComponent as Calendar } from '../../images/calendar.svg';
+import { ReactComponent as Calculator } from '../../images/calculator.svg';
 import {
   addExpense,
   getExpenseCategories,
   // eslint-disable-next-line
-  getExpenseSummary,
 } from '../../redux/transactions/trans-operations';
 import useMediaQuery from '@mui/material/useMediaQuery';
-//import {calendar, calculator} from '../../images/images';
 import {
   // eslint-disable-next-line
   getTransactions,
@@ -25,9 +27,7 @@ import moment from 'moment';
 import Notiflix from 'notiflix';
 import {
   ButtonWrapper,
-  CalculatorIcon,
   // eslint-disable-next-line
-  CalendarIcon,
   CountInput,
   CountWrapper,
   DateSelection,
@@ -35,10 +35,10 @@ import {
   DescriptionInput,
   FormWrapper,
   InputWrapper,
-  Container,
+  DescriptionWrapper,
+  
 } from './InputArea.styled';
 //import { Container } from '@mui/system';
-import css from './InputArea.module.css';
 
 const InputArea = ({ value }) => {
   const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
@@ -115,11 +115,10 @@ const InputArea = ({ value }) => {
   //   }, []);
 
   return (
-    <Container>
+    
       <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
-        <InputWrapper>
+        <InputWrapper  >
           <DateWrapper>
-            {/* <use href={`${calendar}#icon-calendar`}></use> */}
             <Calendar />
 
             <DateSelection
@@ -131,7 +130,7 @@ const InputArea = ({ value }) => {
               value={date}
             />
           </DateWrapper>
-
+<DescriptionWrapper>
           <DescriptionInput
             placeholder={'Product description'}
             name="description"
@@ -141,26 +140,36 @@ const InputArea = ({ value }) => {
             value={description}
           />
 
-          <FormControl sx={{ m: 1, minWidth: 200 }} className={css.formControl}>
-            <InputLabel className={css.inputLabel} id="demo-simple-select-autowidth-label">
+          <FormControl sx={{ m: 1, minWidth: 169 }}  >
+            <InputLabel
+            
+              id="demo-simple-select-autowidth-label"
+              style = {{ fontSize:'12px', color: '#c7ccdc', lineHeight:'1.14', paddingLeft: '12px', paddingTop: '9px'}}
+            >
               Product category
             </InputLabel>
-            <Select
+           
+            <Select 
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
               value={category ?? ''}
               onChange={handleChangeList}
-              autoWidth
-              label="product"
+              variant='standard'
+              disableUnderline={true}
+              style = {{border: '2px solid rgb(246, 247, 252)', height: '44px', top:'-8px',  color: '#c7ccdc', fontSize:'12px'}}
+              
+              
+
             >
               {transactions.map(el => (
-                <MenuItem key={el} value={el}>
+                <MenuItem  key={el} value={el}>
                   {el}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
           <CountWrapper>
+            
             <CountInput
               onChange={handleChange}
               type="number"
@@ -170,13 +179,12 @@ const InputArea = ({ value }) => {
               step="0.01"
               value={amount}
             />
-            <CalculatorIcon
-              width={isScreenMoreTablet ? 20 : 40}
-              height={isScreenMoreTablet ? 20 : 40}
-            >
-              {/* <use href={`${calculator}#icon-calculator`}></use> */}
-            </CalculatorIcon>
+            <Calculator style={{ fill: 'black', position:'absolute', marginRight:'12px' }}/>
+               
+            {/* </Calculator> */} 
+            
           </CountWrapper>
+          </DescriptionWrapper>
         </InputWrapper>
         <ButtonWrapper>
           <Button type="submit" color="accent" design="operation">
@@ -192,7 +200,7 @@ const InputArea = ({ value }) => {
           </Button>
         </ButtonWrapper>
       </FormWrapper>
-    </Container>
+  
   );
 };
 

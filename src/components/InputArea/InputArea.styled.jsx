@@ -10,19 +10,15 @@ const DEVICE = {
   laptop: `screen and (min-width: ${SIZE.laptop})`,
 };
 
-export const Container = styled.div`
-padding: 0 32px;
-`
+
 export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  height: 160px;
+  justify-content: space-between;
   @media ${DEVICE.tablet} {
-    padding: 26px 40px;
 
   }
   @media ${DEVICE.laptop} {
-    padding-top: 34px;
     flex-direction: row;
     justify-self: flex-start;
     flex-wrap: nowrap;
@@ -34,6 +30,7 @@ export const InputWrapper = styled.div`
     align-items: center;
   display: contents;
   flex-direction: column;
+  justify-content: space-evenly;
   border-bottom-left-radius: 30%;
   background-color: transparent;
  
@@ -62,7 +59,6 @@ export const DateWrapper = styled.div`
   }
  
 `;
-
 export const DateSelection = styled.input`
     font-family: 'Roboto';
 font-style: normal;
@@ -77,13 +73,6 @@ text-transform: uppercase;
 
 color: #52555F;
  
-  @media ${DEVICE.tablet} {
-  
-  }
-  @media ${DEVICE.laptop} {
-    
-
-  }
   &::-webkit-calendar-picker-indicator {
 
     color: rgba(0, 0, 0, 0);
@@ -99,7 +88,10 @@ color: #52555F;
 
 `;
 
-
+export const DescriptionWrapper = styled.div`
+  display: flex;
+    align-items: center;
+`
 export const DescriptionInput = styled.input`
  display: none;
   width: 184px;
@@ -136,9 +128,12 @@ export const FormControl = styled.input`
 export const CountWrapper = styled.div`
 display: none;
   @media ${DEVICE.tablet} {
+    justify-content: end;
+    align-items: center;
     position: relative;
   width: 183px;
     display: flex;
+    background-color: transparent;
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
     width: 110px;
@@ -151,45 +146,28 @@ display: none;
   
 `;
 
-export const CalculatorIcon = styled.svg`
-position: absolute;
-  top: 34px;
-  right: 12px;
-  padding: 8px;
-  @media ${DEVICE.tablet} {
-    border: none;
-    right: 16px;
-    top: 9px;
-    padding: 0;
-  }
-  @media ${DEVICE.laptop} {
-    right: 17px;
-    top: 10px;
-  }
-`;
+
 
 export const CountInput = styled.input`
-
-
   width: 183px;
   height: 44px;
-  padding-right: 55px;
-  padding-left: 55px;
+ // padding-right: 55px;
+ // padding-left: 55px;
+ margin-right: 5px;
   border-radius: 22px;
   font-weight: 900;
   font-size: 12px;
   line-height: 1.14;
   text-align: center;
   margin-top: 32px;
-  border: 2px solid ${p => p.theme.borderColor};
+    order: 2px solid #f6f7fc;
+;
   background-color: transparent;
   @media ${DEVICE.tablet} {
     height: 40px;
-    border: 2px solid ${p => p.theme.borderColor};
     width: 110px;
     margin-top: 0;
-    padding-right: 45px;
-    padding-left: 10px;
+   
     border: transparent;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -201,6 +179,7 @@ export const CountInput = styled.input`
 
 export const ButtonWrapper = styled.div`
  display: flex;
+ justify-content:center;
   margin-top: 80px;
   gap: 20px;
   @media ${DEVICE.tablet} {

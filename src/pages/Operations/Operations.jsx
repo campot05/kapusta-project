@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import InputArea from 'components/InputArea'
-
+import {TransactionsContainer} from './Operations.styled'
 export default function Home() {
   return (
     <div>
       Главная страничка
-      <InputArea/>
+      <TransactionsContainer>
+        <InputArea />
+        </TransactionsContainer>
       <Link to="/report" style={{ display: 'block' }}>
         REPORT
       </Link>
