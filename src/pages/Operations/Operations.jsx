@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Paper } from '@mui/material';
 import OperationsTable from 'components/OperationsTable/OperationsTable';
+import InputArea from 'components/InputArea';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
           padding: '32px 32px 61px 32px',
         }}
       >
+        <InputArea />
         <OperationsTable />
       </Paper>
     </div>

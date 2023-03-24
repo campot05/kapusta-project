@@ -94,7 +94,7 @@ const transactionSlice = createSlice({
     },
     [getExpenseSummary.fulfilled](state, { payload }) {
       state.isLoading = false;
-      state.transactions = payload;
+      // state.expenseCategory = payload;
     },
     [getExpenseSummary.rejected](state, { payload }) {
       state.error = payload.message;
@@ -104,7 +104,7 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getIncomeCategories.fulfilled](state, { payload }) {
-      state.transactions = payload;
+      state.incomeCategory = payload;
       state.isLoading = false;
     },
     [getIncomeCategories.rejected](state, { payload }) {
@@ -115,7 +115,7 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getExpenseCategories.fulfilled](state, { payload }) {
-      state.transactions = payload;
+      state.expenseCategory = payload;
       state.isLoading = false;
     },
     [getExpenseCategories.rejected](state, { payload }) {
