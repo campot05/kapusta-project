@@ -1,0 +1,30 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg,
+      #E5E5E5,
+      #E5E5E5);
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 380px;
+  height: 194px;
+  /* max-width: calc(100vw - 48px); */
+  /* max-height: calc(100vh - 24px); */
+  padding: 40px;
+  background: white;
+  box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+  border-radius: 30px;
+}
