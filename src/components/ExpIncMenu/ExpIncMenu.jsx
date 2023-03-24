@@ -1,9 +1,13 @@
-import { Grid, Divider} from '@mui/material/';
+import { Grid, Divider } from '@mui/material/';
 import { ExpIncMenuItem } from 'components/ExpIncMenuItem/ExpIncMenuItem';
 import { useWindowSize } from 'react-use';
 import { StyledGrid } from './ExpIncMenu.styled';
-
-export const ExpIncMenu = ({ categories = [], children, onCategoryClick= ()=>null }) => {
+import React from 'react';
+export const ExpIncMenu = ({
+  categories = [],
+  children,
+  onCategoryClick = () => null,
+}) => {
   const { width } = useWindowSize();
   return (
     <StyledGrid
@@ -13,24 +17,30 @@ export const ExpIncMenu = ({ categories = [], children, onCategoryClick= ()=>nul
       alignItems="center"
     >
       {children}
-      <Grid container spacing={0} justifyContent="center" alignItems="center" style={{paddingTop:'20px'}}>
+      <Grid
+        container
+        spacing={0}
+        justifyContent="center"
+        alignItems="center"
+        style={{ paddingTop: '20px' }}
+      >
         {categories.map((item, idx) => {
           return (
-            <>
+            <React.Fragment key={idx}>
               <Grid item xs={4} sm={3} md={2} key={idx}>
-                <ExpIncMenuItem item={item} onCategoryClick={onCategoryClick}/>
+                <ExpIncMenuItem item={item} onCategoryClick={onCategoryClick} />
               </Grid>
               {width <= 480 && (idx + 1) % 3 === 0 && (
                 <Grid item xs={12}>
-                  <Divider 
-                  orientation="horizontal"
-                  sx={{ borderBottomWidth: 2 }}
-                  variant="middle" 
-                  style={{marginTop:'10px',marginBottom:'10px'}}
-                   />
+                  <Divider
+                    orientation="horizontal"
+                    sx={{ borderBottomWidth: 2 }}
+                    variant="middle"
+                    style={{ marginTop: '10px', marginBottom: '10px' }}
+                  />
                 </Grid>
               )}
-            </>
+            </React.Fragment>
           );
         })}
       </Grid>

@@ -236,7 +236,7 @@ export default function Reports() {
   }
 
   function changeExpIncMarkup() {
-    console.log('switch', transSwitch);
+    //  console.log('switch', transSwitch);
     if (transSwitch === 'expenses') {
       createCategories(categoriesExpense, expensesData);
     } else {
@@ -265,13 +265,13 @@ export default function Reports() {
   const getChartData = category => {
     let data;
     if (transSwitch === 'income') {
-      console.log('predata', incomesData[category]);
+      // console.log('predata', incomesData[category]);
       data = incomesData[category];
-      console.log('data', data);
+      // console.log('data', data);
     } else {
-      console.log('predata', expensesData[category]);
+      // console.log('predata', expensesData[category]);
       data = expensesData[category];
-      console.log('data', data);
+      // console.log('data', data);
     }
     const result = Object.keys(data)
       .map(key => ({ subCategory: key, amount: data[key] }))

@@ -17,7 +17,7 @@ const authSlice = createSlice({
   extraReducers: {
     [logIn.fulfilled](state, { payload }) {
       state.user = payload.userData;
-      state.token = payload.accessToken;
+      state.accessToken = payload.accessToken;
       state.sid = payload.sid;
       state.refreshToken = payload.refreshToken;
       state.isLoggedIn = true;
