@@ -6,8 +6,6 @@ import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
-
-
 import { useAuth } from 'hooks';
 import { ReactComponent as Calendar } from '../../images/calendar.svg';
 import { ReactComponent as Calculator } from '../../images/calculator.svg';
@@ -18,7 +16,7 @@ import {
 } from '../../redux/transactions/trans-operations';
 import {
   // eslint-disable-next-line
-  
+
   selectIncomeCategories,
 } from '../../redux/transactions/trans-selectors';
 import { Button } from '../InputArea/Button';
@@ -86,7 +84,10 @@ const IncomeInput = ({ value }) => {
         setDescription(value);
         break;
       case 'amount':
-        setAmount(value);
+        const regex = /^\d+(\.\d{0,2})?$/;
+        if (regex.test(value) || value === '') {
+          setAmount(value);
+        }
         break;
 
       default:
@@ -111,23 +112,21 @@ const IncomeInput = ({ value }) => {
   //   }, []);
 
   return (
-    
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
+      <InputWrapper>
+        <DateWrapper>
+          <Calendar />
 
-        <InputWrapper  >
-          <DateWrapper>
-            <Calendar />
-
-            <DateSelection
-              aria-label="Date"
-              name="date"
-              dateFormat="yyyy-MM-dd"
-              onChange={handleChange}
-              type="date"
-              value={date}
-            />
-          </DateWrapper>
-<DescriptionWrapper>
+          <DateSelection
+            aria-label="Date"
+            name="date"
+            dateFormat="yyyy-MM-dd"
+            onChange={handleChange}
+            type="date"
+            value={date}
+          />
+        </DateWrapper>
+        <DescriptionWrapper>
           <DescriptionInput
             placeholder={'Product description'}
             name="description"
@@ -137,36 +136,43 @@ const IncomeInput = ({ value }) => {
             value={description}
           />
 
-          <FormControl sx={{ m: 1, minWidth: 169 }}  >
+          <FormControl sx={{ m: 1, minWidth: 169 }}>
             <InputLabel
-            
               id="demo-simple-select-autowidth-label"
-              style = {{ fontSize:'12px', color: '#c7ccdc', lineHeight:'1.14', paddingLeft: '12px', paddingTop: '9px'}}
+              style={{
+                fontSize: '12px',
+                color: '#c7ccdc',
+                lineHeight: '1.14',
+                paddingLeft: '12px',
+                paddingTop: '9px',
+              }}
             >
               Product category
             </InputLabel>
-           
-            <Select 
+
+            <Select
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
               value={category ?? ''}
               onChange={handleChangeList}
-              variant='standard'
+              variant="standard"
               disableUnderline={true}
-              style = {{border: '2px solid rgb(246, 247, 252)', height: '44px', top:'-8px',  color: '#c7ccdc', fontSize:'12px'}}
-              
-              
-
+              style={{
+                border: '2px solid rgb(246, 247, 252)',
+                height: '44px',
+                top: '-8px',
+                color: '#c7ccdc',
+                fontSize: '12px',
+              }}
             >
               {transactions.map(el => (
-                <MenuItem  key={el} value={el}>
+                <MenuItem key={el} value={el}>
                   {el}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
           <CountWrapper>
-            
             <CountInput
               onChange={handleChange}
               type="number"
@@ -176,28 +182,31 @@ const IncomeInput = ({ value }) => {
               step="0.01"
               value={amount}
             />
-            <Calculator style={{ fill: 'black', position:'absolute', marginRight:'12px' }}/>
-
+            <Calculator
+              style={{
+                fill: 'black',
+                position: 'absolute',
+                marginRight: '23px',
+              }}
+            />
           </CountWrapper>
-          </DescriptionWrapper>
-        </InputWrapper>
-        <ButtonWrapper>
-          <Button type="submit" color="accent" design="operation">
-            {'Input'}
-          </Button>
-          <Button
-            type="button"
-            color="white"
-            design="operation"
-            onClick={resetForm}
-          >
-            {'Clear'}
-          </Button>
-        </ButtonWrapper>
-      </FormWrapper>
-  
+        </DescriptionWrapper>
+      </InputWrapper>
+      <ButtonWrapper>
+        <Button type="submit" color="accent" design="operation">
+          {'Input'}
+        </Button>
+        <Button
+          type="button"
+          color="white"
+          design="operation"
+          onClick={resetForm}
+        >
+          {'Clear'}
+        </Button>
+      </ButtonWrapper>
+    </FormWrapper>
   );
 };
-
 
 export default IncomeInput;

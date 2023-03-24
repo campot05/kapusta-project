@@ -3,10 +3,10 @@ import InputArea from 'components/InputArea';
 import TransactionButtons from 'components/TransactionButtons';
 import { TransactionsContainer } from './Operations.styled';
 import OperationsTable from 'components/OperationsTable/OperationsTable';
-
+import Background from 'components/Background/Background';
 export default function Home() {
   return (
-    <div>
+    <Background type="Main">
       <TransactionButtons />
       <TransactionsContainer>
         <InputArea />
@@ -16,6 +16,6 @@ export default function Home() {
       <Link to="/report" style={{ display: 'block' }}>
         REPORT
       </Link>
-    </div>
+    </Background>
   );
 }

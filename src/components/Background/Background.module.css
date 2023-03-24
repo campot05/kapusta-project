@@ -3,6 +3,8 @@
   background-color: white;
   background-position: left top;
   background-repeat: no-repeat;
+  /* padding-left: 32px;
+  padding-right: 32px; */
 }
 
 .mainBgMain {
@@ -42,12 +44,14 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
   .mainBg {
     background-position: left calc(50% - 311px) bottom 100px, left top 28px,
       left top;
     background-repeat: no-repeat, repeat-x, no-repeat;
     background-size: auto, auto, 100% 526px;
+    padding-left: 89px;
+    padding-right: 89px;
   }
 
   .mainBgMain {

@@ -73,10 +73,10 @@ export default function OperationsTable() {
     <Paper
       sx={{
         maxWidth: 746,
-        margin: 'auto',
         overflow: 'hidden',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+        marginTop: '62px',
       }}
     >
       <TableContainer
