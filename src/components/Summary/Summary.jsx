@@ -6,44 +6,40 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { useSelect, useEffect } from '@mui/base';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExpensesMonthStats } from 'redux/transactions/trans-selectors';
+import { useEffect, useState } from 'react';
+import {
+  getExpensesMonthStats,
+  getExpensesTrans,
+} from 'redux/transactions/trans-selectors';
 import { getExpenseSummary } from 'redux/transactions/trans-operations';
 
 const columns = [
   { id: 'month', minWidth: 107 },
-  { id: 'sum', minWidth: 107 },
-];
-
-function createData(month, sum) {
-  return { month, sum };
-}
-
-const rows = [
-  createData('India', 'IN'),
-  createData('China', 'CN'),
-  createData('Italy', 'IT'),
-  createData('United States', 'USA'),
-  createData('Canada', 'CA'),
-  createData('Australia', 'AU'),
+  { id: 'total', minWidth: 107 },
 ];
 
 export default function Summery() {
-  //   const dispatch = useDispatch();
-
   const monthsStats = useSelector(getExpensesMonthStats);
-  console.log(`🚀 ~ Summery ~ monthsStats:`, monthsStats);
+  const allExpensesTrans = useSelector(getExpensesTrans);
 
-  const arrayOfMonthsStats = Object.keys(monthsStats).map(key => ({
-    month: key,
-    total: monthsStats[key],
-  }));
-  console.log(`🚀 ~ result ~ result:`, arrayOfMonthsStats);
+  const test1 = useSelector(getExpensesMonthStats);
+  const dispatch = useDispatch();
 
-  //   useEffect(() => {
-  //     dispatch(getExpenseSummary());
-  //   });
+  const arrayOfMonthsStats = Object.keys(monthsStats)
+    .reverse()
+    .map(key => ({
+      month: key,
+      total: monthsStats[key],
+    }))
+    .filter(el => el.total !== 'N/A');
+
+  const [array, setArray] = useState([]);
+  console.log(`🚀 ~ Summery ~ array:`, array);
+
+  useEffect(() => {
+    setArray(arrayOfMonthsStats);
+  }, [test1]);
 
   return (
     <Paper sx={{ maxWidth: 230, minWidth: 214 }}>
@@ -61,7 +57,7 @@ export default function Summery() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => {
+            {array.map(row => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map(column => {
@@ -72,9 +68,8 @@ export default function Summery() {
                         align={column.align}
                         style={{ paddingTop: 8, paddingBottom: 8 }}
                       >
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
+                        {column.id === 'month' && value}
+                        {column.id === 'total' && value}
                       </TableCell>
                     );
                   })}

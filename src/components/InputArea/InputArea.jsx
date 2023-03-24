@@ -55,6 +55,7 @@ const InputArea = ({ value }) => {
       return;
     }
     dispatch(getExpenseCategories());
+    dispatch(getExpenseSummary());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
   const transactions = useSelector(selectExpenseCategories);
@@ -77,6 +78,7 @@ const InputArea = ({ value }) => {
     };
 
     dispatch(addExpense(userEnteredData));
+    dispatch(getExpenseSummary());
     resetForm();
     // return;
   };

@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import { useEffect, useState } from 'react';
 import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 import { useDispatch, useSelector } from 'react-redux';
-import { transactionsFilteredByDate } from 'redux/transactions/trans-selectors';
+import { getExpensesTrans } from 'redux/transactions/trans-selectors';
 import { getExpenseSummary } from 'redux/transactions/trans-operations';
 import { useAuth } from 'hooks';
 
@@ -43,7 +43,7 @@ const columns = [
 ];
 
 export default function OperationsTable() {
-  const transactionsByDate = useSelector(transactionsFilteredByDate);
+  const allExpensesTrans = useSelector(getExpensesTrans);
 
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
@@ -60,14 +60,14 @@ export default function OperationsTable() {
   const [emptyRowCount, setEmptyRowCount] = useState(0);
 
   useEffect(() => {
-    if (!transactionsByDate) {
+    if (!allExpensesTrans) {
       return;
     }
-    if (transactionsByDate.length >= 15) {
+    if (allExpensesTrans.length >= 15) {
       return;
     }
-    setEmptyRowCount(15 - transactionsByDate.length);
-  }, [transactionsByDate]);
+    setEmptyRowCount(15 - allExpensesTrans.length);
+  }, [allExpensesTrans]);
 
   return (
     <Paper
@@ -102,8 +102,8 @@ export default function OperationsTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {transactionsByDate !== undefined ? (
-              [...transactionsByDate, ...Array(emptyRowCount).fill(null)].map(
+            {allExpensesTrans !== null ? (
+              [...allExpensesTrans, ...Array(emptyRowCount).fill(null)].map(
                 row => {
                   if (!row) {
                     return (

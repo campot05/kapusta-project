@@ -15,16 +15,15 @@ export const getExpensesMonthStats = state =>
 
 export const getExpensesTrans = state => state.transactions.transExpense;
 
-export const transactionsFilteredByDate = createSelector(
-  [getDateTransaction, getExpensesTrans],
-  (date, transactions) => {
+export const updateMonthsStats = createSelector(
+  [getExpensesMonthStats, getExpensesTrans],
+  (monthsStats, transactions) => {
+    console.log(`🚀 ~ monthsStats:`, monthsStats);
     console.log(`🚀 ~ transactions:`, transactions);
     if (transactions === null) {
       return;
     }
-    return transactions.filter(el => {
-      return el.date === date;
-    });
+    return;
   }
 );
 

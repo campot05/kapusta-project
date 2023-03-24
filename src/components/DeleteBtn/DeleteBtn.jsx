@@ -1,5 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { deleteTransaction } from 'redux/transactions/trans-operations';
+import {
+  deleteTransaction,
+  getExpenseSummary,
+} from 'redux/transactions/trans-operations';
 import { deleteByClick } from 'redux/transactions/trans-slice';
 
 import { ReactComponent as RecycleBin } from '../../images/recycleBin.svg';
@@ -11,6 +14,7 @@ export default function DeleteBtn(id) {
   const detByClick = id => {
     dispatch(deleteTransaction(id));
     dispatch(deleteByClick(id));
+    dispatch(getExpenseSummary());
   };
 
   return (
