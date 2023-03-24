@@ -10,7 +10,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { registerUser, logIn } from 'redux/auth/auth-operations.js';
 import { ReactComponent as Google } from '../../images/google.svg';
-import { google } from 'redux/auth/auth-operations.js';
 
 export const AuthForm = () => {
   const {
@@ -34,12 +33,11 @@ export const AuthForm = () => {
       reset();
     }
   };
-  console.log(google);
   return (
     <Container>
       <div>
         <Text google>You can log in with your Google Account:</Text>
-        <Link href="https://kapusta-backend.goit.global/auth/google">
+        <Link href="#">
           <Google style={{ marginRight: 10 }} />
           Google
         </Link>

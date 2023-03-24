@@ -5,12 +5,12 @@
   background-repeat: no-repeat;
 }
 
-.mainBgSecondary {
+.mainBgMain {
   background-image: url(../../images/cabagge/bg-img-mb.png);
   background-size: 100% 286px;
 }
 
-.mainBgPrimary {
+.mainBgLogin {
   background-image: url(../../images/cabagge/kapusta_mirror.png),
     url(../../images/cabagge/kapusta_mirror_rotate.png),
     url(../../images/cabagge/rectangle.png);
@@ -25,14 +25,14 @@
     background-repeat: no-repeat, no-repeat, no-repeat;
   }
 
-  .mainBgSecondary {
+  .mainBgMain {
     background-image: url(../../images/cabagge/bg-img.png),
       url(../../images/cabagge/kapusta-tablet.png);
     background-size: 100% 526px, auto;
     background-position: left top, right 88px bottom 60px;
   }
 
-  .mainBgPrimary {
+  .mainBgLogin {
     background-image: url(../../images/cabagge/kapusta_main.png),
       url(../../images/cabagge/kapusta_small.png),
       url(../../images/cabagge/rectangle.png);
@@ -50,16 +50,16 @@
     background-size: auto, auto, 100% 526px;
   }
 
-  .mainBgSecondary {
+  .mainBgMain {
     background-image: url(../../images/cabagge/bg-img.png),
       url(../../images/cabagge/kapusta.png);
     background-size: 100% 526px, auto;
     background-position: 0 0, bottom 20px left 50%;
     background-repeat: no-repeat, repeat-x;
-    animation: kapusta-bottom-desctop-secondary 30s linear infinite;
+    animation: kapusta-bottom-desctop-Main 30s linear infinite;
   }
 
-  .mainBgPrimary {
+  .mainBgLogin {
     background-image: url(../../images/cabagge/kapusta_small.png),
       url(../../images/cabagge/kapusta_main.png),
       url(../../images/cabagge/rectangle.png);
@@ -67,7 +67,7 @@
   }
 }
 
-@keyframes kapusta-bottom-desctop-secondary {
+@keyframes kapusta-bottom-desctop-Main {
   0% {
     background-position: 0 0, bottom 20px left 50%;
   }
