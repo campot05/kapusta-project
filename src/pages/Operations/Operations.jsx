@@ -13,7 +13,7 @@ export default function Home() {
       <Paper
         sx={{
           margin: '30px',
-          maxWidth: 1100,
+          //  maxWidth: 1100,
           // maxHeight: 580,
           borderRadius: '0px 30px 30px 30px',
           boxShadow: '0px 10px 60px rgba(170, 178, 197, 0.2)',

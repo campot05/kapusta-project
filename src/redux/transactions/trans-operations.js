@@ -32,7 +32,6 @@ export const addExpense = createAsyncThunk(
 export const deleteTransaction = createAsyncThunk(
   'transactions',
   async ({ id }, { rejectWithValue }) => {
-    console.log(`🚀 ~ transaction_Id:`, id);
     try {
       const result = await axios.delete(`/transaction/${id}`);
       Notiflix.Notify.success('Operation deleted successfully');

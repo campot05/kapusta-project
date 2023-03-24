@@ -40,7 +40,7 @@ const transactionSlice = createSlice({
     },
 
     deleteByClick(state, { payload }) {
-      state.transactions.expenses = state.transactions.expenses.filter(
+      state.transExpense = state.transExpense.filter(
         el => el._id !== payload.id
       );
     },
