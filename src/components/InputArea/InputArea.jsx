@@ -180,7 +180,7 @@ const InputArea = ({ value }) => {
         </InputWrapper>
         <ButtonWrapper>
           <Button type="submit" color="accent" design="operation">
-            {'button.Input'}
+            {'Input'}
           </Button>
           <Button
             type="button"
@@ -188,7 +188,7 @@ const InputArea = ({ value }) => {
             design="operation"
             onClick={resetForm}
           >
-            {'button.Clear'}
+            {'Clear'}
           </Button>
         </ButtonWrapper>
       </FormWrapper>
