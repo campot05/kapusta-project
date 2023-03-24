@@ -44,14 +44,26 @@ export const Form = styled.form`
 `;
 
 export const Container = styled.div`
+  z-index: 10000;
   width: 426px;
   padding: 56px 83px;
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   border-radius: 30px;
-  margin: 0 auto;
+  background-color: #ffffff;
+  margin: 117px 75px 125px auto;
+  margin-bottom: 125px;
+  margin-right: 75px;
+  /* margin: 0 auto; */
   @media screen and (max-width: 767.98px) {
     width: 280px;
     padding: 40px 20px;
+    margin-top: 50px;
+  }
+  @media screen and(max-width: 1279.98) {
+    width: 426px;
+    height: 552px;
+    margin-top: 80px;
+    margin-bottom: 155px;
   }
 `;
 

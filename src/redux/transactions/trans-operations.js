@@ -3,7 +3,7 @@ import axios from 'axios';
 import Notiflix from 'notiflix';
 
 export const addIncome = createAsyncThunk(
-  'transactions/income',
+  'transactions/addIncome',
   async (transaction, { rejectWithValue }) => {
     try {
       const result = await axios.post('/transaction/income', transaction);
@@ -16,10 +16,11 @@ export const addIncome = createAsyncThunk(
   }
 );
 export const addExpense = createAsyncThunk(
-  'transactions/expense',
+  'transactions/addExpense',
   async (transaction, { rejectWithValue }) => {
     try {
       const result = await axios.post('/transaction/expense', transaction);
+
       Notiflix.Notify.success('Operation added successfully');
       return result.data;
     } catch (error) {
@@ -31,9 +32,9 @@ export const addExpense = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk(
   'transactions',
-  async (transaction_Id, { rejectWithValue }) => {
+  async ({ id }, { rejectWithValue }) => {
     try {
-      const result = await axios.delete(`/transaction/${transaction_Id}`);
+      const result = await axios.delete(`/transaction/${id}`);
       Notiflix.Notify.success('Operation deleted successfully');
       return result.data;
     } catch (error) {
@@ -77,6 +78,7 @@ export const getIncomeCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await axios.get('/transaction/income-categories');
+      // console.log(result);
       return result.data;
     } catch (error) {
       Notiflix.Notify.failure('Something went wrong, please try again later');
