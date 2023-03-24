@@ -9,15 +9,16 @@ export const getTransByDate = state => state.transactions.transByDate;
 
 export const getDateTransaction = state => state.transactions.date;
 
+export const getExpensesTrans = state => state.transactions.transExpense;
+
 export const transactionsFilteredByDate = createSelector(
-  [getDateTransaction, getTransactions],
+  [getDateTransaction, getExpensesTrans],
   (date, transactions) => {
     if (transactions === null) {
       return;
     }
-    return transactions.expenses.filter(el => {
-      return el.date === '2023-09-31';
-      //   return el.date === date;
+    return transactions.filter(el => {
+      return el.date === date;
     });
   }
 );

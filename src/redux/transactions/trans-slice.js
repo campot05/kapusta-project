@@ -48,7 +48,7 @@ const transactionSlice = createSlice({
   extraReducers: {
     [addIncome.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transactions.push(payload.transaction);
+      state.transIncome.push(payload.transaction);
       state.isLoading = false;
     },
     [addIncome.rejected](state, { payload }) {
@@ -60,7 +60,7 @@ const transactionSlice = createSlice({
     },
     [addExpense.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transactions.push(payload.transaction);
+      state.transExpense.push(payload.transaction);
       state.isLoading = false;
     },
     [addExpense.rejected](state, { payload }) {
@@ -93,8 +93,8 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getExpenseSummary.fulfilled](state, { payload }) {
+      state.transExpense = payload.expenses;
       state.isLoading = false;
-      // state.expenseCategory = payload;
     },
     [getExpenseSummary.rejected](state, { payload }) {
       state.error = payload.message;

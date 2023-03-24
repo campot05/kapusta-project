@@ -44,7 +44,6 @@ const columns = [
 
 export default function OperationsTable() {
   const transactionsByDate = useSelector(transactionsFilteredByDate);
-  console.log(`🚀 ~ OperationsTable ~ transactionsByDate:`, transactionsByDate);
 
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
@@ -137,6 +136,8 @@ export default function OperationsTable() {
                               height: 40,
                               paddingTop: 10,
                               paddingBottom: 10,
+                              color:
+                                column.id === 'amount' ? '#E7192E' : 'inherit',
                             }}
                           >
                             {column.id === 'date' && value.split('-').join('.')}
@@ -145,9 +146,6 @@ export default function OperationsTable() {
                             {column.id === 'amount' &&
                               `- ${value.toFixed(2)} UAH.`}
                             {column.id === 'del' && <DeleteBtn id={row._id} />}
-                            {/* {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value} */}
                           </TableCell>
                         );
                       })}
