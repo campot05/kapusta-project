@@ -29,6 +29,8 @@ text-align: right;
 letter-spacing: 0.04em;
 color: rgba(82, 85, 95, 0.7);
   text-decoration: none;
-
+@media  screen and (min-width: 768px){
+    justify-content: start;
+   }
 
 `
