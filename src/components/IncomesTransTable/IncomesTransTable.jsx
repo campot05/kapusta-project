@@ -44,7 +44,6 @@ const columns = [
 
 export default function OperationsTable() {
   const allIncomesTrans = useSelector(getIncomesTrans);
-  console.log(`🚀 ~ OperationsTable ~ allIncomesTrans:`, allIncomesTrans);
 
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();

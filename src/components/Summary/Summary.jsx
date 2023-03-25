@@ -28,7 +28,16 @@ export default function Summery() {
 
   return (
     <Paper
-      sx={{ maxWidth: 230, minWidth: 214, maxHeight: 280, marginTop: '60px' }}
+      sx={{
+        maxWidth: 230,
+        minWidth: 214,
+        maxHeight: 280,
+        marginTop: '60px',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        borderBottomRightRadius: 20,
+        backgroundColor: '#F5F6FB',
+      }}
     >
       <TableContainer>
         <Table aria-label="sticky table">
@@ -37,7 +46,18 @@ export default function Summery() {
               <TableCell
                 align="center"
                 colSpan={2}
-                style={{ paddingTop: 6, paddingBottom: 6 }}
+                style={{
+                  paddingTop: 12,
+                  paddingBottom: 12,
+                  borderTopLeftRadius: 20,
+                  borderTopRightRadius: 20,
+                  fontWeight: 700,
+                  fontSize: '12px',
+                  lineHeight: 1.17,
+                  letterSpacing: '0.02em',
+                  color: '#000000',
+                  backgroundColor: '#F5F6FB',
+                }}
               >
                 SUMMERY
               </TableCell>
@@ -46,16 +66,33 @@ export default function Summery() {
           <TableBody>
             {arrayOfMonthsStats.map(row => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.month}>
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={row.month}
+                  style={{
+                    borderTop: '2px solid #FFFFFF',
+                    borderBottom: '2px solid #FFFFFF',
+                  }}
+                >
                   {columns.map(column => {
                     const value = row[column.id];
                     return (
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ paddingTop: 8, paddingBottom: 8 }}
+                        style={{
+                          paddingTop: 13,
+                          paddingBottom: 13,
+                          fontSize: '12px',
+                          lineHeight: 1.17,
+                          letterSpacing: '0.04em',
+                          color: '#52555F',
+                          backgroundColor: '#F5F6FB',
+                        }}
                       >
-                        {column.id === 'month' && value}
+                        {column.id === 'month' && value.toUpperCase()}
                         {column.id === 'total' && value}
                       </TableCell>
                     );
