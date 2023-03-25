@@ -1,7 +1,7 @@
 import cabbage from '../../images/cabbageColored.svg';
 import css from './NotFound.module.css';
-
-export const NotFound = ({ handleConfirm }) => {
+import { Link } from 'react-router-dom';
+export const NotFound = () => {
   return (
     <>
       <div className={css.page}>
@@ -11,9 +11,9 @@ export const NotFound = ({ handleConfirm }) => {
           <div className={css.four}>4</div>
         </div>
         <p className={css.message}>Money not found!</p>
-        <button className={css.button} onClick={handleConfirm}>
+        <Link className={css.button} to="/">
           Go home
-        </button>
+        </Link>
       </div>
     </>
   );

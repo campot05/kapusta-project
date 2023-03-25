@@ -8,11 +8,11 @@ import { PrivateRoute } from 'routes/PrivateRoutes';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import Layout from 'pages/Layout/Layout';
 import SwitchProvider from 'contexts/SwitchProvider.js';
-
+import { NotFound } from 'pages/NotFound/NotFound.jsx';
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
 const Operations = lazy(() => import('../pages/Operations/Operations'));
 const Report = lazy(() => import('../pages/Report/Report'));
-const IncomePage = lazy(() => import('../pages/IncomePage/IncomePage'))
+const IncomePage = lazy(() => import('../pages/IncomePage/IncomePage'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
@@ -39,7 +39,12 @@ export const App = () => {
           path="/login"
           element={<RestrictedRoute redirectTo="/" component={<AuthPage />} />}
         />
-        <Route path='/income' element={<PrivateRoute redirectTo='/login' component={<IncomePage/> } /> } />
+        <Route
+          path="/income"
+          element={
+            <PrivateRoute redirectTo="/login" component={<IncomePage />} />
+          }
+        />
         <Route
           path="/report"
           element={
@@ -53,7 +58,7 @@ export const App = () => {
             />
           }
         />
-        <Route path="*" element={<div>page not found</div>} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

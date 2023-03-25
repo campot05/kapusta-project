@@ -1,45 +1,48 @@
 .page {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
 }
 
 .not {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .four {
-    font-size: 160px;
-    font-weight: 100;
+  font-size: 160px;
+  font-weight: 100;
+  margin-right: 10px;
 }
 
 .cabbage {
-    height: 120px;
+  height: 120px;
 }
 
 .message {
-    font-size: 24px;
-    margin-bottom: 40px;
-    text-transform: uppercase;
+  font-size: 24px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
 }
 
 .button {
-    width: 125px;
-    height: 44px;
-    border-radius: 16px;
-    color: #fff;
-    background-color: #ff751d;
-    padding: 12px 0;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    border: none;
-    text-transform: uppercase;
+  width: 125px;
+  height: 44px;
+  border-radius: 16px;
+  color: #fff;
+  background-color: #ff751d;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
