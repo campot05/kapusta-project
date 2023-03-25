@@ -23,6 +23,7 @@ import recycleBin from './recycleBin.svg';
 import { ReactComponent as ArrowNext } from './arrowNext.svg';
 import { ReactComponent as ArrowPrev } from './arrowPrev.svg';
 import { ReactComponent as ArrowBack } from './arrowBack.svg';
+import cabbageColored from './cabbageColored.svg';
 
 export {
   Alcohol,
@@ -50,4 +51,5 @@ export {
   ArrowNext,
   ArrowPrev,
   ArrowBack,
+  cabbageColored,
 };
