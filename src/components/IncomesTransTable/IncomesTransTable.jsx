@@ -10,8 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import { useEffect, useState } from 'react';
 import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExpensesTrans } from 'redux/transactions/trans-selectors';
-import { getExpenseSummary } from 'redux/transactions/trans-operations';
+import { getIncomesTrans } from 'redux/transactions/trans-selectors';
+import { getIncomeSummary } from 'redux/transactions/trans-operations';
 import { useAuth } from 'hooks';
 
 const columns = [
@@ -43,8 +43,8 @@ const columns = [
 ];
 
 export default function OperationsTable() {
-  const allExpensesTrans = useSelector(getExpensesTrans);
-  console.log(`🚀 ~ OperationsTable ~ allExpensesTrans:`, allExpensesTrans);
+  const allIncomesTrans = useSelector(getIncomesTrans);
+  console.log(`🚀 ~ OperationsTable ~ allIncomesTrans:`, allIncomesTrans);
 
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ export default function OperationsTable() {
     if (isRefreshing) {
       return;
     }
-    dispatch(getExpenseSummary());
+    dispatch(getIncomeSummary());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
 
@@ -61,14 +61,14 @@ export default function OperationsTable() {
   const [emptyRowCount, setEmptyRowCount] = useState(0);
 
   useEffect(() => {
-    if (!allExpensesTrans) {
+    if (!allIncomesTrans) {
       return;
     }
-    if (allExpensesTrans.length >= 15) {
+    if (allIncomesTrans.length >= 15) {
       return;
     }
-    setEmptyRowCount(15 - allExpensesTrans.length);
-  }, [allExpensesTrans]);
+    setEmptyRowCount(15 - allIncomesTrans.length);
+  }, [allIncomesTrans]);
 
   return (
     <Paper
@@ -104,8 +104,8 @@ export default function OperationsTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allExpensesTrans !== null ? (
-              [...allExpensesTrans, ...Array(emptyRowCount).fill(null)].map(
+            {allIncomesTrans !== null || undefined ? (
+              [...allIncomesTrans, ...Array(emptyRowCount).fill(null)].map(
                 row => {
                   if (!row) {
                     return (
@@ -138,14 +138,14 @@ export default function OperationsTable() {
                               paddingTop: 10,
                               paddingBottom: 10,
                               color:
-                                column.id === 'amount' ? '#E7192E' : 'inherit',
+                                column.id === 'amount' ? '#407946' : 'inherit',
                             }}
                           >
                             {column.id === 'date' && value.split('-').join('.')}
                             {column.id === 'description' && value}
                             {column.id === 'category' && value}
                             {column.id === 'amount' &&
-                              `- ${value.toFixed(2)} UAH.`}
+                              `${value.toFixed(2)} UAH.`}
                             {column.id === 'del' && <DeleteBtn id={row._id} />}
                           </TableCell>
                         );

@@ -82,8 +82,10 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getIncomeSummary.fulfilled](state, { payload }) {
+      console.log(`🚀 ~ payload:`, payload);
+      state.incomeMonthStats = payload.monthsStats;
+      state.transIncome = payload.incomes;
       state.isLoading = false;
-      state.transactions = payload;
     },
     [getIncomeSummary.rejected](state, { payload }) {
       state.error = payload.message;
