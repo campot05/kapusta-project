@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, isAsyncThunkAction } from '@reduxjs/toolkit';
 // eslint-disable-next-line
 import { setAuthHeader, clearAuthHeader } from 'utils/axiosSetting';
 import axios from 'axios';
@@ -80,3 +80,14 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const google = createAsyncThunk('auth/google', async (_, thunkAPI) => {
+  try {
+    console.log('перед');
+    const res = await axios.get('/auth/google');
+    console.log('после');
+    return res.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
