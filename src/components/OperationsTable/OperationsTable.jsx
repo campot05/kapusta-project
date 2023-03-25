@@ -77,11 +77,13 @@ export default function OperationsTable() {
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         marginTop: '62px',
+        maxHeight: 410,
+        overflowY: 'scrool',
       }}
     >
       <TableContainer
         sx={{
-          maxHeight: 400,
+          maxHeight: 410,
         }}
       >
         <Table stickyHeader aria-label="sticky table">
@@ -145,6 +147,7 @@ export default function OperationsTable() {
                               fontSize: '12px',
                               lineHeight: 1.17,
                               letterSpacing: '0.04em',
+
                               color:
                                 column.id === 'amount' ? '#E7192E' : '#52555F',
                             }}

@@ -28,6 +28,7 @@ export default function Summery() {
 
   return (
     <Paper
+      elevation={0}
       sx={{
         maxWidth: 230,
         minWidth: 214,
