@@ -31,4 +31,8 @@ export const LinkButton = styled(NavLink)`
 
 export const Buttons = styled.div`
   display: flex;
+   justify-content: center;
+   @media  screen and (min-width: 768px){
+    justify-content: start;
+   }
 `;
