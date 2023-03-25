@@ -1,7 +1,7 @@
 import { ExpIncBar } from 'components/ExpIncBar/ExpIncBar';
 import { CurrPeriodSwitch } from 'components/CurrentPeriodSwitch/CurrPeriodSwitch';
-// import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import {
   AddIncome,
   Alcohol,
@@ -16,209 +16,98 @@ import {
   Transport,
   Ufo,
   Utilities,
+  ArrowBack,
 } from 'images/images';
-// import { getTransByDate } from 'redux/transactions/trans-selectors';
+import { getTransByDate } from 'redux/transactions/trans-selectors';
 import { ExpIncMenu } from 'components/ExpIncMenu/ExpIncMenu';
 import { ExpIncSwitch } from 'components/ExpIncSwitch/ExpIncSwitch';
 import { useSwitchContext } from 'contexts/SwitchProvider';
 import BarChart from 'components/BarChart/BarChart';
+import { getExpenseCategories,getIncomeCategories,getPeriodData } from 'redux/transactions/trans-operations';
+import { useAuth } from 'hooks';
+import {format} from 'date-fns';
+import { useWindowSize } from 'react-use';
+import { StyledLinkBackToMain, StyledTitle } from 'components/CurrentPeriodSwitch/CurrPeriodSwitch.styled';
+
 
 const categoryIcons = {
-  alcohol: Alcohol,
-  products: Products,
-  entertainment: Entertainment,
-  health: Health,
-  technique: Technique,
-  transport: Transport,
-  housing: Housing,
-  hobbies: Hobbies,
-  education: Education,
-  other: Ufo,
-  utilities: Utilities,
-  salary: Salary,
-  addIncome: AddIncome,
+  Alcohol: Alcohol,
+  Products: Products,
+  Entertainment: Entertainment,
+  Health: Health,
+  Technics: Technique,
+  Transport: Transport,
+  'For home': Housing,
+  'Sports and hobby': Hobbies,
+  Education: Education,
+  Other: Ufo,
+  Utilities: Utilities,
+  Salary: Salary,
+  'Additional income': AddIncome,
 };
-
-// DUMMY DATA
-const categoriesExpense = [
-  'products',
-  'alcohol',
-  'entertainment',
-  'health',
-  'transport',
-  'housing',
-  'technique',
-  'utilities',
-  'hobbies',
-  'education',
-  'other',
-];
-const categoriesIncome = ['salary', 'addIncome'];
-
-const mockByDate = {
-  incomes: {
-    total: 12000,
-    incomesData: {
-      salary: {
-        total: 12000,
-        'Cash advance': 80000,
-        Allowance: 4000,
-      },
-      addIncome: {
-        total: 15000,
-        Bonus: 5000,
-        'Add Allowance': 7000,
-      },
-    },
-  },
-  expenses: {
-    total: 5200,
-    expensesData: {
-      transport: {
-        total: 4000,
-        'Car reparing': 3500,
-        School: 150,
-        Chivas: 33050,
-        Travel: 45000,
-        Flights: 26050,
-        Medicane: 2500,
-        Hammer: 1050,
-        Washing: 500,
-      },
-      housing: {
-        total: 1200,
-        Vase: 150,
-        School: 150,
-        Chivas: 33050,
-        Travel: 45000,
-        Flights: 26050,
-        Medicane: 2500,
-        Hammer: 1050,
-        Furniture: 1200,
-      },
-      education: {
-        total: 3200,
-        School: 150,
-        Chivas: 23050,
-        Travel: 45000,
-        Flights: 16050,
-        Medicane: 2500,
-        Hammer: 1050,
-        Books: 105,
-      },
-      technique: {
-        total: 1200,
-        ScrewDrivers: 150,
-        Chivas: 23050,
-        Travel: 55000,
-        Flights: 16050,
-        Medicane: 2500,
-        Hammer: 1050,
-      },
-      utilities: {
-        total: 1200,
-        HomeMedia: 15000,
-        Chivas: 23050,
-        Travel: 15000,
-        Flights: 6050,
-        Medicane: 2500,
-        Electricity: 1050,
-      },
-      entertainment: {
-        total: 1200,
-        HomeMedia: 15000,
-        Chivas: 23050,
-        Travel: 15000,
-        Flights: 6050,
-        Medicane: 2500,
-        Electricity: 1050,
-        Cinema: 10000,
-        Theatre: 800,
-      },
-      health: {
-        total: 1200,
-        Chivas: 23050,
-        Travel: 15000,
-        Flights: 6050,
-        Medicane: 2500,
-        Antibaiotics: 10500,
-      },
-      other: {
-        total: 4200,
-        Flight: 5050,
-        Tomato: 34650,
-        Potato: 10290,
-        'J&D': 5200,
-        Chivas: 23050,
-        Travel: 15000,
-        Flights: 6050,
-      },
-      hobbies: {
-        total: 3200,
-        Box: 3550,
-        Gym: 45650,
-        Travel: 15000,
-        Flight: 5050,
-        Tomato: 34650,
-        Potato: 10290,
-        'J&D': 5200,
-        Chivas: 23050,
-      },
-      products: {
-        total: 1200,
-        Tomato: 34650,
-        Chivas: 23050,
-        Travel: 15000,
-        Flights: 6050,
-        Medicane: 2500,
-        Electricity: 1050,
-        Cinema: 10000,
-        Potato: 10290,
-      },
-      alcohol: {
-        total: 1200,
-        'J&D': 5200,
-        Chivas: 23050,
-        Travel: 15000,
-        Flights: 6050,
-        Medicane: 2500,
-        Electricity: 1050,
-        Cinema: 10000,
-        Chivases: 33050,
-      },
-    },
-  },
-};
-
-const dummyChart = [
-  { year: 2010, count: 10 },
-  { year: 2011, count: 20 },
-  { year: 2012, count: 15 },
-  { year: 2013, count: 25 },
-  { year: 2014, count: 22 },
-  { year: 2015, count: 30 },
-  { year: 2016, count: 28 },
-];
-//  END DUMMY DATA
 
 export default function Reports() {
   //PRODUCTION
-  // const transByDate = useSelector(getTransByDate);
-  // cosnt INCOME CAtegory = useSelector()
-  // cosnt EXPENSE Category = useSelector()
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  // })
-
-  // MOCK
+  const {isRefreshing} = useAuth();
+  const transByDate = useSelector(getTransByDate);
+  const categoriesExpense = useSelector(state => state.transactions.expenseCategory)
+  const categoriesIncome = useSelector(state=> state.transactions.incomeCategory)
+  const dispatch = useDispatch();
   const { transSwitch } = useSwitchContext();
+  const {width} = useWindowSize();
   let categoriesToShow = [];
-  const { incomes } = mockByDate; // change from above with useSelector()
-  const { expenses } = mockByDate; // change from above with useSelector()
-  // eslint-disable-next-line
-  const { total: incomeTotal, incomesData } = incomes;
-  // eslint-disable-next-line
-  const { total: expenseTotal, expensesData } = expenses;
+
+  const [chartData, setChartData] = useState(null);
+  
+  useEffect(() => {
+    if(isRefreshing)return;
+    dispatch(getPeriodData(format(new Date(),'yyyy-MM')));
+  },[dispatch,isRefreshing]);
+
+  // NEED TO COMMENT AND ERASE AFTER =======
+  useEffect(() => {
+    if(isRefreshing)return;
+    dispatch(getIncomeCategories());
+    dispatch(getExpenseCategories());
+  },[dispatch,isRefreshing])
+// =========================================
+
+  if(!transByDate || !categoriesExpense || !categoriesIncome)return;
+
+  console.log('transByDate',transByDate)
+  const { incomes } = transByDate; 
+  const { expenses } = transByDate; 
+  const { incomeTotal, incomesData } = incomes;
+  const { expenseTotal, expensesData } = expenses;
+
+  // SET INIT CHART ON PAGE LOAD
+  const initChart = [
+    {trans:'Income',total:incomeTotal},
+    {trans:'Expense',total:expenseTotal}
+  ]
+  const initChartSetup = {
+    labels: initChart.map(row => row.trans),
+    datasets: [
+      {
+        label: transSwitch,
+        data: initChart.map(row => row.total),
+        backgroundColor: initChart.map((_, idx) =>
+          idx % 1 === 0 && idx % 4 === 0 ? '#FF751D' : '#FED9BF'
+        ),
+        borderRadius: 10,
+      },
+    ],
+  }
+
+  function changeExpIncMarkup() {
+    //  console.log('switch', transSwitch);
+    if (transSwitch === 'expenses') {
+      createCategories(categoriesExpense, expensesData);
+    } else {
+      createCategories(categoriesIncome, incomesData);
+    }
+  }
+ 
   function createCategories(categories, categoriesData) {
     for (let category of categories) {
       // console.log('category', category);
@@ -235,32 +124,11 @@ export default function Reports() {
     }
   }
 
-  function changeExpIncMarkup() {
-    //  console.log('switch', transSwitch);
-    if (transSwitch === 'expenses') {
-      createCategories(categoriesExpense, expensesData);
-    } else {
-      createCategories(categoriesIncome, incomesData);
-    }
-  }
   changeExpIncMarkup();
 
   //======
   // CHART
   //======
-  const [chartData, setChartData] = useState({
-    labels: dummyChart.map(row => row.year),
-    datasets: [
-      {
-        label: transSwitch,
-        data: dummyChart.map(row => row.count),
-        backgroundColor: dummyChart.map((_, idx) =>
-          idx % 1 === 0 && idx % 4 === 0 ? '#FF751D' : '#FED9BF'
-        ),
-        borderRadius: 10,
-      },
-    ],
-  });
 
   const getChartData = category => {
     let data;
@@ -274,8 +142,9 @@ export default function Reports() {
       // console.log('data', data);
     }
     const result = Object.keys(data)
-      .map(key => ({ subCategory: key, amount: data[key] }))
-      .slice(1);
+      .map(key => ({ subCategory: key, amount: data[key]}))
+      .slice(1)
+      .sort((objA,objB) => Number(objA.amount) - Number(objB.amount));
     setChartData({
       labels: result.map(row => row.subCategory),
       datasets: [
@@ -290,6 +159,10 @@ export default function Reports() {
       ],
     });
   };
+
+  const setChartToDefault = () =>{
+    setChartData(null);
+  }
   //======
   // END CHART
   //======
@@ -302,13 +175,13 @@ export default function Reports() {
         justifyContent: 'center',
         padding: '20px',
       }}
-    >
-      <CurrPeriodSwitch />
-      <ExpIncBar />
+    ><StyledLinkBackToMain to='/'><ArrowBack fill='#FF751D'/>{width >= 480 && <StyledTitle>Main page</StyledTitle>}</StyledLinkBackToMain>
+      <CurrPeriodSwitch  setChartToDefault={setChartToDefault}/>
+      <ExpIncBar incomeTotal={incomeTotal} expenseTotal={expenseTotal}/>
       <ExpIncMenu categories={categoriesToShow} onCategoryClick={getChartData}>
-        <ExpIncSwitch />
+        <ExpIncSwitch setChartToDefault={setChartToDefault}/>
       </ExpIncMenu>
-      <BarChart chartData={chartData} />
+      <BarChart chartData={chartData ?? initChartSetup} />
     </div>
   );
 }

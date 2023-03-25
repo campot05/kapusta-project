@@ -27,11 +27,16 @@ const authPersistConfig = {
   storage,
   whitelist: ['refreshToken', 'sid', 'isLoggedIn'],
 };
+const transPresistConfig = {
+  key:'trans',
+  storage,
+  whitelist:['transIncome','transExpense','incomeCategory','expenseCategory','date']
+}
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    transactions: transactionReducer,
+    transactions: persistReducer(transPresistConfig,transactionReducer),
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

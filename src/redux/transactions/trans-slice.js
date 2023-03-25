@@ -83,6 +83,7 @@ const transactionSlice = createSlice({
     },
     [getIncomeSummary.fulfilled](state, { payload }) {
       state.isLoading = false;
+      state.transIncome = payload.incomes;
       state.transactions = payload;
     },
     [getIncomeSummary.rejected](state, { payload }) {
@@ -127,7 +128,7 @@ const transactionSlice = createSlice({
     },
     [getPeriodData.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transactions.push(payload.transaction);
+      state.transByDate = payload;
       state.isLoading = false;
     },
     [getPeriodData.rejected](state, { payload }) {

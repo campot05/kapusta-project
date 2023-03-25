@@ -1,27 +1,30 @@
-import { Grid } from '@mui/material';
 import { useWindowSize } from 'react-use';
 import { Bar } from 'react-chartjs-2';
 // eslint-disable-next-line
 import { Chart as ChartJS } from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 const BarChart = ({ chartData }) => {
-  // eslint-disable-next-line
+ 
   const { width } = useWindowSize();
   const options = {
+    
     indexAxis: width <= 480 && 'y',
     barThickness: width <= 480 ? 15 : 38,
-    layout:{
-        autoPadding:true,
-    },
+    responsive: true,
+    
     scales:{
+       
         x:{
             display:true,
+            max:Math.max(...chartData.datasets[0].data)*1.2,
             grid: {
                 display: false
               },
             ticks: {
                 display: width >= 480 ? true : false,
                 align:'top',
+                // labelOffset:50,
+                
             },
             border:{
                 display: width >= 480 ? true : false,
@@ -31,7 +34,11 @@ const BarChart = ({ chartData }) => {
         },
         y:{
             display:true,
+            max: Math.max(...chartData.datasets[0].data)*1.1,
             ticks: {
+                z:1,
+                padding:10,
+                labelOffset:-15,
                 display: width <= 480 ? true : false,
             },
             border:{
@@ -44,11 +51,12 @@ const BarChart = ({ chartData }) => {
         }
         
     },
+    
     plugins:{
         datalabels: {
-            display:true,
             anchor: 'end',
             align: width >= 480 ?'top':'top',
+            offset:5,
             formatter: (val, context) => (`${val.toFixed(2)} UAH`),
             font: {
                 weight: 400,
@@ -59,9 +67,7 @@ const BarChart = ({ chartData }) => {
         },
         
         legend:{
-            display:true,
-            position:'top',
-            labels:'food',
+            display:false,
         }
     }
     
@@ -73,9 +79,9 @@ const BarChart = ({ chartData }) => {
       data={chartData}
       options={options}
       plugins={[ChartDataLabels]}
-      style={{marginTop:'32px',padding:'20px 33px',backgroundColor:'white',borderRadius:'30px'}}
+      style={{marginTop:'32px',padding:'10px 26px',backgroundColor:'white', borderRadius:'30px',}}
       />
-    
+     
   );
 };
 export default BarChart;

@@ -7,7 +7,7 @@ import {
 } from './ExpIncBar.styled'
 
 
-export const ExpIncBar = () =>{
+export const ExpIncBar = ({incomeTotal=null,expenseTotal=null}) =>{
 
     return (
         <StyledStack>
@@ -18,12 +18,12 @@ export const ExpIncBar = () =>{
         >
           <Item>
             <StyledText>Expenses:</StyledText>
-            <StyledDigits color="#E53935">- 18 000 .00 UAH</StyledDigits>
+            <StyledDigits color="#E53935">- {expenseTotal.toFixed(2)} UAH</StyledDigits>
           </Item>
           <Divider orientation="vertical" variant="middle" flexItem />
           <Item>
             <StyledText>Income:</StyledText>
-            <StyledDigits color="#407946"> + 45 000.00 UAH</StyledDigits>
+            <StyledDigits color="#407946"> + {incomeTotal.toFixed(2)} UAH</StyledDigits>
           </Item>
         </Stack>
       </StyledStack>
