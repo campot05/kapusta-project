@@ -32,6 +32,7 @@ text-decoration: none;
 export const LinkReport = styled(NavLink)`
 gap: 20px;
 margin-top: 24px;
+margin-right: 37px;
 margin-bottom: 35px;
 display: flex;
 justify-content: center;

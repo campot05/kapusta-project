@@ -18,7 +18,7 @@ import {
   // eslint-disable-next-line
   selectExpenseCategories,
 } from '../../redux/transactions/trans-selectors';
-import { Button } from './Button';
+import { Button } from '../InputArea/Button';
 import moment from 'moment';
 import Notiflix from 'notiflix';
 import {
@@ -32,12 +32,10 @@ import {
   FormWrapper,
   InputWrapper,
   DescriptionWrapper,
-} from './InputArea.styled';
-//import { locale } from 'moment/moment';
-//import { Container } from '@mui/system';
-//moment.locale('en')
-const InputArea = ({ value }) => {
-  const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
+} from './MobileInput.styled';
+
+export const MobileInput = ({value}) => {
+   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
   const dispatch = useDispatch();
@@ -141,7 +139,7 @@ const InputArea = ({ value }) => {
             maxLength = '25'
           />
 
-          <FormControl sx={{ m: 1, minWidth: 169 }}>
+          <FormControl sx={{ m: 1, minWidth: 169 }} >
             <InputLabel
               id="demo-simple-select-autowidth-label"
               style={{
@@ -149,7 +147,8 @@ const InputArea = ({ value }) => {
                 color: '#c7ccdc',
                 lineHeight: '1.14',
                 paddingLeft: '12px',
-                paddingTop: '9px',
+                    paddingTop: '9px',
+                
               }}
             >
               Product category
@@ -163,14 +162,14 @@ const InputArea = ({ value }) => {
               variant="standard"
               disableUnderline={true}
               style={{
-                border: '2px solid rgb(246, 247, 252)',
+                    border: '2px solid rgb(255, 255, 255)',
+                    width: '280px',
                 height: '44px',
                 top: '-8px',
                 color: '#c7ccdc',
-                fontSize: '12px',
-                 paddingLeft: '20px',
+                    fontSize: '12px',
+                paddingLeft: '20px',
                 paddingTop: '9px',
-               
               }}
             >
               {transactions.map(el => (
@@ -195,7 +194,8 @@ const InputArea = ({ value }) => {
               style={{
                 fill: 'black',
                 position: 'absolute',
-                marginRight: '23px',
+                                            marginRight: '23px',
+                marginTop: '50px'
               }}
             />
 
@@ -218,6 +218,4 @@ const InputArea = ({ value }) => {
       </ButtonWrapper>
     </FormWrapper>
   );
-};
-
-export default InputArea;
+}

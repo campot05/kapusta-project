@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <Background type="Main">
       {width < 768 && (
-        <ToTransactionLink>
+        <ToTransactionLink to='/mobileinput'>
           <ArrowBack style={{fill: '#FF751D', marginLeft:'22px'}}/>
           TO TRANSACTION</ToTransactionLink>
       )}
