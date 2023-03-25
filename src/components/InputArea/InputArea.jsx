@@ -138,6 +138,7 @@ const InputArea = ({ value }) => {
             onChange={handleChange}
             type="text"
             value={description}
+            maxLength = '25'
           />
 
           <FormControl sx={{ m: 1, minWidth: 169 }}>
@@ -185,6 +186,7 @@ const InputArea = ({ value }) => {
               min="0.01"
               step="0.01"
               value={amount}
+             
             />
             <Calculator
               style={{
