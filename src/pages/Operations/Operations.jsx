@@ -6,6 +6,7 @@ import OperationsTable from 'components/OperationsTable/OperationsTable';
 import Background from 'components/Background/Background';
 import Summary from 'components/Summary/Summary';
 import { Balance } from 'components/Balance/Balance';
+
 export default function Home() {
   return (
     <Background type="Main">

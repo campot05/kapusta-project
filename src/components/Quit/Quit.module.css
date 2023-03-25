@@ -1,0 +1,100 @@
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
+.text {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #52555f;
+}
+
+.buttonYes {
+  width: 125px;
+  height: 44px;
+  border-radius: 16px;
+  color: #fff;
+  background-color: #ff751d;
+  padding: 12px 0;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+}
+.buttonNo {
+  width: 125px;
+  height: 44px;
+  border-radius: 16px;
+  border: 2px solid #f5f6fb;
+  color: #52555f;
+  background-color: #fff;
+  padding: 12px 0;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: box-shadow 250ms ease;
+}
+.buttonNo:hover,
+.buttonYes:hover {
+  box-shadow: 0px 3px 23px -10px rgba(0, 0, 0, 0.75);
+}
+/* const style = {
+	iconButton: {
+	  position: 'absolute',
+	  top: '20px',
+	  right: '20px',
+	  padding: '0',
+	},
+	closeIcon: {
+	  cursor: 'pointer',
+	  color: '#52555F',
+	  width: ' 12px',
+	  height: '12px',
+	},
+	buttonYes: {
+	  width: '125px',
+	  height: '44px',
+	  borderRadius: 16,
+	  color: '#fff',
+	  backgroundColor: '#FF751D',
+	  padding: '12px 0',
+	  fontSize: '12px',
+	  fontWeight: '700',
+	},
+	buttonNo: {
+	  width: '125px',
+	  height: '44px',
+	  borderRadius: 16,
+	  border: '2px solid #F5F6FB',
+	  color: '#52555F',
+	  backgroundColor: '#fff',
+	  padding: '12px 0',
+	  fontSize: '12px',
+	  fontWeight: '700',
+	},
+ }; */
