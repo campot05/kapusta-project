@@ -5,6 +5,9 @@ import { TransactionsContainer } from '../Operations/Operations.styled';
 import Background from 'components/Background/Background';
 import { Balance } from 'components/Balance/Balance';
 import IncomesTransTable from 'components/IncomesTransTable/IncomesTransTable';
+import IncomeSummery from 'components/IncomeSummery/IncomeSummery';
+import { Wrapper } from './IncomePage.styled';
+
 export default function Home() {
   return (
     <Background type="Main">
@@ -13,7 +16,10 @@ export default function Home() {
         <TransactionButtons />
         <TransactionsContainer>
           <IncomeInput />
-          <IncomesTransTable />
+          <Wrapper>
+            <IncomesTransTable />
+            <IncomeSummery />
+          </Wrapper>
         </TransactionsContainer>
         <Link to="/report" style={{ display: 'block' }}>
           REPORT

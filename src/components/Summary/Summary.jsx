@@ -12,7 +12,7 @@ import { getExpensesMonthStats } from 'redux/transactions/trans-selectors';
 
 const columns = [
   { id: 'month', minWidth: 107 },
-  { id: 'total', minWidth: 107 },
+  { id: 'total', minWidth: 107, align: 'right' },
 ];
 
 export default function Summery() {
@@ -83,8 +83,7 @@ export default function Summery() {
                         key={column.id}
                         align={column.align}
                         style={{
-                          paddingTop: 13,
-                          paddingBottom: 13,
+                          padding: '13px 12px',
                           fontSize: '12px',
                           lineHeight: 1.17,
                           letterSpacing: '0.04em',

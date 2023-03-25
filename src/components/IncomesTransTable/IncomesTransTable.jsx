@@ -93,7 +93,12 @@ export default function OperationsTable() {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
-                    padding: '8px 25px',
+                    padding: '12px 25px',
+                    fontWeight: 700,
+                    fontSize: '12px',
+                    lineHeight: 1.17,
+                    letterSpacing: '0.02em',
+                    color: '#000000',
                     backgroundColor: '#F5F6FB',
                   }}
                 >
@@ -136,8 +141,12 @@ export default function OperationsTable() {
                               height: 40,
                               paddingTop: 10,
                               paddingBottom: 10,
+                              fontWeight: column.id === 'amount' ? 700 : 400,
+                              fontSize: '12px',
+                              lineHeight: 1.17,
+                              letterSpacing: '0.04em',
                               color:
-                                column.id === 'amount' ? '#407946' : 'inherit',
+                                column.id === 'amount' ? '#407946' : '#52555F',
                             }}
                           >
                             {column.id === 'date' && value.split('-').join('.')}
