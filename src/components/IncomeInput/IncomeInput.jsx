@@ -12,6 +12,7 @@ import { ReactComponent as Calculator } from '../../images/calculator.svg';
 import {
   addIncome,
   getIncomeCategories,
+  getIncomeSummary,
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
 import {
@@ -70,8 +71,12 @@ const IncomeInput = ({ value }) => {
       amount: Number(amount),
     };
 
-    dispatch(addIncome(userEnteredData));
+    dispatch(addIncome(userEnteredData))
+      .unwrap()
+      .then(() => dispatch(getIncomeSummary()));
+
     resetForm();
+
     // return;
   };
 

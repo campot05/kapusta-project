@@ -8,15 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux';
 
-import { getExpensesMonthStats } from 'redux/transactions/trans-selectors';
+import { getIncomesMonthStats } from 'redux/transactions/trans-selectors';
 
 const columns = [
   { id: 'month', minWidth: 107 },
   { id: 'total', minWidth: 107, align: 'right' },
 ];
 
-export default function Summery() {
-  const monthsStats = useSelector(getExpensesMonthStats);
+export default function IncomeSummery() {
+  const monthsStats = useSelector(getIncomesMonthStats);
 
   const arrayOfMonthsStats = Object.keys(monthsStats)
     .reverse()
@@ -28,7 +28,6 @@ export default function Summery() {
 
   return (
     <Paper
-      elevation={0}
       sx={{
         maxWidth: 230,
         minWidth: 214,
