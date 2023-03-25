@@ -85,7 +85,6 @@ export const DescriptionWrapper = styled.div`
   align-items: center;
 `;
 export const DescriptionInput = styled.input`
-  display: none;
   width: 184px;
   height: 44px;
   border-top-left-radius: 16px;
@@ -112,11 +111,10 @@ export const DescriptionInput = styled.input`
 `;
 
 export const FormControl = styled.input`
-  display: none;
+  
 `;
 
 export const CountWrapper = styled.div`
-  display: none;
   @media ${DEVICE.tablet} {
     justify-content: end;
     align-items: center;

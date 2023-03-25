@@ -5,7 +5,6 @@ import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-
 import { useAuth } from 'hooks';
 import { ReactComponent as Calendar } from '../../images/calendar.svg';
 import { ReactComponent as Calculator } from '../../images/calculator.svg';
@@ -34,8 +33,9 @@ import {
   InputWrapper,
   DescriptionWrapper,
 } from './InputArea.styled';
+import { locale } from 'moment/moment';
 //import { Container } from '@mui/system';
-
+moment.locale('en')
 const InputArea = ({ value }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');

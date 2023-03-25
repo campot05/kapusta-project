@@ -40,6 +40,9 @@ border: 2px solid #F6F7FC;
     color: #FFFFFF;
   }
   width:130px;
+  @media ${DEVICE.mobile} {
+    width: 125px;
+  }
   @media ${DEVICE.tablet} {
     width: 125px;
   }
