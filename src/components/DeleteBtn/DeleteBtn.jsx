@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import {
   deleteTransaction,
   getExpenseSummary,
+  getIncomeSummary,
 } from 'redux/transactions/trans-operations';
 import { deleteByClick } from 'redux/transactions/trans-slice';
 import Sure from 'components/Sure/Sure';
@@ -31,6 +32,8 @@ export default function DeleteBtn(id) {
   };
 
   const handleClickOutside = e => {
+    if (e.target.tagName !== 'DIV') return;
+
     if (e.target.className.includes('Modal_overlay')) {
       closeModal();
     }
@@ -47,7 +50,10 @@ export default function DeleteBtn(id) {
   const handleDelete = () => {
     dispatch(deleteTransaction(id))
       .unwrap()
-      .then(() => dispatch(getExpenseSummary()));
+      .then(() => {
+        dispatch(getExpenseSummary());
+        dispatch(getIncomeSummary());
+      });
     dispatch(deleteByClick(id));
     closeModal();
   };
@@ -61,8 +67,8 @@ export default function DeleteBtn(id) {
 
   return (
     <>
-      <DelBtn type="button">
-        <RecycleBin onClick={handleClick} />
+      <DelBtn type="button" onClick={handleClick}>
+        <RecycleBin />
       </DelBtn>
       {modal && (
         <Sure
