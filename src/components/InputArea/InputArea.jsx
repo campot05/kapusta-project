@@ -128,6 +128,7 @@ const InputArea = ({ value }) => {
             onChange={handleChange}
             type="date"
             value={date}
+            lang="en"
           />
         </DateWrapper>
         <DescriptionWrapper>
