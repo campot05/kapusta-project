@@ -20,7 +20,6 @@ export const WrapperForm = styled.div`
   @media ${DEVICE.tablet} {
     display: flex;
     align-items: center;
-    margin-top: 40px;
     justify-content: center;
   }
 `;

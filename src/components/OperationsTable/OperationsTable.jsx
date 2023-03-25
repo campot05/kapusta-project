@@ -6,13 +6,31 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
 import { useEffect, useState } from 'react';
 import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { getExpensesTrans } from 'redux/transactions/trans-selectors';
 import { getExpenseSummary } from 'redux/transactions/trans-operations';
 import { useAuth } from 'hooks';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  tableContainer: {
+    maxHeight: 400, // высота контейнера скролла
+    overflow: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '0.4em', // ширина скроллбара
+      backgroundColor: '#F5F5F5', // цвет фона
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: '#FF751D', // цвет кнопки
+      borderRadius: '2em', // радиус кнопки
+    },
+  },
+  tableCell: {
+    height: 20,
+  },
+}));
 
 const columns = [
   {
@@ -43,6 +61,7 @@ const columns = [
 ];
 
 export default function OperationsTable() {
+  const classes = useStyles();
   const allExpensesTrans = useSelector(getExpensesTrans);
 
   const { isRefreshing } = useAuth();
@@ -72,7 +91,7 @@ export default function OperationsTable() {
   return (
     <Paper
       sx={{
-        maxWidth: 746,
+        width: 746,
         overflow: 'hidden',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
@@ -81,34 +100,39 @@ export default function OperationsTable() {
         overflowY: 'scrool',
       }}
     >
+      <div
+        style={{
+          display: 'flex',
+          backgroundColor: '#F5F6FB',
+          justifyContent: 'flex-start',
+        }}
+      >
+        {columns.map(column => (
+          <div
+            key={column.id}
+            align={column.align}
+            style={{
+              padding: '12px 35px',
+              fontWeight: 700,
+              fontSize: '12px',
+              lineHeight: 1.17,
+              letterSpacing: '0.02em',
+              color: '#000000',
+              backgroundColor: '#F5F6FB',
+            }}
+          >
+            {column.label}
+          </div>
+        ))}
+      </div>
+
       <TableContainer
         sx={{
           maxHeight: 410,
         }}
+        className={classes.tableContainer}
       >
         <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map(column => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{
-                    minWidth: column.minWidth,
-                    padding: '12px 25px',
-                    fontWeight: 700,
-                    fontSize: '12px',
-                    lineHeight: 1.17,
-                    letterSpacing: '0.02em',
-                    color: '#000000',
-                    backgroundColor: '#F5F6FB',
-                  }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
           <TableBody>
             {allExpensesTrans !== null ? (
               [...allExpensesTrans, ...Array(emptyRowCount).fill(null)].map(
@@ -139,6 +163,7 @@ export default function OperationsTable() {
                           <TableCell
                             key={column.id}
                             align={column.align}
+                            className={classes.tableCell}
                             style={{
                               height: 40,
                               paddingTop: 10,

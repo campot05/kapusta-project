@@ -23,8 +23,6 @@
 
 @media screen and (min-width: 768px) {
   .mainBg {
-    padding-left: 32px;
-    padding-right: 32px;
     background-repeat: no-repeat, no-repeat, no-repeat;
   }
 
@@ -51,8 +49,6 @@
       left top;
     background-repeat: no-repeat, repeat-x, no-repeat;
     background-size: auto, auto, 100% 526px;
-    padding-left: 89px;
-    padding-right: 89px;
   }
 
   .mainBgMain {
