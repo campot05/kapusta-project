@@ -27,8 +27,9 @@ const initialState = {
   incomeCategory: [],
   expenseCategory: [],
   transByDate: null,
+  expensesMonthStats: {},
+  incomeMonthStats: {},
   date: formattedDate,
-  balance: 0,
 };
 
 const transactionSlice = createSlice({
@@ -48,7 +49,7 @@ const transactionSlice = createSlice({
   extraReducers: {
     [addIncome.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transIncome.push(payload.transaction);
+      // state.transIncome.push(payload.transaction);
       state.isLoading = false;
     },
     [addIncome.rejected](state, { payload }) {
@@ -60,7 +61,7 @@ const transactionSlice = createSlice({
     },
     [addExpense.fulfilled](state, { payload }) {
       state.message = payload.message;
-      state.transExpense.push(payload.transaction);
+      // state.transExpense.push(payload.transaction);
       state.isLoading = false;
     },
     [addExpense.rejected](state, { payload }) {
@@ -71,7 +72,6 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [deleteTransaction.fulfilled](state, { payload }) {
-      state.balance = payload.newBalance;
       state.isLoading = false;
     },
     [deleteTransaction.rejected](state, { payload }) {
@@ -82,8 +82,10 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getIncomeSummary.fulfilled](state, { payload }) {
-      state.isLoading = false;
+      state.incomeMonthStats = payload.monthsStats;
       state.transIncome = payload.incomes;
+      state.isLoading = false;
+     
       state.transactions = payload;
     },
     [getIncomeSummary.rejected](state, { payload }) {
@@ -94,6 +96,7 @@ const transactionSlice = createSlice({
       state.isLoading = true;
     },
     [getExpenseSummary.fulfilled](state, { payload }) {
+      state.expensesMonthStats = payload.monthsStats;
       state.transExpense = payload.expenses;
       state.isLoading = false;
     },

@@ -8,7 +8,7 @@ export const registerUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/auth/register', credentials);
-      console.log(res);
+
       Notify.success('Successfully registered, you can log in 👌');
       return res.data;
     } catch (error) {
@@ -26,7 +26,7 @@ export const logIn = createAsyncThunk(
     try {
       const res = await axios.post('/auth/login', credentials);
       setAuthHeader(res.data.accessToken);
-      console.log(res);
+
       return res.data;
     } catch (error) {
       Notify.failure('Повторите ещё раз');
@@ -38,7 +38,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     const res = await axios.post('/auth/logout');
-    console.log(res.data);
+
     return res.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
