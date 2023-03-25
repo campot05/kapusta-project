@@ -27,7 +27,7 @@ export const InputWrapper = styled.div`
   align-items: center;
   display: contents;
   flex-direction: column;
-  justify-content: space-evenly;
+  //justify-content: space-evenly;
   border-bottom-left-radius: 30%;
   background-color: transparent;
 
@@ -116,10 +116,10 @@ export const FormControl = styled.input`
 
 export const CountWrapper = styled.div`
   @media ${DEVICE.tablet} {
+    gap: 5px;
     justify-content: end;
     align-items: center;
     position: relative;
-    width: 183px;
     display: flex;
     background-color: transparent;
     border-top-right-radius: 16px;
@@ -152,7 +152,7 @@ export const CountInput = styled.input`
   background-color: transparent;
   @media ${DEVICE.tablet} {
     height: 40px;
-    width: 110px;
+    width: 125px;
     margin-top: 0;
 
     border: transparent;

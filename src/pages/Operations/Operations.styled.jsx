@@ -14,8 +14,24 @@ export const Wrapper = styled.div`
   gap: 75px;
   flex-wrap: wrap;
 `;
+
+export const ToTransactionLink = styled(NavLink)`
+  font-family: 'Roboto';
+font-weight: 700;
+font-size: 10px;
+line-height: 12px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+color: #000000;
+text-decoration: none;
+
+`
 export const LinkReport = styled(NavLink)`
 gap: 20px;
+margin-top: 24px;
 margin-bottom: 35px;
 display: flex;
 justify-content: center;
@@ -30,7 +46,9 @@ letter-spacing: 0.04em;
 color: rgba(82, 85, 95, 0.7);
   text-decoration: none;
 @media  screen and (min-width: 768px){
-    justify-content: start;
+    justify-content: end;
+    top: 67px;
+    position: relative;
    }
 
 `

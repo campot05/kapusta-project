@@ -196,7 +196,7 @@ const InputArea = ({ value }) => {
               }}
             />
 
-            {/* </Calculator> */}
+           
           </CountWrapper>
         </DescriptionWrapper>
       </InputWrapper>
