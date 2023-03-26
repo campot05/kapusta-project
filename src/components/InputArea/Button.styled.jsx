@@ -15,6 +15,8 @@ const TRANSITION = {
   delay: '0ms',
 };
 export const Btn = styled.button`
+ position: absolute;
+    bottom: 0;
   cursor: pointer;
   font-size: 12px;
   font-weight: inherit;
@@ -40,6 +42,12 @@ border: 2px solid #F6F7FC;
     color: #FFFFFF;
   }
   width:130px;
+  @media ${DEVICE.mobile} {
+    width: 125px;
+   position: relative;
+    
+
+  }
   @media ${DEVICE.tablet} {
     width: 125px;
   }

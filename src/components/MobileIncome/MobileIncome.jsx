@@ -5,20 +5,22 @@ import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+
 import { useAuth } from 'hooks';
 import { ReactComponent as Calendar } from '../../images/calendar.svg';
 import { ReactComponent as Calculator } from '../../images/calculator.svg';
 import {
-  addExpense,
-  getExpenseCategories,
-  getExpenseSummary,
+  addIncome,
+      getIncomeCategories,
+  getIncomeSummary
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
 import {
   // eslint-disable-next-line
-  selectExpenseCategories,
+
+  selectIncomeCategories,
 } from '../../redux/transactions/trans-selectors';
-import { Button } from './Button';
+import { Button } from '../InputArea/Button';
 import moment from 'moment';
 import Notiflix from 'notiflix';
 import {
@@ -32,11 +34,9 @@ import {
   FormWrapper,
   InputWrapper,
   DescriptionWrapper,
-} from './InputArea.styled';
-//import { locale } from 'moment/moment';
-//import { Container } from '@mui/system';
-//moment.locale('en')
-const InputArea = ({ value }) => {
+} from './MobileIncome.styled';
+
+ const MobileIncome = ({value}) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
@@ -49,11 +49,11 @@ const InputArea = ({ value }) => {
     if (isRefreshing) {
       return;
     }
-    dispatch(getExpenseCategories());
+    dispatch(getIncomeCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
-  const transactions = useSelector(selectExpenseCategories);
-
+  const transactions = useSelector(selectIncomeCategories);
+//console.log(transactions)
   const handleChangeList = event => {
     setCategory(event.target.value);
   };
@@ -68,13 +68,12 @@ const InputArea = ({ value }) => {
       description: description,
       date: date,
       category: category,
-      amount: amount,
+      amount: Number(amount),
     };
 
-    dispatch(addExpense(userEnteredData))
+   dispatch(addIncome(userEnteredData))
       .unwrap()
-      .then(() => dispatch(getExpenseSummary()));
-
+      .then(() => dispatch(getIncomeSummary()));
     resetForm();
     // return;
   };
@@ -110,7 +109,6 @@ const InputArea = ({ value }) => {
       resetForm();
     }
   }, [value]);
-
   // useEffect(() => {
   //    dispatch
   //   }, []);
@@ -128,7 +126,6 @@ const InputArea = ({ value }) => {
             onChange={handleChange}
             type="date"
             value={date}
-            lang="en"
           />
         </DateWrapper>
         <DescriptionWrapper>
@@ -142,7 +139,7 @@ const InputArea = ({ value }) => {
             maxLength = '25'
           />
 
-          <FormControl sx={{ m: 1, minWidth: 169 }}>
+          <FormControl sx={{ m: 1, minWidth: 169 }} >
             <InputLabel
               id="demo-simple-select-autowidth-label"
               style={{
@@ -150,7 +147,8 @@ const InputArea = ({ value }) => {
                 color: '#c7ccdc',
                 lineHeight: '1.14',
                 paddingLeft: '12px',
-                paddingTop: '9px',
+                    paddingTop: '9px',
+                
               }}
             >
               Product category
@@ -164,14 +162,14 @@ const InputArea = ({ value }) => {
               variant="standard"
               disableUnderline={true}
               style={{
-                border: '2px solid rgb(246, 247, 252)',
+                    border: '2px solid rgb(255, 255, 255)',
+                    width: '280px',
                 height: '44px',
                 top: '-8px',
                 color: '#c7ccdc',
-                fontSize: '12px',
-                 paddingLeft: '20px',
+                    fontSize: '12px',
+                paddingLeft: '20px',
                 paddingTop: '9px',
-               
               }}
             >
               {transactions.map(el => (
@@ -196,7 +194,8 @@ const InputArea = ({ value }) => {
               style={{
                 fill: 'black',
                 position: 'absolute',
-                marginRight: '23px',
+                                            marginRight: '23px',
+                marginTop: '50px'
               }}
             />
 
@@ -219,6 +218,5 @@ const InputArea = ({ value }) => {
       </ButtonWrapper>
     </FormWrapper>
   );
-};
-
-export default InputArea;
+}
+export default MobileIncome;

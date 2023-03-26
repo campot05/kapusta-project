@@ -28,15 +28,17 @@ export default function IncomeSummery() {
 
   return (
     <Paper
+      elevation={0}
       sx={{
         maxWidth: 230,
         minWidth: 214,
-        maxHeight: 280,
+        minHeight: 290,
         marginTop: '60px',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
         backgroundColor: '#F5F6FB',
+        alignSelf: 'baseline',
       }}
     >
       <TableContainer>
@@ -59,7 +61,7 @@ export default function IncomeSummery() {
                   backgroundColor: '#F5F6FB',
                 }}
               >
-                SUMMERY
+                SUMMARY
               </TableCell>
             </TableRow>
           </TableHead>

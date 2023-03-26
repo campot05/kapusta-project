@@ -18,7 +18,7 @@ import {
   // eslint-disable-next-line
   selectExpenseCategories,
 } from '../../redux/transactions/trans-selectors';
-import { Button } from './Button';
+import { Button } from '../InputArea/Button';
 import moment from 'moment';
 import Notiflix from 'notiflix';
 import {
@@ -32,11 +32,9 @@ import {
   FormWrapper,
   InputWrapper,
   DescriptionWrapper,
-} from './InputArea.styled';
-//import { locale } from 'moment/moment';
-//import { Container } from '@mui/system';
-//moment.locale('en')
-const InputArea = ({ value }) => {
+} from './MobileInput.styled';
+
+const MobileInput = ({ value }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
@@ -127,8 +125,9 @@ const InputArea = ({ value }) => {
             dateFormat="yyyy-MM-dd"
             onChange={handleChange}
             type="date"
+            id="123"
             value={date}
-            lang="en"
+            // onClick={() => document.querySelectorById('123').click}
           />
         </DateWrapper>
         <DescriptionWrapper>
@@ -139,7 +138,7 @@ const InputArea = ({ value }) => {
             onChange={handleChange}
             type="text"
             value={description}
-            maxLength = '25'
+            maxLength="25"
           />
 
           <FormControl sx={{ m: 1, minWidth: 169 }}>
@@ -164,14 +163,14 @@ const InputArea = ({ value }) => {
               variant="standard"
               disableUnderline={true}
               style={{
-                border: '2px solid rgb(246, 247, 252)',
+                border: '2px solid rgb(255, 255, 255)',
+                width: '280px',
                 height: '44px',
                 top: '-8px',
                 color: '#c7ccdc',
                 fontSize: '12px',
-                 paddingLeft: '20px',
+                paddingLeft: '20px',
                 paddingTop: '9px',
-               
               }}
             >
               {transactions.map(el => (
@@ -190,17 +189,15 @@ const InputArea = ({ value }) => {
               min="0.01"
               step="0.01"
               value={amount}
-             
             />
             <Calculator
               style={{
                 fill: 'black',
                 position: 'absolute',
                 marginRight: '23px',
+                marginTop: '50px',
               }}
             />
-
-           
           </CountWrapper>
         </DescriptionWrapper>
       </InputWrapper>
@@ -220,5 +217,4 @@ const InputArea = ({ value }) => {
     </FormWrapper>
   );
 };
-
-export default InputArea;
+export default MobileInput;

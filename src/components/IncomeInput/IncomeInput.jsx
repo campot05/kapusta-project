@@ -117,6 +117,7 @@ const IncomeInput = ({ value }) => {
   //   }, []);
 
   return (
+
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
         <DateWrapper>
@@ -139,6 +140,7 @@ const IncomeInput = ({ value }) => {
             onChange={handleChange}
             type="text"
             value={description}
+            maxLength = '25'
           />
 
           <FormControl sx={{ m: 1, minWidth: 169 }}>
@@ -168,6 +170,9 @@ const IncomeInput = ({ value }) => {
                 top: '-8px',
                 color: '#c7ccdc',
                 fontSize: '12px',
+                 paddingLeft: '20px',
+                paddingTop: '9px',
+               
               }}
             >
               {transactions.map(el => (
@@ -186,6 +191,7 @@ const IncomeInput = ({ value }) => {
               min="0.01"
               step="0.01"
               value={amount}
+             
             />
             <Calculator
               style={{
@@ -194,6 +200,8 @@ const IncomeInput = ({ value }) => {
                 marginRight: '23px',
               }}
             />
+
+           
           </CountWrapper>
         </DescriptionWrapper>
       </InputWrapper>
@@ -211,6 +219,7 @@ const IncomeInput = ({ value }) => {
         </Button>
       </ButtonWrapper>
     </FormWrapper>
+  
   );
 };
 
