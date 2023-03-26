@@ -127,7 +127,6 @@ const MobileInput = ({ value }) => {
             type="date"
             id="123"
             value={date}
-            // onClick={() => document.querySelectorById('123').click}
           />
         </DateWrapper>
         <DescriptionWrapper>
