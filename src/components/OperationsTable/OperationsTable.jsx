@@ -16,15 +16,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   tableContainer: {
-    maxHeight: 400, // высота контейнера скролла
+    maxHeight: 400,
     overflow: 'auto',
     '&::-webkit-scrollbar': {
-      width: '0.4em', // ширина скроллбара
-      backgroundColor: '#F5F5F5', // цвет фона
+      width: '0.4em',
+      backgroundColor: '#F5F5F5',
     },
     '&::-webkit-scrollbar-thumb': {
-      backgroundColor: '#FF751D', // цвет кнопки
-      borderRadius: '2em', // радиус кнопки
+      backgroundColor: '#FF751D',
     },
   },
   tableCell: {
@@ -82,10 +81,10 @@ export default function OperationsTable() {
     if (!allExpensesTrans) {
       return;
     }
-    if (allExpensesTrans.length >= 15) {
+    if (allExpensesTrans.length >= 14) {
       return;
     }
-    setEmptyRowCount(15 - allExpensesTrans.length);
+    setEmptyRowCount(14 - allExpensesTrans.length);
   }, [allExpensesTrans]);
 
   return (
@@ -96,7 +95,7 @@ export default function OperationsTable() {
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         marginTop: '62px',
-        maxHeight: 410,
+        maxHeight: 397,
         overflowY: 'scrool',
       }}
     >
@@ -105,25 +104,20 @@ export default function OperationsTable() {
           display: 'flex',
           backgroundColor: '#F5F6FB',
           justifyContent: 'flex-start',
+          backgroundColor: '#F5F6FB',
+          padding: '12px 25px',
+          fontWeight: 700,
+          fontSize: '12px',
+          lineHeight: 1.17,
+          letterSpacing: '0.02em',
+          color: '#000000',
         }}
       >
-        {columns.map(column => (
-          <div
-            key={column.id}
-            align={column.align}
-            style={{
-              padding: '12px 35px',
-              fontWeight: 700,
-              fontSize: '12px',
-              lineHeight: 1.17,
-              letterSpacing: '0.02em',
-              color: '#000000',
-              backgroundColor: '#F5F6FB',
-            }}
-          >
-            {column.label}
-          </div>
-        ))}
+        <p date>DATE</p>
+        <p DESCRIPTION>DESCRIPTION</p>
+        <p CATEGORY>CATEGORY</p>
+        <p SUM>SUM</p>
+        <p></p>
       </div>
 
       <TableContainer
@@ -166,8 +160,8 @@ export default function OperationsTable() {
                             className={classes.tableCell}
                             style={{
                               height: 40,
-                              paddingTop: 10,
-                              paddingBottom: 10,
+                              paddingTop: 5,
+                              paddingBottom: 5,
                               fontWeight: column.id === 'amount' ? 700 : 400,
                               fontSize: '12px',
                               lineHeight: 1.17,
