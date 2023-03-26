@@ -5,20 +5,18 @@ import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-
 import { useAuth } from 'hooks';
 import { ReactComponent as Calendar } from '../../images/calendar.svg';
 import { ReactComponent as Calculator } from '../../images/calculator.svg';
 import {
-  addIncome,
-  getIncomeCategories,
-  getIncomeSummary,
+  addExpense,
+  getExpenseCategories,
+  getExpenseSummary,
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
 import {
   // eslint-disable-next-line
-
-  selectIncomeCategories,
+  selectExpenseCategories,
 } from '../../redux/transactions/trans-selectors';
 import { Button } from '../InputArea/Button';
 import moment from 'moment';
@@ -34,9 +32,9 @@ import {
   FormWrapper,
   InputWrapper,
   DescriptionWrapper,
-} from './IncomeInput.styled';
+} from './MobileInput.styled';
 
-const IncomeInput = ({ value }) => {
+const MobileInput = ({ value }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
@@ -49,10 +47,10 @@ const IncomeInput = ({ value }) => {
     if (isRefreshing) {
       return;
     }
-    dispatch(getIncomeCategories());
+    dispatch(getExpenseCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
-  const transactions = useSelector(selectIncomeCategories);
+  const transactions = useSelector(selectExpenseCategories);
 
   const handleChangeList = event => {
     setCategory(event.target.value);
@@ -68,15 +66,14 @@ const IncomeInput = ({ value }) => {
       description: description,
       date: date,
       category: category,
-      amount: Number(amount),
+      amount: amount,
     };
 
-    dispatch(addIncome(userEnteredData))
+    dispatch(addExpense(userEnteredData))
       .unwrap()
-      .then(() => dispatch(getIncomeSummary()));
+      .then(() => dispatch(getExpenseSummary()));
 
     resetForm();
-
     // return;
   };
 
@@ -112,6 +109,10 @@ const IncomeInput = ({ value }) => {
     }
   }, [value]);
 
+  // useEffect(() => {
+  //    dispatch
+  //   }, []);
+
   return (
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
@@ -124,6 +125,7 @@ const IncomeInput = ({ value }) => {
             dateFormat="yyyy-MM-dd"
             onChange={handleChange}
             type="date"
+            id="123"
             value={date}
           />
         </DateWrapper>
@@ -160,7 +162,8 @@ const IncomeInput = ({ value }) => {
               variant="standard"
               disableUnderline={true}
               style={{
-                border: '2px solid rgb(246, 247, 252)',
+                border: '2px solid rgb(255, 255, 255)',
+                width: '280px',
                 height: '44px',
                 top: '-8px',
                 color: '#c7ccdc',
@@ -191,6 +194,7 @@ const IncomeInput = ({ value }) => {
                 fill: 'black',
                 position: 'absolute',
                 marginRight: '23px',
+                marginTop: '50px',
               }}
             />
           </CountWrapper>
@@ -212,5 +216,4 @@ const IncomeInput = ({ value }) => {
     </FormWrapper>
   );
 };
-
-export default IncomeInput;
+export default MobileInput;

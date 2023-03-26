@@ -14,7 +14,11 @@ export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  display: none;
   @media ${DEVICE.tablet} {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   @media ${DEVICE.laptop} {
     flex-direction: row;
@@ -27,12 +31,13 @@ export const InputWrapper = styled.div`
   align-items: center;
   display: contents;
   flex-direction: column;
-  justify-content: space-evenly;
+  //justify-content: space-evenly;
   border-bottom-left-radius: 30%;
   background-color: transparent;
 
   @media ${DEVICE.tablet} {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     height: 44px;
   }
@@ -85,14 +90,13 @@ export const DescriptionWrapper = styled.div`
   align-items: center;
 `;
 export const DescriptionInput = styled.input`
-  display: none;
   width: 184px;
   height: 44px;
   border-top-left-radius: 16px;
   font-size: 12px;
   line-height: 1.14;
   background-color: transparent;
-  padding-left: 30px;
+  padding-left: 20px;
   border: 2px solid #ffffff;
   border-bottom: none;
   color: #52555f;
@@ -111,17 +115,14 @@ export const DescriptionInput = styled.input`
   }
 `;
 
-export const FormControl = styled.input`
-  display: none;
-`;
+export const FormControl = styled.input``;
 
 export const CountWrapper = styled.div`
-  display: none;
   @media ${DEVICE.tablet} {
+    gap: 5px;
     justify-content: end;
     align-items: center;
     position: relative;
-    width: 183px;
     display: flex;
     background-color: transparent;
     border-top-right-radius: 16px;
@@ -154,7 +155,7 @@ export const CountInput = styled.input`
   background-color: transparent;
   @media ${DEVICE.tablet} {
     height: 40px;
-    width: 110px;
+    width: 125px;
     margin-top: 0;
 
     border: transparent;

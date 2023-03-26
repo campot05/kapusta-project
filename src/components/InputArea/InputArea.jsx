@@ -5,7 +5,6 @@ import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-
 import { useAuth } from 'hooks';
 import { ReactComponent as Calendar } from '../../images/calendar.svg';
 import { ReactComponent as Calculator } from '../../images/calculator.svg';
@@ -34,8 +33,9 @@ import {
   InputWrapper,
   DescriptionWrapper,
 } from './InputArea.styled';
+//import { locale } from 'moment/moment';
 //import { Container } from '@mui/system';
-
+//moment.locale('en')
 const InputArea = ({ value }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
@@ -111,10 +111,6 @@ const InputArea = ({ value }) => {
     }
   }, [value]);
 
-  // useEffect(() => {
-  //    dispatch
-  //   }, []);
-
   return (
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
@@ -139,6 +135,7 @@ const InputArea = ({ value }) => {
             onChange={handleChange}
             type="text"
             value={description}
+            maxLength="25"
           />
 
           <FormControl sx={{ m: 1, minWidth: 169 }}>
@@ -168,6 +165,8 @@ const InputArea = ({ value }) => {
                 top: '-8px',
                 color: '#c7ccdc',
                 fontSize: '12px',
+                paddingLeft: '20px',
+                paddingTop: '9px',
               }}
             >
               {transactions.map(el => (
@@ -194,8 +193,6 @@ const InputArea = ({ value }) => {
                 marginRight: '23px',
               }}
             />
-
-            {/* </Calculator> */}
           </CountWrapper>
         </DescriptionWrapper>
       </InputWrapper>

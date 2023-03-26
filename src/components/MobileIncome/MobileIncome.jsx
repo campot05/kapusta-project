@@ -34,9 +34,9 @@ import {
   FormWrapper,
   InputWrapper,
   DescriptionWrapper,
-} from './IncomeInput.styled';
+} from './MobileIncome.styled';
 
-const IncomeInput = ({ value }) => {
+const MobileIncome = ({ value }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
@@ -53,7 +53,7 @@ const IncomeInput = ({ value }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
   const transactions = useSelector(selectIncomeCategories);
-
+  //console.log(transactions)
   const handleChangeList = event => {
     setCategory(event.target.value);
   };
@@ -74,9 +74,7 @@ const IncomeInput = ({ value }) => {
     dispatch(addIncome(userEnteredData))
       .unwrap()
       .then(() => dispatch(getIncomeSummary()));
-
     resetForm();
-
     // return;
   };
 
@@ -111,6 +109,9 @@ const IncomeInput = ({ value }) => {
       resetForm();
     }
   }, [value]);
+  // useEffect(() => {
+  //    dispatch
+  //   }, []);
 
   return (
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
@@ -160,7 +161,8 @@ const IncomeInput = ({ value }) => {
               variant="standard"
               disableUnderline={true}
               style={{
-                border: '2px solid rgb(246, 247, 252)',
+                border: '2px solid rgb(255, 255, 255)',
+                width: '280px',
                 height: '44px',
                 top: '-8px',
                 color: '#c7ccdc',
@@ -191,6 +193,7 @@ const IncomeInput = ({ value }) => {
                 fill: 'black',
                 position: 'absolute',
                 marginRight: '23px',
+                marginTop: '50px',
               }}
             />
           </CountWrapper>
@@ -212,5 +215,4 @@ const IncomeInput = ({ value }) => {
     </FormWrapper>
   );
 };
-
-export default IncomeInput;
+export default MobileIncome;

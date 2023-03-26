@@ -9,41 +9,40 @@ import { useLayoutEffect } from 'react';
 const BarChart = ({ chartData }) => {
   const { width } = useWindowSize();
   let numOfElem = chartData.labels.length;
-    const maintainBarThickness = () => {
-        const ratio = {
-            mobile:5,
-            tablet:29,
-            desktop:40,
-        }
+  const maintainBarThickness = () => {
+    const ratio = {
+      mobile: 5,
+      tablet: 29,
+      desktop: 55,
+    };
 
-        if(width <= 480 && numOfElem >= 13){
-            return ((width - (numOfElem-1)*ratio.mobile)/numOfElem).toFixed(0)
-        }else if(width <= 480 && numOfElem <= 13){
-            return 20;
-        }else if(width <= 768 && numOfElem >= 10){
-            return ((width - (numOfElem-1)*ratio.tablet)/numOfElem).toFixed(0)
-        }else if(width <= 768 && numOfElem <=10){
-            return 95;
-        }else if(width >= 768 && numOfElem >= 9){
-            return ((width - (numOfElem-1)*ratio.desktop)/numOfElem).toFixed(0)
-        }else if(width >= 768 && numOfElem <= 9){
-            return 100;
-        }
+    if (width <= 480 && numOfElem >= 13) {
+      return ((width - (numOfElem - 1) * ratio.mobile) / numOfElem).toFixed(0);
+    } else if (width <= 480 && numOfElem <= 13) {
+      return 20;
+    } else if (width <= 768 && numOfElem >= 10) {
+      return ((width - (numOfElem - 1) * ratio.tablet) / numOfElem).toFixed(0);
+    } else if (width <= 768 && numOfElem <= 10) {
+      return 95;
+    } else if (width >= 768 && numOfElem >= 9) {
+      return ((width - (numOfElem - 1) * ratio.desktop) / numOfElem).toFixed(0);
+    } else if (width >= 768 && numOfElem <= 9) {
+      return 100;
     }
-    useLayoutEffect(() => {
-      let chartHeight = 400;
-      const chartBox = document.querySelector('.chart-box')
-      if(numOfElem >= 12 && width <= 480){
-        let newHeight =(numOfElem - 12)* 60 + chartHeight;
-        chartBox.style.height = `${newHeight}px`;
-      }else if(numOfElem <=3 && width <= 480){
-        chartBox.style.height = `200px`;
-      }
-      else{
-        chartBox.style.height = `410px`;
-      }
-      // eslint-disable-next-line
-    },[numOfElem])
+  };
+  useLayoutEffect(() => {
+    let chartHeight = 400;
+    const chartBox = document.querySelector('.chart-box');
+    if (numOfElem >= 12 && width <= 480) {
+      let newHeight = (numOfElem - 12) * 60 + chartHeight;
+      chartBox.style.height = `${newHeight}px`;
+    } else if (numOfElem <= 3 && width <= 480) {
+      chartBox.style.height = `200px`;
+    } else {
+      chartBox.style.height = `410px`;
+    }
+    // eslint-disable-next-line
+  }, [numOfElem]);
 
   const options = {
     indexAxis: width <= 480 && 'y',
@@ -51,7 +50,7 @@ const BarChart = ({ chartData }) => {
     // barPercentage:0.5,
     // categoryPercentage: .5,
     responsive: true,
-    maintainAspectRatio:false,
+    maintainAspectRatio: false,
     scales: {
       x: {
         display: true,
@@ -89,13 +88,13 @@ const BarChart = ({ chartData }) => {
     plugins: {
       datalabels: {
         anchor: 'end',
-        align: width >=480 ? 'top':'top',
-        rotation:width >=480 ? -15 : 0 ,
-        padding:{
-          left:0,
-          bottom:25,
+        align: width >= 480 ? 'top' : 'top',
+        rotation: width >= 480 ? -15 : 0,
+        padding: {
+          left: 0,
+          bottom: 25,
         },
-        offset:-4,
+        offset: -4,
         formatter: (val, ctx) => `${val.toFixed(0)} UAH`,
         font: {
           weight: 400,
@@ -110,7 +109,7 @@ const BarChart = ({ chartData }) => {
     },
   };
   return (
-    <StyledBarChart className='chart-box'>
+    <StyledBarChart className="chart-box">
       <Bar data={chartData} options={options} plugins={[ChartDataLabels]} />
     </StyledBarChart>
   );
