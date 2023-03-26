@@ -2,7 +2,10 @@ import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 import { useAuth } from 'hooks';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExpenseSummary } from 'redux/transactions/trans-operations';
+import {
+  getExpenseSummary,
+  getIncomeSummary,
+} from 'redux/transactions/trans-operations';
 import { getExpensesTrans } from 'redux/transactions/trans-selectors';
 import {
   Amount,
@@ -25,6 +28,7 @@ export default function MobileExpensesTrans() {
     if (isRefreshing) {
       return;
     }
+    dispatch(getIncomeSummary());
     dispatch(getExpenseSummary());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
@@ -51,7 +55,7 @@ export default function MobileExpensesTrans() {
                 </div>
               </Wrapper>
               <Amount>{`- ${formattedAmount} UAH.`}</Amount>
-              <DeleteBtn />
+              <DeleteBtn id={_id} />
             </Item>
             <Line />
           </div>

@@ -44,6 +44,7 @@ const transactionSlice = createSlice({
       state.transExpense = state.transExpense.filter(
         el => el._id !== payload.id
       );
+      state.transIncome = state.transIncome.filter(el => el._id !== payload.id);
     },
   },
   extraReducers: {

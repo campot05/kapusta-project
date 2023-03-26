@@ -32,6 +32,7 @@ export default function MobileIncomeTrans() {
       return;
     }
     dispatch(getIncomeSummary());
+    dispatch(getExpenseSummary());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
 
@@ -58,7 +59,7 @@ export default function MobileIncomeTrans() {
                 </div>
               </Wrapper>
               <Amount>{`${formattedAmount} UAH.`}</Amount>
-              <DeleteBtn />
+              <DeleteBtn id={_id} />
             </Item>
             <Line />
           </div>
