@@ -9,15 +9,15 @@ export const TransactionsContainer = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  /* display: flex;
+  display: flex;
   gap: 75px;
-  flex-wrap: wrap; */
+  flex-wrap: wrap;
   display: flex;
   gap: 75px;
 `;
 
 export const Container = styled.div`
-  width: 1130px;
+  max-width: 1130px;
   padding: 0px 15px;
   margin: 0 auto;
 `;
