@@ -20,7 +20,11 @@ export const ExpIncBar = ({incomeTotal=null,expenseTotal=null}) =>{
             <StyledText>Expenses:</StyledText>
             <StyledDigits color="#E53935">- {expenseTotal.toFixed(2)} UAH</StyledDigits>
           </Item>
-          <Divider orientation="vertical" variant="middle" flexItem />
+          <Divider 
+          orientation="vertical" 
+          variant="middle" 
+          sx={{ borderBottomWidth: 2 ,bgcolor: "secondary.light" }}
+          flexItem />
           <Item>
             <StyledText>Income:</StyledText>
             <StyledDigits color="#407946"> + {incomeTotal.toFixed(2)} UAH</StyledDigits>

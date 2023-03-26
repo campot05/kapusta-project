@@ -85,7 +85,6 @@ const transactionSlice = createSlice({
       state.incomeMonthStats = payload.monthsStats;
       state.transIncome = payload.incomes;
       state.isLoading = false;
-     
       state.transactions = payload;
     },
     [getIncomeSummary.rejected](state, { payload }) {

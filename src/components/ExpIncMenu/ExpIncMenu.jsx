@@ -30,11 +30,11 @@ export const ExpIncMenu = ({
               <Grid item xs={4} sm={3} md={2} key={idx}>
                 <ExpIncMenuItem item={item} onCategoryClick={onCategoryClick} />
               </Grid>
-              {width <= 480 && (idx + 1) % 3 === 0 && (
+              {width <= 480 && ((idx + 1) % 3 === 0 || idx === categories.length-1 ) && (
                 <Grid item xs={12}>
                   <Divider
                     orientation="horizontal"
-                    sx={{ borderBottomWidth: 2 }}
+                    sx={{ borderBottomWidth: 2 ,bgcolor: "secondary.light"}}
                     variant="middle"
                     style={{ marginTop: '10px', marginBottom: '10px' }}
                   />
