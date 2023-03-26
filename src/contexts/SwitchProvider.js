@@ -4,8 +4,8 @@ const SwitchContext = createContext();
 export const useSwitchContext = () => useContext(SwitchContext);
 
 const SwitchProvider = ({children}) => {
-
-    const [transSwitch,setTransSwitch] = useState('income');
+    const [transSwitch,setTransSwitch] = useState('expenses');
+   
     const toggle = (value) =>
     setTransSwitch(value.toLowerCase());
     

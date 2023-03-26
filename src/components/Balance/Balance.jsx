@@ -32,6 +32,7 @@ export const Balance = () => {
   useEffect(() => {
     setValue(currentBalance?.toFixed(2) || '');
   }, [currentBalance]);
+ 
 
   const handleSubmit = e => {
     e.preventDefault();
