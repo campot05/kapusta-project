@@ -4,7 +4,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 import { useEffect, useState } from 'react';
@@ -13,6 +12,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIncomesTrans } from 'redux/transactions/trans-selectors';
 import { getIncomeSummary } from 'redux/transactions/trans-operations';
 import { useAuth } from 'hooks';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles(theme => ({
+  tableContainer: {
+    overflow: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '0.4em',
+      backgroundColor: '#F5F5F5',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: '#FF751D',
+    },
+  },
+  tableCell: {
+    height: 20,
+  },
+}));
 
 const columns = [
   {
@@ -21,7 +37,7 @@ const columns = [
     paddingLeft: '20px',
     maxWidth: 120,
   },
-  { id: 'description', label: 'DESCRIPTION', minWidth: 190 },
+  { id: 'description', label: 'DESCRIPTION', minWidth: 220 },
   {
     id: 'category',
     label: 'CATEGORY',
@@ -41,8 +57,8 @@ const columns = [
     align: 'center',
   },
 ];
-
 export default function IncomesTransTable() {
+  const classes = useStyles();
   const allIncomesTrans = useSelector(getIncomesTrans);
 
   const { isRefreshing } = useAuth();
@@ -77,38 +93,35 @@ export default function IncomesTransTable() {
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         marginTop: '62px',
-        maxHeight: 410,
         overflowY: 'scrool',
       }}
     >
-      <TableContainer
-        sx={{
-          maxHeight: 410,
+      <div
+        style={{
+          display: 'flex',
+          backgroundColor: '#F5F6FB',
+          justifyContent: 'flex-start',
+          padding: '12px 25px',
+          fontWeight: 700,
+          fontSize: '12px',
+          lineHeight: 1.17,
+          letterSpacing: '0.02em',
+          color: '#000000',
         }}
       >
+        <p style={{ marginRight: '95px' }}>DATE</p>
+        <p style={{ marginRight: '116px' }}>DESCRIPTION</p>
+        <p style={{ marginRight: '130px' }}>CATEGORY</p>
+        <p style={{ marginRight: '' }}>SUM</p>
+        <p style={{ marginRight: '' }}></p>
+      </div>
+      <TableContainer
+        sx={{
+          maxHeight: '360px',
+        }}
+        className={classes.tableContainer}
+      >
         <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map(column => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{
-                    minWidth: column.minWidth,
-                    padding: '12px 25px',
-                    fontWeight: 700,
-                    fontSize: '12px',
-                    lineHeight: 1.17,
-                    letterSpacing: '0.02em',
-                    color: '#000000',
-                    backgroundColor: '#F5F6FB',
-                  }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
           <TableBody>
             {allIncomesTrans !== null || undefined ? (
               [...allIncomesTrans, ...Array(emptyRowCount).fill(null)].map(
@@ -141,8 +154,8 @@ export default function IncomesTransTable() {
                             align={column.align}
                             style={{
                               height: 40,
-                              paddingTop: 10,
-                              paddingBottom: 10,
+                              paddingTop: 3.5,
+                              paddingBottom: 3.5,
                               fontWeight: column.id === 'amount' ? 700 : 400,
                               fontSize: '12px',
                               lineHeight: 1.17,

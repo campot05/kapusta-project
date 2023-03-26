@@ -20,7 +20,6 @@ export const TransactionsContainer = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   gap: 75px;
-  flex-wrap: wrap;
   @media screen and(max-width: 767px) {
     display: none;
   }
