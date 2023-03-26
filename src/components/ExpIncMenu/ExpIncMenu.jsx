@@ -4,7 +4,7 @@ import { ExpIncMenuItem } from 'components/ExpIncMenuItem/ExpIncMenuItem';
 import { useWindowSize } from 'react-use';
 import { StyledGrid } from './ExpIncMenu.styled';
 import { FinanceAmico } from 'images/images';
-import {motion} from 'framer-motion';
+// import {motion} from 'framer-motion';
 
 const animatedItem = {
   hidden: { opacity: 0, scale:0 },
@@ -61,10 +61,10 @@ export const ExpIncMenu = ({
   return (
     <StyledGrid
       container
-      component={motion.div}
-      variants={animatedItem}
-      initial='hidden'
-      animate='visible'
+      // component={motion.div}
+      // variants={animatedItem}
+      // initial='hidden'
+      // animate='visible'
       spacing={0}
       justifyContent="center"
       alignItems="center"
@@ -108,20 +108,20 @@ export const ExpIncMenu = ({
         }):(<div>
         <Typography
             variant="button"
-            component={motion.p}
-            variants={animTitle}
-            initial='hidden'
-            animate='visible'
+            // component={motion.p}
+            // variants={animTitle}
+            // initial='hidden'
+            // animate='visible'
           >
             no categories to show!
           </Typography>
-          <motion.div 
+          {/* <motion.div 
           variants={animSvg}
           initial='hidden'
           animate='visible'
-          >
+          > */}
           <FinanceAmico/>
-          </motion.div>
+          {/* </motion.div> */}
               </div>)}
       </Grid>
     </StyledGrid>

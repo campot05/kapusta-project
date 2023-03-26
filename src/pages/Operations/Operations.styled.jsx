@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import {NavLink } from 'react-router-dom';
 
 export const ContainerDiv = styled.div`
   max-width: 1130px;
@@ -38,6 +38,7 @@ export const ToTransactionLink = styled(NavLink)`
   display: flex;
   align-items: center;
   text-align: center;
+  gap: 18px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #000000;

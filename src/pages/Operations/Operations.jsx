@@ -6,6 +6,7 @@ import {
   Wrapper,
   ContainerDiv,
 } from './Operations.styled';
+import { StyledTitle } from 'components/CurrentPeriodSwitch/CurrPeriodSwitch.styled';
 import OperationsTable from 'components/OperationsTable/OperationsTable';
 import Background from 'components/Background/Background';
 import Summary from 'components/Summary/Summary';
@@ -14,6 +15,7 @@ import { useWindowSize } from 'react-use';
 import React from 'react';
 import { ReactComponent as Reports } from '../../images/reports.svg';
 import { ReactComponent as ArrowBack } from '../../images/arrowBack.svg';
+import { StyledTitleTrans } from 'pages/IncomePage/IncomePage.styled';
 
 export default function Home() {
   const { width } = useWindowSize();
@@ -22,12 +24,12 @@ export default function Home() {
       <ContainerDiv>
         {width < 767.98 && (
           <ToTransactionLink to="/mobileinput">
-            <ArrowBack style={{ fill: '#FF751D', marginLeft: '22px' }} />
-            TO TRANSACTION
+            <ArrowBack style={{ fill: '#FF751D' }} />
+            <StyledTitleTrans>TO TRANSACTION</StyledTitleTrans>
           </ToTransactionLink>
         )}
         <LinkReport to="/report">
-          Reports
+          <StyledTitle>Reports</StyledTitle>
           <Reports />
         </LinkReport>
 

@@ -38,11 +38,10 @@ import {
 import Background from 'components/Background/Background';
 import { Balance } from 'components/Balance/Balance';
 import {
-  Container,
   StyledCommonBar,
   StyledReportAppbar,
 } from './Report.styled';
-
+import { ContainerDiv } from 'pages/IncomePage/IncomePage.styled';
 const categoryIcons = {
   Alcohol: Alcohol,
   Products: Products,
@@ -176,7 +175,7 @@ export default function Reports() {
   //======
   return (
     <Background type="Main">
-      <Container style={{ padding: '20px' }}>
+      <ContainerDiv >
         {width <= 767.95 ? (
           <>
             <StyledLinkBackToMain to="/" width={width}>
@@ -206,7 +205,7 @@ export default function Reports() {
           <ExpIncSwitch setChartToDefault={setChartToDefault} />
         </ExpIncMenu>
         <BarChart chartData={chartData ?? initChartSetup} />
-      </Container>
+      </ContainerDiv>
     </Background>
   );
 }

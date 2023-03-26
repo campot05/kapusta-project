@@ -2,6 +2,7 @@ import {
   LinkReport,
   ToTransactionLink,
   ContainerDiv,
+  StyledTitleTrans,
 } from './IncomePage.styled';
 import IncomeInput from 'components/IncomeInput';
 import TransactionButtons from 'components/TransactionButtons';
@@ -22,8 +23,8 @@ export default function Home() {
       <ContainerDiv>
         {width < 767.98 && (
           <ToTransactionLink to="/mobileincome">
-            <ArrowBack style={{ fill: '#FF751D', marginLeft: '22px' }} />
-            TO TRANSACTION
+            <ArrowBack style={{ fill: '#FF751D' }} />
+            <StyledTitleTrans>TO TRANSACTION</StyledTitleTrans>
           </ToTransactionLink>
         )}
         <LinkReport to="/report">

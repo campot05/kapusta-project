@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+
+export const StyledTitleTrans = styled.p`
+font-family: 'Roboto';
+font-size: 10px;
+font-weight: 700;
+line-height: calc(12/10);
+letter-spacing: 0.02;
+color:black;
+margin:0;
+`
 export const ContainerDiv = styled.div`
   max-width: 1130px;
   padding: 0px 15px;
@@ -38,6 +48,7 @@ export const ToTransactionLink = styled(NavLink)`
   display: flex;
   align-items: center;
   text-align: center;
+  gap: 18px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #000000;
