@@ -14,13 +14,12 @@ import { Carousel } from 'react-bootstrap';
 import { ArrowNext, ArrowPrev } from 'images/images';
 import { getPeriodData } from 'redux/transactions/trans-operations';
 
-export const CurrPeriodSwitch = ( {setChartToDefault=()=>null}) => {
+export const CurrPeriodSwitch = ({ setChartToDefault = () => null }) => {
   const [idx, setIdx] = useState(0);
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
   const expensesMonths = useSelector(state => state.transactions.transExpense);
   const incomeMonths = useSelector(state => state.transactions.transIncome);
-
 
   // NEED TO COMMENT AND ERASE AFTER =======
   useEffect(() => {
@@ -34,9 +33,10 @@ export const CurrPeriodSwitch = ( {setChartToDefault=()=>null}) => {
     setIdx(idx);
   };
 
+  if (!expensesMonths || !incomeMonths) return;
   const monthListExpense = createMonthList(expensesMonths);
   const monthListIncome = createMonthList(incomeMonths);
-  const allMonths = [...monthListExpense,...monthListIncome];
+  const allMonths = [...monthListExpense, ...monthListIncome];
 
   function createMonthList(summary) {
     return Array.from(
@@ -51,9 +51,7 @@ export const CurrPeriodSwitch = ( {setChartToDefault=()=>null}) => {
 
   return (
     <StyledCarouselDiv>
-      <StyledTitle>
-        Current period:{' '}
-      </StyledTitle>
+      <StyledTitle>Current period: </StyledTitle>
       <Carousel
         className="js-period"
         style={{ width: '155px', display: 'flex' }}
