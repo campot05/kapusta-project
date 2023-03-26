@@ -8,6 +8,7 @@ import { PrivateRoute } from 'routes/PrivateRoutes';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import Layout from 'pages/Layout/Layout';
 import SwitchProvider from 'contexts/SwitchProvider.js';
+import { NotFound } from 'pages/NotFound/NotFound.jsx';
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
 const Operations = lazy(() => import('../pages/Operations/Operations'));
 const Report = lazy(() => import('../pages/Report/Report'));
@@ -26,43 +27,39 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={
-              <PrivateRoute redirectTo="/login" component={<Operations />} />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute redirectTo="/" component={<AuthPage />} />
-            }
-          />
-          <Route
-            path="/income"
-            element={
-              <PrivateRoute redirectTo="/login" component={<IncomePage />} />
-            }
-          />
-          <Route
-            path="/report"
-            element={
-              <PrivateRoute
-                redirectTo="/login"
-                component={
-                  <SwitchProvider>
-                    <Report />
-                  </SwitchProvider>
-                }
-              />
-            }
-          />
-          <Route path="*" element={<div>page not found</div>} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <PrivateRoute redirectTo="/login" component={<Operations />} />
+          }
+        />
+        <Route
+          path="/login"
+          element={<RestrictedRoute redirectTo="/" component={<AuthPage />} />}
+        />
+        <Route
+          path="/income"
+          element={
+            <PrivateRoute redirectTo="/login" component={<IncomePage />} />
+          }
+        />
+        <Route
+          path="/report"
+          element={
+            <PrivateRoute
+              redirectTo="/login"
+              component={
+                <SwitchProvider>
+                  <Report />
+                </SwitchProvider>
+              }
+            />
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 };
