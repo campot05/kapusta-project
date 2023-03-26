@@ -6,10 +6,7 @@ import {
   getExpenseSummary,
   getIncomeSummary,
 } from 'redux/transactions/trans-operations';
-import {
-  getExpensesTrans,
-  getIncomesTrans,
-} from 'redux/transactions/trans-selectors';
+import { getIncomesTrans } from 'redux/transactions/trans-selectors';
 import {
   Amount,
   Category,

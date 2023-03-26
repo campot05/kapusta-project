@@ -12,7 +12,6 @@ import { Balance } from 'components/Balance/Balance';
 import { useWindowSize } from 'react-use';
 import React from 'react';
 import { ReactComponent as Reports } from '../../images/reports.svg';
-import { ReactComponent as ArrowBack } from '../../images/arrowBack.svg';
 import IncomesTransTable from 'components/IncomesTransTable/IncomesTransTable';
 import MobileIncomeTrans from 'components/MobileIncomeTrans/MobileIncomeTrans';
 import { Wrap } from './IncomePage.styled';
