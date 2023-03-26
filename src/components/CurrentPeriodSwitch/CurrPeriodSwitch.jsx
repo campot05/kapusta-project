@@ -33,7 +33,7 @@ export const CurrPeriodSwitch = ({ setChartToDefault = () => null }) => {
     setIdx(idx);
   };
 
-  if (!expensesMonths || !incomeMonths) return;
+  if (!expensesMonths || !incomeMonths) return null;
   const monthListExpense = createMonthList(expensesMonths);
   const monthListIncome = createMonthList(incomeMonths);
   const allMonths = [...monthListExpense, ...monthListIncome];

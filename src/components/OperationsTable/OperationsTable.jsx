@@ -109,11 +109,11 @@ export default function OperationsTable() {
           color: '#000000',
         }}
       >
-        <p style={{ marginRight: '100px' }}>DATE</p>
-        <p style={{ marginRight: '100px' }}>DESCRIPTION</p>
-        <p style={{ marginRight: '130px' }}>CATEGORY</p>
-        <p style={{ marginRight: '' }}>SUM</p>
-        <p style={{ marginRight: '' }}></p>
+        <p style={{ width: '20%' }}>DATE</p>
+        <p style={{ width: '23%' }}>DESCRIPTION</p>
+        <p style={{ width: '26%' }}>CATEGORY</p>
+        <p>SUM</p>
+        <p></p>
       </div>
 
       <TableContainer
@@ -148,6 +148,16 @@ export default function OperationsTable() {
                   return (
                     <TableRow key={row._id}>
                       {columns.map(column => {
+                        let formattedAmount;
+                        if (column.id === 'amount') {
+                          formattedAmount = row[column.id].toLocaleString(
+                            'ru-RU',
+                            {
+                              style: 'decimal',
+                              minimumFractionDigits: 2,
+                            }
+                          );
+                        }
                         const value = row[column.id];
                         return (
                           <TableCell
@@ -171,7 +181,7 @@ export default function OperationsTable() {
                             {column.id === 'description' && value}
                             {column.id === 'category' && value}
                             {column.id === 'amount' &&
-                              `- ${value.toFixed(2)} UAH.`}
+                              `- ${formattedAmount} UAH.`}
                             {column.id === 'del' && <DeleteBtn id={row._id} />}
                           </TableCell>
                         );

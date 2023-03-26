@@ -23,6 +23,7 @@ import recycleBin from './recycleBin.svg';
 import { ReactComponent as ArrowNext } from './arrowNext.svg';
 import { ReactComponent as ArrowPrev } from './arrowPrev.svg';
 import { ReactComponent as ArrowBack } from './arrowBack.svg';
+import { ReactComponent as FinanceAmico } from './finance-amico.svg';
 import cabbageColored from './cabbageColored.svg';
 
 export {
@@ -52,4 +53,5 @@ export {
   ArrowPrev,
   ArrowBack,
   cabbageColored,
+  FinanceAmico,
 };

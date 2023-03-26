@@ -23,6 +23,9 @@ export const WrapperForm = styled.div`
 
     justify-content: center;
   }
+  @media ${DEVICE.laptop} {
+    flex: 1 0;
+  }
 `;
 export const Title = styled.h2`
   display: flex;

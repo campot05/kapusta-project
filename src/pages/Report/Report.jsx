@@ -23,11 +23,7 @@ import { ExpIncMenu } from 'components/ExpIncMenu/ExpIncMenu';
 import { ExpIncSwitch } from 'components/ExpIncSwitch/ExpIncSwitch';
 import { useSwitchContext } from 'contexts/SwitchProvider';
 import BarChart from 'components/BarChart/BarChart';
-import {
-  getExpenseCategories,
-  getIncomeCategories,
-  getPeriodData,
-} from 'redux/transactions/trans-operations';
+import { getPeriodData } from 'redux/transactions/trans-operations';
 import { useAuth } from 'hooks';
 import { format } from 'date-fns';
 import { useWindowSize } from 'react-use';
@@ -79,14 +75,6 @@ export default function Reports() {
     if (isRefreshing) return;
     dispatch(getPeriodData(format(new Date(), 'yyyy-MM')));
   }, [dispatch, isRefreshing]);
-
-  // NEED TO COMMENT AND ERASE AFTER =======
-  useEffect(() => {
-    if (isRefreshing) return;
-    dispatch(getIncomeCategories());
-    dispatch(getExpenseCategories());
-  }, [dispatch, isRefreshing]);
-  // =========================================
 
   if (!transByDate || !categoriesExpense || !categoriesIncome) return null;
 

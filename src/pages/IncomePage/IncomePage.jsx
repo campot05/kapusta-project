@@ -12,8 +12,9 @@ import { Balance } from 'components/Balance/Balance';
 import { useWindowSize } from 'react-use';
 import React from 'react';
 import { ReactComponent as Reports } from '../../images/reports.svg';
-import { ReactComponent as ArrowBack } from '../../images/arrowBack.svg';
 import IncomesTransTable from 'components/IncomesTransTable/IncomesTransTable';
+import MobileIncomeTrans from 'components/MobileIncomeTrans/MobileIncomeTrans';
+import { Wrap } from './IncomePage.styled';
 export default function Home() {
   const { width } = useWindowSize();
 
@@ -22,17 +23,20 @@ export default function Home() {
       <ContainerDiv>
         {width < 767.98 && (
           <ToTransactionLink to="/mobileincome">
-            <ArrowBack style={{ fill: '#FF751D', marginLeft: '22px' }} />
-            TO TRANSACTION
+            CREATE TRANSACTION
           </ToTransactionLink>
         )}
-        <LinkReport to="/report">
-          Reports
-          <Reports />
-        </LinkReport>
 
-        <Balance />
+        <Wrap>
+          <LinkReport to="/report">
+            Reports
+            <Reports style={{ marginLeft: 20 }} />
+          </LinkReport>
 
+          <Balance />
+        </Wrap>
+
+        {width < 767.98 && <MobileIncomeTrans />}
         <TransactionButtons />
         {width >= 768 && width < 1280 && (
           <>
