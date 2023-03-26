@@ -7,11 +7,13 @@ import { Balance } from 'components/Balance/Balance';
 import IncomesTransTable from 'components/IncomesTransTable/IncomesTransTable';
 import IncomeSummery from 'components/IncomeSummery/IncomeSummery';
 import { Wrapper } from './IncomePage.styled';
+import MobileIncomeTrans from 'components/MobileIncomeTrans/MobileIncomeTrans';
 
 export default function Home() {
   return (
     <Background type="Main">
       <Balance />
+      <MobileIncomeTrans />
       <div>
         <TransactionButtons />
         <TransactionsContainer>

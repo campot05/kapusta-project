@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <Background type="Main">
       <Balance />
+      <MobileExpensesTrans />
       <TransactionButtons />
       <TransactionsContainer>
         <InputArea />
@@ -20,7 +21,6 @@ export default function Home() {
           <Summary />
         </Wrapper>
       </TransactionsContainer>
-      <MobileExpensesTrans />
 
       <Link to="/report" style={{ display: 'block' }}>
         REPORT

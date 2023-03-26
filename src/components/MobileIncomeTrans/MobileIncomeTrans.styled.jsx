@@ -56,7 +56,7 @@ export const Amount = styled.span`
   line-height: 1.17;
   letter-spacing: 0.04em;
 
-  color: #e7192e;
+  color: #407946;
 `;
 
 export const Line = styled.div`

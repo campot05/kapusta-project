@@ -2,8 +2,14 @@ import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
 import { useAuth } from 'hooks';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExpenseSummary } from 'redux/transactions/trans-operations';
-import { getExpensesTrans } from 'redux/transactions/trans-selectors';
+import {
+  getExpenseSummary,
+  getIncomeSummary,
+} from 'redux/transactions/trans-operations';
+import {
+  getExpensesTrans,
+  getIncomesTrans,
+} from 'redux/transactions/trans-selectors';
 import {
   Amount,
   Category,
@@ -13,10 +19,10 @@ import {
   Line,
   List,
   Wrapper,
-} from './MobileExpensesTrans.styled';
+} from './MobileIncomeTrans.styled';
 
-export default function MobileExpensesTrans() {
-  const allExpensesTrans = useSelector(getExpensesTrans);
+export default function MobileIncomeTrans() {
+  const allIncomeTrans = useSelector(getIncomesTrans);
 
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
@@ -25,21 +31,22 @@ export default function MobileExpensesTrans() {
     if (isRefreshing) {
       return;
     }
-    dispatch(getExpenseSummary());
+    dispatch(getIncomeSummary());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
 
-  if (allExpensesTrans === null) {
+  if (allIncomeTrans === null) {
     return;
   }
 
   return (
     <List>
-      {allExpensesTrans.map(({ _id, amount, category, description, date }) => {
+      {allIncomeTrans.map(({ _id, amount, category, description, date }) => {
         const formattedAmount = amount.toLocaleString('ru-RU', {
           style: 'decimal',
           minimumFractionDigits: 2,
         });
+
         return (
           <div key={_id}>
             <Item>
@@ -50,7 +57,7 @@ export default function MobileExpensesTrans() {
                   <Descr>{description}</Descr>
                 </div>
               </Wrapper>
-              <Amount>{`- ${formattedAmount} UAH.`}</Amount>
+              <Amount>{`${formattedAmount} UAH.`}</Amount>
               <DeleteBtn />
             </Item>
             <Line />
