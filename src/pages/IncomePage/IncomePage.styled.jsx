@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-
 export const ContainerDiv = styled.div`
   max-width: 1130px;
   padding: 0px 15px;
@@ -38,6 +37,7 @@ text-decoration: none;
 export const LinkReport = styled(NavLink)`
 gap: 20px;
 margin-top: 24px;
+
 margin-bottom: 35px;
 display: flex;
 justify-content: center;

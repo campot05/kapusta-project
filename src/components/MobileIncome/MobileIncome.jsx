@@ -11,7 +11,8 @@ import { ReactComponent as Calendar } from '../../images/calendar.svg';
 import { ReactComponent as Calculator } from '../../images/calculator.svg';
 import {
   addIncome,
-  getIncomeCategories,
+      getIncomeCategories,
+  getIncomeSummary
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
 import {
@@ -33,9 +34,9 @@ import {
   FormWrapper,
   InputWrapper,
   DescriptionWrapper,
-} from './IncomeInput.styled';
+} from './MobileIncome.styled';
 
-const IncomeInput = ({ value }) => {
+ const MobileIncome = ({value}) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
@@ -52,7 +53,7 @@ const IncomeInput = ({ value }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
   const transactions = useSelector(selectIncomeCategories);
-
+//console.log(transactions)
   const handleChangeList = event => {
     setCategory(event.target.value);
   };
@@ -70,7 +71,9 @@ const IncomeInput = ({ value }) => {
       amount: Number(amount),
     };
 
-    dispatch(addIncome(userEnteredData));
+   dispatch(addIncome(userEnteredData))
+      .unwrap()
+      .then(() => dispatch(getIncomeSummary()));
     resetForm();
     // return;
   };
@@ -106,13 +109,11 @@ const IncomeInput = ({ value }) => {
       resetForm();
     }
   }, [value]);
-
   // useEffect(() => {
   //    dispatch
   //   }, []);
 
   return (
-
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
         <DateWrapper>
@@ -138,7 +139,7 @@ const IncomeInput = ({ value }) => {
             maxLength = '25'
           />
 
-          <FormControl sx={{ m: 1, minWidth: 169 }}>
+          <FormControl sx={{ m: 1, minWidth: 169 }} >
             <InputLabel
               id="demo-simple-select-autowidth-label"
               style={{
@@ -146,7 +147,8 @@ const IncomeInput = ({ value }) => {
                 color: '#c7ccdc',
                 lineHeight: '1.14',
                 paddingLeft: '12px',
-                paddingTop: '9px',
+                    paddingTop: '9px',
+                
               }}
             >
               Product category
@@ -160,14 +162,14 @@ const IncomeInput = ({ value }) => {
               variant="standard"
               disableUnderline={true}
               style={{
-                border: '2px solid rgb(246, 247, 252)',
+                    border: '2px solid rgb(255, 255, 255)',
+                    width: '280px',
                 height: '44px',
                 top: '-8px',
                 color: '#c7ccdc',
-                fontSize: '12px',
-                 paddingLeft: '20px',
+                    fontSize: '12px',
+                paddingLeft: '20px',
                 paddingTop: '9px',
-               
               }}
             >
               {transactions.map(el => (
@@ -192,7 +194,8 @@ const IncomeInput = ({ value }) => {
               style={{
                 fill: 'black',
                 position: 'absolute',
-                marginRight: '23px',
+                                            marginRight: '23px',
+                marginTop: '50px'
               }}
             />
 
@@ -214,8 +217,6 @@ const IncomeInput = ({ value }) => {
         </Button>
       </ButtonWrapper>
     </FormWrapper>
-  
   );
-};
-
-export default IncomeInput;
+}
+export default MobileIncome;

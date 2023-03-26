@@ -1,14 +1,4 @@
 import styled from 'styled-components';
-const SIZE = {
-  mobile: '320px',
-  tablet: '768px',
-  laptop: '1280px',
-};
-const DEVICE = {
-  mobile: `screen and (min-width: ${SIZE.mobile})`,
-  tablet: `screen and (min-width: ${SIZE.tablet})`,
-  laptop: `screen and (min-width: ${SIZE.laptop})`,
-};
 
 export const FormWrapper = styled.form`
   display: flex;
@@ -48,13 +38,14 @@ export const DateSelection = styled.input`
   color: #52555f;
 
   &::-webkit-calendar-picker-indicator {
-    color: rgba(0, 0, 0, 0);
-    z-index: 0;
+   fill: transparent; 
+    z-index: 1; 
     width: 90px;
     height: 100%;
-    opacity: 0;
-    position: absolute;
-    left: 0;
+   opacity: 0;
+pointer-events: all;
+   position: absolute;
+    left: 200px;
     top: 0;
     cursor: pointer;
   }

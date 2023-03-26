@@ -33,8 +33,9 @@ import {
   InputWrapper,
   DescriptionWrapper,
 } from './MobileInput.styled';
+import { click } from '@testing-library/user-event/dist/click';
 
-export const MobileInput = ({value}) => {
+ const MobileInput = ({value}) => {
    const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
@@ -51,7 +52,7 @@ export const MobileInput = ({value}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
   const transactions = useSelector(selectExpenseCategories);
-
+ 
   const handleChangeList = event => {
     setCategory(event.target.value);
   };
@@ -77,7 +78,8 @@ export const MobileInput = ({value}) => {
     // return;
   };
 
-  const handleChange = ({ target: { name, value } }) => {
+   const handleChange = ({ target: { name, value } }) => {
+  
     switch (name) {
       case 'date':
         setDate(value);
@@ -125,7 +127,9 @@ export const MobileInput = ({value}) => {
             dateFormat="yyyy-MM-dd"
             onChange={handleChange}
             type="date"
+            id='123'
             value={date}
+           // onClick={() => document.querySelectorById('123').click}
           />
         </DateWrapper>
         <DescriptionWrapper>
@@ -219,3 +223,4 @@ export const MobileInput = ({value}) => {
     </FormWrapper>
   );
 }
+export default MobileInput;

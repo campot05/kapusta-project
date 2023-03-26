@@ -8,12 +8,15 @@ import { PrivateRoute } from 'routes/PrivateRoutes';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import Layout from 'pages/Layout/Layout';
 import SwitchProvider from 'contexts/SwitchProvider.js';
-import MobileInputPage from 'pages/MobileInputPage/MobileInputPage.jsx';
+
 
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage.jsx'));
 const Operations = lazy(() => import('../pages/Operations/Operations'));
 const Report = lazy(() => import('../pages/Report/Report'));
 const IncomePage = lazy(() => import('../pages/IncomePage/IncomePage'))
+const MobileInputPage = lazy(() => import('../pages/MobileInputPage/MobileInputPage'))
+const MobileIncomePage = lazy(() => import('../pages/MobileIncomePage/MobileIncomePage'))
+
 export const App = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
@@ -40,7 +43,9 @@ export const App = () => {
           path="/login"
           element={<RestrictedRoute redirectTo="/" component={<AuthPage />} />}
         />
-        <Route path='/mobileinput' element={<PrivateRoute redirectTo='/login' component={<MobileInputPage/> } /> } />
+        <Route path='/mobileinput' element={<PrivateRoute redirectTo='/login' component={<MobileInputPage />} />} />
+        <Route path='/mobileincome' element={<PrivateRoute redirectTo='/income' component={<MobileIncomePage />} />} /> 
+
         <Route path='/income' element={<PrivateRoute redirectTo='/login' component={<IncomePage/> } /> } />
         <Route
           path="/report"

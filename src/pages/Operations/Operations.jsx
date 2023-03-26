@@ -1,7 +1,7 @@
 import { LinkReport, ToTransactionLink } from './Operations.styled';
 import InputArea from 'components/InputArea';
 import TransactionButtons from 'components/TransactionButtons';
-import { TransactionsContainer, Wrapper } from './Operations.styled';
+import { TransactionsContainer, Wrapper, ContainerDiv } from './Operations.styled';
 import OperationsTable from 'components/OperationsTable/OperationsTable';
 import Background from 'components/Background/Background';
 import Summary from 'components/Summary/Summary';
@@ -16,6 +16,7 @@ export default function Home() {
 
   return (
     <Background type="Main">
+      <ContainerDiv>
       {width < 768 && (
         <ToTransactionLink to='/mobileinput'>
           <ArrowBack style={{fill: '#FF751D', marginLeft:'22px'}}/>
@@ -38,7 +39,7 @@ export default function Home() {
         </Wrapper>
       </TransactionsContainer>
       )}
-     
+     </ContainerDiv>
     </Background>
   );
 }
