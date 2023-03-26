@@ -50,3 +50,13 @@ export const Buttons = styled.div`
     left: 0;
   }
 `;
+
+export const Wrapper = styled.div`
+  @media (max-width: 767.98px) {
+    position: fixed;
+    width: 100vw;
+    height: 40px;
+    bottom: 0;
+    background-color: white;
+  } ;
+`;
