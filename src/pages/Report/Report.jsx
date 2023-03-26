@@ -88,7 +88,7 @@ export default function Reports() {
   }, [dispatch, isRefreshing]);
   // =========================================
 
-  if (!transByDate || !categoriesExpense || !categoriesIncome) return;
+  if (!transByDate || !categoriesExpense || !categoriesIncome) return null;
 
   const { incomes } = transByDate;
   const { expenses } = transByDate;
@@ -162,7 +162,7 @@ export default function Reports() {
             idx % 1 === 0 && idx % 4 === 0 ? '#FF751D' : '#FED9BF'
           ),
           borderRadius: 10,
-          barPercentage:0.5,
+          barPercentage: 0.5,
         },
       ],
     });

@@ -53,6 +53,7 @@ const MobileIncome = ({ value }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
   const transactions = useSelector(selectIncomeCategories);
+  //console.log(transactions)
   const handleChangeList = event => {
     setCategory(event.target.value);
   };
