@@ -4,7 +4,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useEffect, useState } from 'react';
 import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
@@ -16,7 +15,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   tableContainer: {
-    maxHeight: 400,
     overflow: 'auto',
     '&::-webkit-scrollbar': {
       width: '0.4em',
@@ -95,7 +93,6 @@ export default function OperationsTable() {
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         marginTop: '62px',
-        maxHeight: 397,
         overflowY: 'scrool',
       }}
     >
@@ -104,7 +101,6 @@ export default function OperationsTable() {
           display: 'flex',
           backgroundColor: '#F5F6FB',
           justifyContent: 'flex-start',
-          backgroundColor: '#F5F6FB',
           padding: '12px 25px',
           fontWeight: 700,
           fontSize: '12px',
@@ -122,7 +118,7 @@ export default function OperationsTable() {
 
       <TableContainer
         sx={{
-          maxHeight: 410,
+          maxHeight: '342px',
         }}
         className={classes.tableContainer}
       >
