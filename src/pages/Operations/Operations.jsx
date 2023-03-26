@@ -6,6 +6,7 @@ import OperationsTable from 'components/OperationsTable/OperationsTable';
 import Background from 'components/Background/Background';
 import Summary from 'components/Summary/Summary';
 import { Balance } from 'components/Balance/Balance';
+import MobileExpensesTrans from 'components/MobileExpensesTrans/MobileExpensesTrans';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
           <Summary />
         </Wrapper>
       </TransactionsContainer>
+      <MobileExpensesTrans />
 
       <Link to="/report" style={{ display: 'block' }}>
         REPORT
