@@ -17,11 +17,11 @@ import { ReactComponent as ArrowBack } from '../../images/arrowBack.svg';
 
 export default function Home() {
   const { width } = useWindowSize();
-
+  console.log(width);
   return (
     <Background type="Main">
       <ContainerDiv>
-        {width < 768 && (
+        {width < 767.98 && (
           <ToTransactionLink to="/mobileinput">
             <ArrowBack style={{ fill: '#FF751D', marginLeft: '22px' }} />
             TO TRANSACTION
@@ -34,7 +34,18 @@ export default function Home() {
 
         <Balance />
         <TransactionButtons />
-        {width > 768 && (
+        {width >= 768 && width < 1280 && (
+          <>
+            <TransactionsContainer>
+              <InputArea />
+              <Wrapper>
+                <OperationsTable />
+              </Wrapper>
+            </TransactionsContainer>
+            <Summary />
+          </>
+        )}
+        {width >= 1280 && (
           <TransactionsContainer>
             <InputArea />
             <Wrapper>

@@ -33,10 +33,9 @@ import {
   InputWrapper,
   DescriptionWrapper,
 } from './MobileInput.styled';
-import { click } from '@testing-library/user-event/dist/click';
 
- const MobileInput = ({value}) => {
-   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
+const MobileInput = ({ value }) => {
+  const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
   const dispatch = useDispatch();
@@ -52,7 +51,7 @@ import { click } from '@testing-library/user-event/dist/click';
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
   const transactions = useSelector(selectExpenseCategories);
- 
+
   const handleChangeList = event => {
     setCategory(event.target.value);
   };
@@ -78,8 +77,7 @@ import { click } from '@testing-library/user-event/dist/click';
     // return;
   };
 
-   const handleChange = ({ target: { name, value } }) => {
-  
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'date':
         setDate(value);
@@ -127,9 +125,9 @@ import { click } from '@testing-library/user-event/dist/click';
             dateFormat="yyyy-MM-dd"
             onChange={handleChange}
             type="date"
-            id='123'
+            id="123"
             value={date}
-           // onClick={() => document.querySelectorById('123').click}
+            // onClick={() => document.querySelectorById('123').click}
           />
         </DateWrapper>
         <DescriptionWrapper>
@@ -140,10 +138,10 @@ import { click } from '@testing-library/user-event/dist/click';
             onChange={handleChange}
             type="text"
             value={description}
-            maxLength = '25'
+            maxLength="25"
           />
 
-          <FormControl sx={{ m: 1, minWidth: 169 }} >
+          <FormControl sx={{ m: 1, minWidth: 169 }}>
             <InputLabel
               id="demo-simple-select-autowidth-label"
               style={{
@@ -151,8 +149,7 @@ import { click } from '@testing-library/user-event/dist/click';
                 color: '#c7ccdc',
                 lineHeight: '1.14',
                 paddingLeft: '12px',
-                    paddingTop: '9px',
-                
+                paddingTop: '9px',
               }}
             >
               Product category
@@ -166,12 +163,12 @@ import { click } from '@testing-library/user-event/dist/click';
               variant="standard"
               disableUnderline={true}
               style={{
-                    border: '2px solid rgb(255, 255, 255)',
-                    width: '280px',
+                border: '2px solid rgb(255, 255, 255)',
+                width: '280px',
                 height: '44px',
                 top: '-8px',
                 color: '#c7ccdc',
-                    fontSize: '12px',
+                fontSize: '12px',
                 paddingLeft: '20px',
                 paddingTop: '9px',
               }}
@@ -192,18 +189,15 @@ import { click } from '@testing-library/user-event/dist/click';
               min="0.01"
               step="0.01"
               value={amount}
-             
             />
             <Calculator
               style={{
                 fill: 'black',
                 position: 'absolute',
-                                            marginRight: '23px',
-                marginTop: '50px'
+                marginRight: '23px',
+                marginTop: '50px',
               }}
             />
-
-           
           </CountWrapper>
         </DescriptionWrapper>
       </InputWrapper>
@@ -222,5 +216,5 @@ import { click } from '@testing-library/user-event/dist/click';
       </ButtonWrapper>
     </FormWrapper>
   );
-}
+};
 export default MobileInput;

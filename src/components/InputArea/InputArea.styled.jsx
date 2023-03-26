@@ -14,7 +14,11 @@ export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  display: none;
   @media ${DEVICE.tablet} {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   @media ${DEVICE.laptop} {
     flex-direction: row;
@@ -33,6 +37,7 @@ export const InputWrapper = styled.div`
 
   @media ${DEVICE.tablet} {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     height: 44px;
   }
@@ -110,9 +115,7 @@ export const DescriptionInput = styled.input`
   }
 `;
 
-export const FormControl = styled.input`
-  
-`;
+export const FormControl = styled.input``;
 
 export const CountWrapper = styled.div`
   @media ${DEVICE.tablet} {

@@ -21,7 +21,7 @@ const columns = [
     paddingLeft: '20px',
     maxWidth: 120,
   },
-  { id: 'description', label: 'DESCRIPTION', minWidth: 220 },
+  { id: 'description', label: 'DESCRIPTION', minWidth: 190 },
   {
     id: 'category',
     label: 'CATEGORY',
@@ -72,7 +72,7 @@ export default function OperationsTable() {
   return (
     <Paper
       sx={{
-        maxWidth: 746,
+        width: 746,
         overflow: 'hidden',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
