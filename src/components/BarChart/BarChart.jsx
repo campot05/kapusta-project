@@ -13,7 +13,7 @@ const BarChart = ({ chartData }) => {
         const ratio = {
             mobile:5,
             tablet:29,
-            desktop:55,
+            desktop:40,
         }
 
         if(width <= 480 && numOfElem >= 13){
@@ -42,7 +42,6 @@ const BarChart = ({ chartData }) => {
       else{
         chartBox.style.height = `410px`;
       }
-      console.log('newHeigth',chartBox?.style?.height)
       // eslint-disable-next-line
     },[numOfElem])
 

@@ -1,9 +1,13 @@
 import css from './ExpIncMenuItem.module.scss';
+import {motion} from 'framer-motion';
 
-export const ExpIncMenuItem = ({ item, onCategoryClick = () => null }) => {
+export const ExpIncMenuItem = ({ idx,item, onCategoryClick = () => null }) => {
   const { total, category, SvgIcon } = item;
   return (
-    <div className={css.item}>
+    <motion.div 
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.9 }}
+    className={css.item}>
       <p className={css.total}>{total}</p>
       <button
         className={css.btn}
@@ -11,6 +15,6 @@ export const ExpIncMenuItem = ({ item, onCategoryClick = () => null }) => {
       ></button>
       <SvgIcon className={css.icon} />
       <p className={css.category}>{category}</p>
-    </div>
+    </motion.div>
   );
 };

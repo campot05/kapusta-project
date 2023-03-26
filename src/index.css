@@ -15,3 +15,7 @@ code {
 p {
   margin: 0;
 }
+
+li,ul{
+  list-style-type: none;
+}
