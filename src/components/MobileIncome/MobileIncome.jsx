@@ -11,8 +11,8 @@ import { ReactComponent as Calendar } from '../../images/calendar.svg';
 import { ReactComponent as Calculator } from '../../images/calculator.svg';
 import {
   addIncome,
-      getIncomeCategories,
-  getIncomeSummary
+  getIncomeCategories,
+  getIncomeSummary,
   // eslint-disable-next-line
 } from '../../redux/transactions/trans-operations';
 import {
@@ -36,7 +36,7 @@ import {
   DescriptionWrapper,
 } from './MobileIncome.styled';
 
- const MobileIncome = ({value}) => {
+const MobileIncome = ({ value }) => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = React.useState('');
@@ -53,7 +53,6 @@ import {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRefreshing]);
   const transactions = useSelector(selectIncomeCategories);
-//console.log(transactions)
   const handleChangeList = event => {
     setCategory(event.target.value);
   };
@@ -71,7 +70,7 @@ import {
       amount: Number(amount),
     };
 
-   dispatch(addIncome(userEnteredData))
+    dispatch(addIncome(userEnteredData))
       .unwrap()
       .then(() => dispatch(getIncomeSummary()));
     resetForm();
@@ -136,10 +135,10 @@ import {
             onChange={handleChange}
             type="text"
             value={description}
-            maxLength = '25'
+            maxLength="25"
           />
 
-          <FormControl sx={{ m: 1, minWidth: 169 }} >
+          <FormControl sx={{ m: 1, minWidth: 169 }}>
             <InputLabel
               id="demo-simple-select-autowidth-label"
               style={{
@@ -147,8 +146,7 @@ import {
                 color: '#c7ccdc',
                 lineHeight: '1.14',
                 paddingLeft: '12px',
-                    paddingTop: '9px',
-                
+                paddingTop: '9px',
               }}
             >
               Product category
@@ -162,12 +160,12 @@ import {
               variant="standard"
               disableUnderline={true}
               style={{
-                    border: '2px solid rgb(255, 255, 255)',
-                    width: '280px',
+                border: '2px solid rgb(255, 255, 255)',
+                width: '280px',
                 height: '44px',
                 top: '-8px',
                 color: '#c7ccdc',
-                    fontSize: '12px',
+                fontSize: '12px',
                 paddingLeft: '20px',
                 paddingTop: '9px',
               }}
@@ -188,18 +186,15 @@ import {
               min="0.01"
               step="0.01"
               value={amount}
-             
             />
             <Calculator
               style={{
                 fill: 'black',
                 position: 'absolute',
-                                            marginRight: '23px',
-                marginTop: '50px'
+                marginRight: '23px',
+                marginTop: '50px',
               }}
             />
-
-           
           </CountWrapper>
         </DescriptionWrapper>
       </InputWrapper>
@@ -218,5 +213,5 @@ import {
       </ButtonWrapper>
     </FormWrapper>
   );
-}
+};
 export default MobileIncome;

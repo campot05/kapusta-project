@@ -17,7 +17,6 @@ import { ReactComponent as ArrowBack } from '../../images/arrowBack.svg';
 
 export default function Home() {
   const { width } = useWindowSize();
-  console.log(width);
   return (
     <Background type="Main">
       <ContainerDiv>

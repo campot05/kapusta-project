@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIncomesTrans } from 'redux/transactions/trans-selectors';
 import { getIncomeSummary } from 'redux/transactions/trans-operations';
 import { useAuth } from 'hooks';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme => ({
   tableContainer: {
