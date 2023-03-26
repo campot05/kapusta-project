@@ -5,6 +5,9 @@ export const ContainerDiv = styled.div`
   max-width: 1130px;
   padding: 0px 15px;
   margin: 0 auto;
+  @media (max-width: 767.98px) {
+    max-width: 480px;
+  }
 `;
 export const TransactionsContainer = styled.div`
   margin: 0 auto;
@@ -42,13 +45,14 @@ export const ToTransactionLink = styled(NavLink)`
   text-transform: uppercase;
   color: #000000;
   text-decoration: none;
+  margin-left: 20px;
 `;
 export const LinkReport = styled(NavLink)`
   gap: 20px;
   margin-top: 24px;
   margin-bottom: 35px;
-  display: flex;
-  justify-content: center;
+  display: inline-block;
+
   align-items: baseline;
   font-family: 'Roboto';
   font-style: normal;
@@ -60,9 +64,16 @@ export const LinkReport = styled(NavLink)`
   color: rgba(82, 85, 95, 0.7);
   text-decoration: none;
   @media screen and (min-width: 768px) {
-    justify-content: end;
-    top: 67px;
-    position: relative;
-    margin-top: 0;
+    margin-left: auto;
+  }
+`;
+
+export const Wrap = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: center;
+  @media (max-width: 767.98px) {
+    flex-direction: column;
   }
 `;

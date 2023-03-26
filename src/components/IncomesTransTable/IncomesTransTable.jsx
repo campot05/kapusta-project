@@ -79,10 +79,10 @@ export default function IncomesTransTable() {
     if (!allIncomesTrans) {
       return;
     }
-    if (allIncomesTrans.length >= 15) {
+    if (allIncomesTrans.length >= 14) {
       return;
     }
-    setEmptyRowCount(15 - allIncomesTrans.length);
+    setEmptyRowCount(14 - allIncomesTrans.length);
   }, [allIncomesTrans]);
 
   return (
@@ -93,7 +93,6 @@ export default function IncomesTransTable() {
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         marginTop: '62px',
-        overflowY: 'scrool',
       }}
     >
       <div
@@ -109,9 +108,9 @@ export default function IncomesTransTable() {
           color: '#000000',
         }}
       >
-        <p style={{ marginRight: '95px' }}>DATE</p>
-        <p style={{ marginRight: '116px' }}>DESCRIPTION</p>
-        <p style={{ marginRight: '130px' }}>CATEGORY</p>
+        <p style={{ width: '18%' }}>DATE</p>
+        <p style={{ width: '26%' }}>DESCRIPTION</p>
+        <p style={{ width: '27%' }}>CATEGORY</p>
         <p style={{ marginRight: '' }}>SUM</p>
         <p style={{ marginRight: '' }}></p>
       </div>
@@ -147,6 +146,16 @@ export default function IncomesTransTable() {
                   return (
                     <TableRow key={row._id}>
                       {columns.map(column => {
+                        let formattedAmount;
+                        if (column.id === 'amount') {
+                          formattedAmount = row[column.id].toLocaleString(
+                            'ru-RU',
+                            {
+                              style: 'decimal',
+                              minimumFractionDigits: 2,
+                            }
+                          );
+                        }
                         const value = row[column.id];
                         return (
                           <TableCell
@@ -168,7 +177,7 @@ export default function IncomesTransTable() {
                             {column.id === 'description' && value}
                             {column.id === 'category' && value}
                             {column.id === 'amount' &&
-                              `${value.toFixed(2)} UAH.`}
+                              `${formattedAmount} UAH.`}
                             {column.id === 'del' && <DeleteBtn id={row._id} />}
                           </TableCell>
                         );

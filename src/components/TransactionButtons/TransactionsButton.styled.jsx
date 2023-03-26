@@ -4,8 +4,7 @@ export const LinkButton = styled(NavLink)`
   color: #000000;
   display: inline-block;
   text-decoration: none;
-  margin-top: 60px;
-
+  margin-top: 8px;
   background-color: #fafbfd;
   font-family: 'Roboto';
   font-style: normal;
@@ -15,7 +14,7 @@ export const LinkButton = styled(NavLink)`
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  width: 158px;
+  width: 160px;
   height: 40px;
   display: flex;
   align-items: center;
@@ -42,11 +41,12 @@ export const Buttons = styled.div`
   justify-content: center;
   position: fixed;
   bottom: 0;
-  justify-content: center;
-  width: 100%;
+  left: calc(50% - 160px);
 
+  justify-content: center;
   @media screen and (min-width: 767.98px) {
     justify-content: start;
     position: relative;
+    left: 0;
   }
 `;
