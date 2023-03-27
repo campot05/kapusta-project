@@ -61,9 +61,7 @@ const columns = [
 export default function OperationsTable() {
   const classes = useStyles();
   const allExpensesTrans = useSelector(getExpensesTrans);
-  const sortedTrans = [...allExpensesTrans].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
+
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
 
@@ -128,7 +126,12 @@ export default function OperationsTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableBody>
             {allExpensesTrans !== null ? (
-              [...sortedTrans, ...Array(emptyRowCount).fill(null)].map(row => {
+              [
+                ...[...allExpensesTrans].sort(
+                  (a, b) => new Date(b.date) - new Date(a.date)
+                ),
+                ...Array(emptyRowCount).fill(null),
+              ].map(row => {
                 if (!row) {
                   return (
                     <TableRow key={Math.random()}>
