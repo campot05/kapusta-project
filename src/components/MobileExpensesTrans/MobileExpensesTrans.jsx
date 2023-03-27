@@ -34,7 +34,7 @@ export default function MobileExpensesTrans() {
   }, [isRefreshing]);
 
   if (allExpensesTrans === null) {
-    return;
+    return null;
   }
 
   return (

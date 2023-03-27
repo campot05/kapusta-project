@@ -21,12 +21,10 @@ export const AppBar = () => {
   useEffect(() => {
     if (showModal) {
       window.addEventListener('keydown', handleKeyDown);
-      document.addEventListener('click', handleClickOutside);
     }
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('click', handleClickOutside);
     };
     // eslint-disable-next-line
   }, [showModal]);
@@ -35,11 +33,10 @@ export const AppBar = () => {
       closeModal();
     }
   };
-  const handleClickOutside = e => {
-    if (e.target.className.includes('Modal_overlay')) {
-      closeModal();
-    }
-  };
+  //   const handleClickOutside = e => {
+
+  //     closeModal();
+  //   };
 
   const closeModal = () => {
     setShowModal(false);

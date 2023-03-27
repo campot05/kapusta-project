@@ -12,6 +12,7 @@ import { getExpensesTrans } from 'redux/transactions/trans-selectors';
 import { getExpenseSummary } from 'redux/transactions/trans-operations';
 import { useAuth } from 'hooks';
 import { makeStyles } from '@mui/styles';
+import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
   tableContainer: {
@@ -60,7 +61,9 @@ const columns = [
 export default function OperationsTable() {
   const classes = useStyles();
   const allExpensesTrans = useSelector(getExpensesTrans);
-
+  const sortedTrans = [...allExpensesTrans].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
 
@@ -125,71 +128,71 @@ export default function OperationsTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableBody>
             {allExpensesTrans !== null ? (
-              [...allExpensesTrans, ...Array(emptyRowCount).fill(null)].map(
-                row => {
-                  if (!row) {
-                    return (
-                      <TableRow key={Math.random()}>
-                        {columns.map(column => (
-                          <TableCell
-                            key={column.id}
-                            align={column.align}
-                            style={{
-                              height: 40,
-                              paddingTop: 10,
-                              paddingBottom: 10,
-                            }}
-                          />
-                        ))}
-                      </TableRow>
-                    );
-                  }
-
+              [...sortedTrans, ...Array(emptyRowCount).fill(null)].map(row => {
+                if (!row) {
                   return (
-                    <TableRow key={row._id}>
-                      {columns.map(column => {
-                        let formattedAmount;
-                        if (column.id === 'amount') {
-                          formattedAmount = row[column.id].toLocaleString(
-                            'ru-RU',
-                            {
-                              style: 'decimal',
-                              minimumFractionDigits: 2,
-                            }
-                          );
-                        }
-                        const value = row[column.id];
-                        return (
-                          <TableCell
-                            key={column.id}
-                            align={column.align}
-                            className={classes.tableCell}
-                            style={{
-                              height: 40,
-                              paddingTop: 3.5,
-                              paddingBottom: 3.5,
-                              fontWeight: column.id === 'amount' ? 700 : 400,
-                              fontSize: '12px',
-                              lineHeight: 1.17,
-                              letterSpacing: '0.04em',
-
-                              color:
-                                column.id === 'amount' ? '#E7192E' : '#52555F',
-                            }}
-                          >
-                            {column.id === 'date' && value.split('-').join('.')}
-                            {column.id === 'description' && value}
-                            {column.id === 'category' && value}
-                            {column.id === 'amount' &&
-                              `- ${formattedAmount} UAH.`}
-                            {column.id === 'del' && <DeleteBtn id={row._id} />}
-                          </TableCell>
-                        );
-                      })}
+                    <TableRow key={Math.random()}>
+                      {columns.map(column => (
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          style={{
+                            height: 40,
+                            paddingTop: 10,
+                            paddingBottom: 10,
+                          }}
+                        />
+                      ))}
                     </TableRow>
                   );
                 }
-              )
+
+                return (
+                  <TableRow key={row._id}>
+                    {columns.map(column => {
+                      let formattedAmount;
+                      if (column.id === 'amount') {
+                        formattedAmount = row[column.id].toLocaleString(
+                          'ru-RU',
+                          {
+                            style: 'decimal',
+                            minimumFractionDigits: 2,
+                          }
+                        );
+                      }
+                      const value = row[column.id];
+                      return (
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          className={classes.tableCell}
+                          style={{
+                            height: 40,
+                            paddingTop: 3.5,
+                            paddingBottom: 3.5,
+                            fontWeight: column.id === 'amount' ? 700 : 400,
+                            fontSize: '12px',
+                            lineHeight: 1.17,
+                            letterSpacing: '0.04em',
+
+                            color:
+                              column.id === 'amount' ? '#E7192E' : '#52555F',
+                          }}
+                        >
+                          {column.id === 'date' &&
+                            moment(value).format('DD.MM.YYYY')}
+
+                          {column.id === 'description' && value}
+                          {column.id === 'category' && value}
+                          {column.id === 'amount' &&
+                            `- ${formattedAmount} UAH.`}
+                          {column.id === 'del' && <DeleteBtn id={row._id} />}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })
             ) : (
               <TableRow>
                 <TableCell />
