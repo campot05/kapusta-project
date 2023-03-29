@@ -9,11 +9,11 @@ export const registerUser = createAsyncThunk(
     try {
       const res = await axios.post('/auth/register', credentials);
 
-      Notify.success('Successfully registered, you can log in 👌');
+      Notify.success('Successfully registered 👌, welcome');
       return res.data;
     } catch (error) {
       Notify.failure(
-        'This email may already be registered, please try again 😢'
+        `Email ${credentials.email} already registered, please login or enter another email`
       );
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -29,7 +29,7 @@ export const logIn = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      Notify.failure('Повторите ещё раз');
+      Notify.failure('Email or password is incorrect, please try again');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

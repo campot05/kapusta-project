@@ -25,7 +25,9 @@ export const AuthForm = () => {
   const onSubmit = (data, e) => {
     const buttonName = e.nativeEvent.submitter.name;
     if (buttonName === 'registration') {
-      dispatch(registerUser(data));
+      dispatch(registerUser(data))
+        .unwrap()
+        .then(() => dispatch(logIn(data)));
       reset();
     }
     if (buttonName === 'login') {

@@ -42,6 +42,7 @@ export const Container = styled.div`
   @media screen and (min-width: 1279.98px) {
     max-width: 1280px;
     position: relative;
+    height: 100vh;
   }
 `;
 
