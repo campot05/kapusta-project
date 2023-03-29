@@ -12,7 +12,7 @@ export const registerUser = createAsyncThunk(
       return res.data;
     } catch (error) {
       Notify.failure(
-        `Email ${credentials.email} already registered, please login or enter another email`
+        `Email ${credentials.email} already registered, please login or enter another email 😢`
       );
       return thunkAPI.rejectWithValue(error.message);
     }
